@@ -19,7 +19,8 @@ namespace WiiWandz
 		public WiimoteInfo()
 		{
 			InitializeComponent();
-			g = Graphics.FromImage(b);
+            g = Graphics.FromImage(b);
+            wandTracker = new WandTracker();
 		}
 
 		public WiimoteInfo(Wiimote wm) : this()
@@ -189,17 +190,17 @@ namespace WiiWandz
             if (ws.IRState.IRSensors[0].Found && ws.IRState.IRSensors[1].Found)
             {
                 g.DrawEllipse(new Pen(Color.Green), (int)(ws.IRState.RawMidpoint.X / 4), (int)(ws.IRState.RawMidpoint.Y / 4), 2, 2);
+            }
 
-                SpellTrigger trigger = wandTracker.addPosition(ws.IRState.IRSensors[0].Position, DateTime.Now);
-                if (trigger != null)
-                {
-                    lblSpellName.Text = trigger.GetType().ToString();
-                }
-                else
-                {
-                    lblSpellName.Text = "";
-                }
-
+            // Check for spell action
+            SpellTrigger trigger = wandTracker.addPosition(ws.IRState.IRSensors[0].RawPosition, DateTime.Now);
+            if (trigger != null)
+            {
+                lblSpellName.Text = trigger.GetType().ToString() + " - " + DateTime.Now.Subtract(wandTracker.startSpell).Seconds + " seconds";
+            }
+            else
+            {
+                lblSpellName.Text = "No spell";
             }
 
 			pbIR.Image = b;

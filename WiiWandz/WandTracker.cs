@@ -7,15 +7,16 @@ namespace WiiWandz
 {
     class WandTracker
     {
-        private List<Position> positions;
-        private SpellTrigger spell;
+        public List<Position> positions;
+        public SpellTrigger spell;
+        public DateTime startSpell;
 
         public WandTracker()
         {
             positions = new List<Position>();
         }
 
-        internal SpellTrigger addPosition(WiimoteLib.PointF pointF, DateTime dateTime)
+        internal SpellTrigger addPosition(WiimoteLib.Point pointF, DateTime dateTime)
         {
 
             if (spell == null)
@@ -27,6 +28,7 @@ namespace WiiWandz
                 if (trigger.triggered())
                 {
                     spell = trigger;
+                    startSpell = DateTime.Now;
                 }
                 else
                 {
@@ -34,6 +36,7 @@ namespace WiiWandz
                     if (trigger.triggered())
                     {
                         spell = trigger;
+                        startSpell = DateTime.Now;
                     }
                 }
             }

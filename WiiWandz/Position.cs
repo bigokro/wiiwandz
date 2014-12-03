@@ -7,10 +7,10 @@ namespace WiiWandz
 {
     class Position
     {
-        public WiimoteLib.PointF point;
+        public WiimoteLib.Point point;
         public DateTime time;
 
-        public Position(WiimoteLib.PointF point, DateTime time)
+        public Position(WiimoteLib.Point point, DateTime time)
         {
             this.point = point;
             this.time = time;

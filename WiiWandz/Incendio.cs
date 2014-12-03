@@ -30,63 +30,74 @@ namespace WiiWandz
         {
             Position lastPoint = positions.Last();
             Position currentPoint = lastPoint;
+            Position nextPoint = lastPoint;
+            Position switchPoint = lastPoint;
+            Position startPoint = lastPoint;
 
             // At least half a second of upward motion
             int i = positions.Count();
-            while (i > 0 && lastPoint.time.Subtract(currentPoint.time).Milliseconds < 500)
-            {
-                Position nextPoint = positions.ElementAt(i - 1);
-                if (currentPoint.point.Y < nextPoint.point.Y)
-                {
-                    // Falling when it should be rising
-                    return false;
-                }
+            int increment = 10;
 
+            while (i > 0 && nextPoint.point.Y - currentPoint.point.Y >= 0)
+            {
                 currentPoint = nextPoint;
-                i--;
+                nextPoint = positions.ElementAt(i - 1);
+                i -= increment;
             }
 
-            // Look for the point where we switch directions
-            Boolean switched = false;
-            while (i > 0 && !switched)
+            if (i == 0)
             {
-                Position nextPoint = positions.ElementAt(i - 1);
-                if (currentPoint.point.Y < nextPoint.point.Y)
-                {
-                    switched = true;
-                }
-
-                currentPoint = nextPoint;
-                i--;
+//                Console.WriteLine("Returning false because there was no switch point");
+                return false;
             }
-            Position switchPoint = currentPoint;
 
-            // Verify that the angle was mostly vertical
+            switchPoint = currentPoint;
+
+            if (lastPoint.time.Subtract(switchPoint.time).Milliseconds < 500)
+            {
+//                Console.WriteLine("Returning false because time between switch and now less than half a second - "
+//                    + switchPoint.point.ToString() + " to " + lastPoint.point.ToString() 
+//                    + lastPoint.time.Subtract(switchPoint.time).Milliseconds + "ms");
+                return false;
+            }
+            if (lastPoint.point.Y <= switchPoint.point.Y)
+            {
+//                Console.WriteLine("Returning false because end point below or at switch point");
+                return false;
+            }
             if (lastPoint.point.Y - switchPoint.point.Y < Math.Abs(lastPoint.point.X - switchPoint.point.X))
             {
+//                Console.WriteLine("Returning false because angle was mostly horizontal - " + switchPoint.point.ToString() + " to " + lastPoint.point.ToString());
                 return false;
             }
 
-            // Check that we were descending for at least 1 second before switching
-            while (i > 0 && switchPoint.time.Subtract(currentPoint.time).Milliseconds < 1000)
+            // Find start point
+            while (i > 0 && nextPoint.point.Y - currentPoint.point.Y >= 0)
             {
-                Position nextPoint = positions.ElementAt(i - 1);
-                if (currentPoint.point.Y > nextPoint.point.Y)
-                {
-                    // Rising when it should be falling
-                    return false;
-                }
-
                 currentPoint = nextPoint;
-                i--;
+                nextPoint = positions.ElementAt(i - 1);
+                i -= increment;
             }
+            startPoint = currentPoint;
 
-            // Verify that the angle was mostly vertical
-            if (currentPoint.point.Y - switchPoint.point.Y < Math.Abs(currentPoint.point.X - switchPoint.point.X))
+            if (switchPoint.time.Subtract(startPoint.time).Milliseconds < 1000)
             {
+                Console.WriteLine("Returning false because time between start and switch less than a second");
+                return false;
+            }
+            if (startPoint.point.Y <= switchPoint.point.Y)
+            {
+                Console.WriteLine("Returning false because start point below or at switch point");
+                return false;
+            }
+            if (startPoint.point.Y - switchPoint.point.Y < Math.Abs(startPoint.point.X - switchPoint.point.X))
+            {
+                Console.WriteLine("Returning false because angle was mostly horizontal - " + startPoint.point.ToString() + " to " + switchPoint.point.ToString() + " to " + lastPoint.point.ToString());
+                //                Console.WriteLine("Returning false because angle was mostly horizontal");
                 return false;
             }
 
+            Console.WriteLine("Returning true!!!!!");
             return true;
         }
     }

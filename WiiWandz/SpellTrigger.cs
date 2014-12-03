@@ -7,8 +7,8 @@ namespace WiiWandz
 {
     interface SpellTrigger
     {
-        public Boolean triggered();
-        public void castSpell();
-        public Boolean casting();
+        Boolean triggered();
+        void castSpell();
+        Boolean casting();
     }
 }
