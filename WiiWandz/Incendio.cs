@@ -23,7 +23,7 @@ namespace WiiWandz
         {
             Position lastPoint = positions.Last();
 
-            return triggered() && (DateTime.Now.Subtract(lastPoint.time).Seconds < 25);
+            return triggered() && (DateTime.Now.Subtract(lastPoint.time).TotalSeconds < 25);
         }
 
         public Boolean triggered()
@@ -38,36 +38,45 @@ namespace WiiWandz
             int i = positions.Count();
             int increment = 10;
 
-            while (i > 0 && nextPoint.point.Y - currentPoint.point.Y >= 0)
+            if (i > 10)
+            {
+                log(positions.ElementAt(i - increment - 1).point.ToString()
+                    + " " + positions.ElementAt(i - 1).point.ToString()
+                    + " " + (positions.ElementAt(i - increment - 1).point.Y - positions.ElementAt(i - 1).point.Y),
+                    increment);
+            }
+            while (i > 0 && currentPoint.point.Y - nextPoint.point.Y >= 0)
             {
                 currentPoint = nextPoint;
                 nextPoint = positions.ElementAt(i - 1);
+                //log("Next point: " + nextPoint.point.Y 
+                //    + " Current point: " + currentPoint.point.Y + " Diff: " 
+                //    + (nextPoint.point.Y - currentPoint.point.Y), 
+                //    increment);
                 i -= increment;
             }
 
             if (i == 0)
             {
-//                Console.WriteLine("Returning false because there was no switch point");
+                log("Returning false because there was no switch point", increment);
                 return false;
             }
 
             switchPoint = currentPoint;
 
-            if (lastPoint.time.Subtract(switchPoint.time).Milliseconds < 500)
+            //log("Last point index: " + positions.Count + " Switch point index: " + i, increment);
+            if (lastPoint.time.Subtract(switchPoint.time).TotalMilliseconds < 500)
             {
-//                Console.WriteLine("Returning false because time between switch and now less than half a second - "
-//                    + switchPoint.point.ToString() + " to " + lastPoint.point.ToString() 
-//                    + lastPoint.time.Subtract(switchPoint.time).Milliseconds + "ms");
+                log("Returning false because time between switch and now less than half a second - "
+                    + switchPoint.point.ToString() + " to " + lastPoint.point.ToString() 
+                    + lastPoint.time.Subtract(switchPoint.time).Milliseconds + "ms",
+                    increment);
                 return false;
             }
-            if (lastPoint.point.Y <= switchPoint.point.Y)
+            if (Math.Abs(lastPoint.point.Y - switchPoint.point.Y) < Math.Abs(lastPoint.point.X - switchPoint.point.X))
             {
-//                Console.WriteLine("Returning false because end point below or at switch point");
-                return false;
-            }
-            if (lastPoint.point.Y - switchPoint.point.Y < Math.Abs(lastPoint.point.X - switchPoint.point.X))
-            {
-//                Console.WriteLine("Returning false because angle was mostly horizontal - " + switchPoint.point.ToString() + " to " + lastPoint.point.ToString());
+                log("Returning false because angle was mostly horizontal - " + switchPoint.point.ToString() + " to " + lastPoint.point.ToString(),
+                    increment);
                 return false;
             }
 
@@ -80,25 +89,30 @@ namespace WiiWandz
             }
             startPoint = currentPoint;
 
-            if (switchPoint.time.Subtract(startPoint.time).Milliseconds < 1000)
+            if (switchPoint.time.Subtract(startPoint.time).TotalMilliseconds < 1000)
             {
-                Console.WriteLine("Returning false because time between start and switch less than a second");
+                log("Returning false because time between start and switch less than a second", increment);
                 return false;
             }
-            if (startPoint.point.Y <= switchPoint.point.Y)
+            if (Math.Abs(startPoint.point.Y - switchPoint.point.Y) < Math.Abs(startPoint.point.X - switchPoint.point.X))
             {
-                Console.WriteLine("Returning false because start point below or at switch point");
-                return false;
-            }
-            if (startPoint.point.Y - switchPoint.point.Y < Math.Abs(startPoint.point.X - switchPoint.point.X))
-            {
-                Console.WriteLine("Returning false because angle was mostly horizontal - " + startPoint.point.ToString() + " to " + switchPoint.point.ToString() + " to " + lastPoint.point.ToString());
-                //                Console.WriteLine("Returning false because angle was mostly horizontal");
+                log("Returning false because angle was mostly horizontal - " 
+                    + startPoint.point.ToString() + " to " + switchPoint.point.ToString()
+                    + " to " + lastPoint.point.ToString(),
+                    increment);
                 return false;
             }
 
             Console.WriteLine("Returning true!!!!!");
             return true;
+        }
+
+        private void log(String text, int increment)
+        {
+            if (positions.Count % increment == 0)
+            {
+                Console.WriteLine(text);
+            }
         }
     }
 }
