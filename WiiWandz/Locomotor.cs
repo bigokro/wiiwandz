@@ -23,7 +23,7 @@ namespace WiiWandz
         {
             Position lastPoint = positions.Last();
 
-            return triggered() && (DateTime.Now.Subtract(lastPoint.time).Seconds < 25);
+            return triggered() && (DateTime.Now.Subtract(lastPoint.time).Seconds < 10);
         }
 
         public Boolean triggered()

@@ -28,6 +28,7 @@ namespace WiiWandz
                 if (trigger.triggered())
                 {
                     spell = trigger;
+                    trigger.castSpell();
                     startSpell = DateTime.Now;
                 }
                 else

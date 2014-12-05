@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net;
+using System.Collections.Specialized;
 
 namespace WiiWandz
 {
@@ -16,7 +18,19 @@ namespace WiiWandz
 
         public void castSpell()
         {
-            // todo
+            using (var client = new WebClient())
+            {
+                client.Headers.Set("Authorization", "Bearer f44dbe4b28c2f26eb9a10eb7cb3510dd465d3fe34355cefe6fdfddf4ce2c5ae6");
+                client.Headers.Set("Accept", "application/vnd.littlebits.v2+json");
+
+                var values = new NameValueCollection();
+                values["percent"] = "100";
+                values["duration_ms"] = "25000";
+
+                var response = client.UploadValues("https://api-http.littlebitscloud.cc/devices/00e04c223418/output", values);
+
+                var responseString = Encoding.Default.GetString(response);
+            }
         }
 
         public Boolean casting()
@@ -111,7 +125,7 @@ namespace WiiWandz
         {
             if (positions.Count % increment == 0)
             {
-                Console.WriteLine(text);
+                //Console.WriteLine(text);
             }
         }
     }
