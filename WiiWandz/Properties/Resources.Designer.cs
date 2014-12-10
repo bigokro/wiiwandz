@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WiiWandz.Properties {
+namespace WiiWandz {
     using System;
     
     

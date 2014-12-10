@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{48223EAB-B2E0-4A64-9074-4444662EB693}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -65,9 +65,6 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
@@ -83,9 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Position.cs" />
-    <Compile Include="Locomotor.cs" />
-    <Compile Include="Incendio.cs" />
-    <Compile Include="SpellTrigger.cs" />
     <Compile Include="WandTracker.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SingleWiiWandzForm.cs">
@@ -140,6 +134,13 @@
       <DependentUpon>WiimoteInfo.cs</DependentUpon>
     </Compile>
     <None Include="WiiWandz_TemporaryKey.pfx" />
+    <Compile Include="Spells\SpellTrigger.cs" />
+    <Compile Include="Spells\Aguamenti.cs" />
+    <Compile Include="Spells\Incendio.cs" />
+    <Compile Include="Spells\Locomotor.cs" />
+    <Compile Include="Strokes\Stroke.cs" />
+    <Compile Include="Strokes\StrokeDecomposer.cs" />
+    <Compile Include="CloudBit\CloudBitSignal.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -171,4 +172,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Properties\New Folder\" />
+    <Folder Include="Spells\" />
+    <Folder Include="Strokes\" />
+    <Folder Include="CloudBit\" />
+  </ItemGroup>
 </Project>
