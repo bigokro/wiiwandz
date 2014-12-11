@@ -23,8 +23,8 @@ namespace WiiWandz.Spells
 			this.cloudBit = new CloudBitSignal (this.device, this.authorization, 50, 10 * 1000);
 
 			this.strokesForSpell = new List<Stroke> ();
-			this.strokesForSpell.Add (Stroke.Up);
-			this.strokesForSpell.Add (Stroke.DownToTheLeft);
+			//this.strokesForSpell.Add (Stroke.Up);
+			//this.strokesForSpell.Add (Stroke.DownToTheLeft);
 			this.strokesForSpell.Add (Stroke.Right);
 		}
 
@@ -41,9 +41,16 @@ namespace WiiWandz.Spells
 
 		public Boolean triggered(List<Stroke> strokes)
 		{
-			StrokeDecomposer decomposer = new StrokeDecomposer (1023, 1023, 10);
-			return decomposer.strokesMatch(strokes, this.strokesForSpell);
-		}
+            StrokeDecomposer decomposer = new StrokeDecomposer(1023, 1023, 10);
+            Boolean trig = decomposer.strokesMatch(strokes, this.strokesForSpell);
+
+            if (trig)
+            {
+                lastTrigger = DateTime.Now;
+            }
+
+            return trig;
+        }
 
     }
 }

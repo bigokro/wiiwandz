@@ -67,6 +67,9 @@
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -80,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Position.cs" />
+    <Compile Include="Test\StrokeDecomposerTest.cs" />
     <Compile Include="WandTracker.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SingleWiiWandzForm.cs">
@@ -174,8 +178,5 @@
   -->
   <ItemGroup>
     <Folder Include="Properties\New Folder\" />
-    <Folder Include="Spells\" />
-    <Folder Include="Strokes\" />
-    <Folder Include="CloudBit\" />
   </ItemGroup>
 </Project>

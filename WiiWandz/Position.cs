@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WiiWandz
 {
-    class Position
+    public class Position
     {
         public WiimoteLib.Point point;
         public DateTime time;

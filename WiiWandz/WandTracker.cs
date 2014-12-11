@@ -4,18 +4,20 @@ using System.Linq;
 using System.Text;
 using WiiWandz.Spells;
 using WiiWandz.Strokes;
+using WiiWandz.Test;
 
 namespace WiiWandz
 {
     class WandTracker
     {
 
-		public String device = "00e04c223418";
-		public String authorization = "f44dbe4b28c2f26eb9a10eb7cb3510dd465d3fe34355cefe6fdfddf4ce2c5ae6";
+		public String device;
+		public String authorization;
 
-		private List<Position> positions;
-		private List<SpellTrigger> spells;
-		private StrokeDecomposer decomposer;
+		public List<Position> positions;
+        public List<Stroke> strokes;
+		public List<SpellTrigger> spells;
+		public StrokeDecomposer decomposer;
 
 		public SpellTrigger spell;
         public DateTime startSpell;
@@ -23,10 +25,29 @@ namespace WiiWandz
         public WandTracker()
         {
             this.positions = new List<Position>();
-			this.decomposer = new StrokeDecomposer (1023, 1023, 10);
+			this.decomposer = new StrokeDecomposer (1023, 1023, 2);
 
-			spells = new List<SpellTrigger> ();
-			spells.Add (new Incendio (device, authorization));
+            spells = new List<SpellTrigger>();
+
+            /*
+            StrokeDecomposerTest test = new StrokeDecomposerTest();
+            if (!test.testDetermineStroke())
+            {
+                throw new Exception("testDetermineStroke failed!");
+            }
+            else
+            {
+                Console.WriteLine("testDetermineStroke passed");
+            }
+            */
+        }
+
+        public void initializeSpells()
+        {
+            spells = new List<SpellTrigger>();
+            spells.Add(new Incendio(device, authorization));
+            spells.Add(new Locomotor(device, authorization));
+            spells.Add(new Aguamenti(device, authorization));
         }
 
         internal SpellTrigger addPosition(WiimoteLib.Point pointF, DateTime dateTime)
@@ -36,26 +57,37 @@ namespace WiiWandz
             {
                 addPosition(new Position(pointF, dateTime));
 
-				List<Stroke> strokes = decomposer.determineStrokes (positions);
+                if (positions.Count > 2)
+                {
+                    strokes = decomposer.determineStrokes(positions);
 
-                // TODO: move to class for choosing which spell was cast
-				foreach (SpellTrigger trigger in spells)
-				{
-					if (trigger.triggered(strokes))
-					{
-						spell = trigger;
-						trigger.castSpell();
-						startSpell = DateTime.Now;
-					}
-				}
+                    // TODO: move to class for choosing which spell was cast
+                    foreach (SpellTrigger trigger in spells)
+                    {
+                        if (trigger.triggered(strokes))
+                        {
+                            spell = trigger;
+                            trigger.castSpell();
+                            startSpell = DateTime.Now;
+                        }
+                    }
+                }
             }
             else if (!spell.casting()) 
             {
                 spell = null;
                 positions.Clear();
+                strokes.Clear();
             }
 
             return spell;
+        }
+
+        public void setDeviceInfo(String device, String authorization)
+        {
+            this.device = device;
+            this.authorization = authorization;
+            initializeSpells();
         }
 
 		private void addPosition(Position position)
@@ -67,7 +99,7 @@ namespace WiiWandz
 
 			int idx = positions.Count - 1;
 			while (idx >= 0 
-				&& timeOfLatest.Subtract(positions.ElementAt(idx).time).TotalSeconds > 3)
+				&& timeOfLatest.Subtract(positions.ElementAt(idx).time).TotalSeconds < 3)
 			{
 				idx--;
 			}

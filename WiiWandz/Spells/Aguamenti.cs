@@ -40,9 +40,16 @@ namespace WiiWandz.Spells
 
 		public Boolean triggered(List<Stroke> strokes)
 		{
-			StrokeDecomposer decomposer = new StrokeDecomposer (1023, 1023, 10);
-			return decomposer.strokesMatch(strokes, this.strokesForSpell);
-		}
+            StrokeDecomposer decomposer = new StrokeDecomposer(1023, 1023, 10);
+            Boolean trig = decomposer.strokesMatch(strokes, this.strokesForSpell);
+
+            if (trig)
+            {
+                lastTrigger = DateTime.Now;
+            }
+
+            return trig;
+        }
 
 	}
 }

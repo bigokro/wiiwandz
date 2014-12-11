@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using WiimoteLib;
+using WiiWandz.Spells;
+using WiiWandz.Strokes;
 
 namespace WiiWandz
 {
@@ -11,15 +13,19 @@ namespace WiiWandz
 		private delegate void UpdateWiimoteStateDelegate(WiimoteChangedEventArgs args);
 		private delegate void UpdateExtensionChangedDelegate(WiimoteExtensionChangedEventArgs args);
 
-		private Bitmap b = new Bitmap(256, 192, PixelFormat.Format24bppRgb);
-		private Graphics g;
+		private Bitmap irBitmap = new Bitmap(256, 192, PixelFormat.Format24bppRgb);
+        private Bitmap strokesBitmap = new Bitmap(256, 192, PixelFormat.Format24bppRgb);
+        private Graphics irGraphics;
+        private Graphics strokesGraphics;
 		private Wiimote mWiimote;
         private WandTracker wandTracker;
+        private SpellTrigger trigger;
 
 		public WiimoteInfo()
 		{
 			InitializeComponent();
-            g = Graphics.FromImage(b);
+            irGraphics = Graphics.FromImage(irBitmap);
+            strokesGraphics = Graphics.FromImage(strokesBitmap);
             wandTracker = new WandTracker();
 		}
 
@@ -180,7 +186,8 @@ namespace WiiWandz
 					break;
 			}
 
-			g.Clear(Color.Black);
+			irGraphics.Clear(Color.Black);
+            strokesGraphics.Clear(Color.Black);
 
 			UpdateIR(ws.IRState.IRSensors[0], lblIR1, lblIR1Raw, chkFound1, Color.Red);
 			UpdateIR(ws.IRState.IRSensors[1], lblIR2, lblIR2Raw, chkFound2, Color.Blue);
@@ -189,12 +196,17 @@ namespace WiiWandz
 
             if (ws.IRState.IRSensors[0].Found && ws.IRState.IRSensors[1].Found)
             {
-                g.DrawEllipse(new Pen(Color.Green), (int)(ws.IRState.RawMidpoint.X / 4), (int)(ws.IRState.RawMidpoint.Y / 4), 2, 2);
+                irGraphics.DrawEllipse(new Pen(Color.Green), (int)(ws.IRState.RawMidpoint.X / 4), (int)(ws.IRState.RawMidpoint.Y / 4), 2, 2);
             }
 
-            // Check for spell action
-            SpellTrigger trigger = wandTracker.addPosition(ws.IRState.IRSensors[0].RawPosition, DateTime.Now);
-            if (trigger != null)
+
+            if (ws.IRState.IRSensors[0].Found)
+            {
+                // Check for spell action
+                trigger = wandTracker.addPosition(ws.IRState.IRSensors[0].RawPosition, DateTime.Now);
+            }
+
+            if (trigger != null && trigger.casting())
             {
                 lblSpellName.Text = trigger.GetType().ToString() + " - " + DateTime.Now.Subtract(wandTracker.startSpell).Seconds + " seconds";
             }
@@ -203,7 +215,74 @@ namespace WiiWandz
                 lblSpellName.Text = "No spell";
             }
 
-			pbIR.Image = b;
+            Position previous = null;
+            foreach (Position p in wandTracker.positions)
+            {
+                if (previous == null)
+                {
+                    previous = p;
+                    continue;
+                }
+
+                System.Drawing.Point pointA = new System.Drawing.Point();
+                System.Drawing.Point pointB = new System.Drawing.Point();
+                pointA.X = previous.point.X/4;
+                pointA.Y = previous.point.Y/4;
+                pointB.X = p.point.X/4;
+                pointB.Y = p.point.Y/4;
+                strokesGraphics.DrawLine(new Pen(Color.Yellow), pointA, pointB);
+
+                previous = p;
+            }
+
+            if (wandTracker.strokes != null)
+            {
+                int strokeLength = 30;
+                System.Drawing.Point startPoint = new System.Drawing.Point(100, 100);
+                foreach (Stroke stroke in wandTracker.strokes)
+                {
+                    System.Drawing.Point endPoint = new System.Drawing.Point(startPoint.X, startPoint.Y);
+                    switch (stroke)
+                    {
+                        case Stroke.Bumbled:
+                            strokesGraphics.DrawEllipse(new Pen(Color.Purple), startPoint.X, startPoint.Y, 10, 5);
+                            break;
+                        case Stroke.Up:
+                            endPoint.Y = startPoint.Y + strokeLength;
+                            break;
+                        case Stroke.Down:
+                            endPoint.Y = startPoint.Y - strokeLength;
+                            break;
+                        case Stroke.Left:
+                            endPoint.X = startPoint.X - strokeLength;
+                            break;
+                        case Stroke.Right:
+                            endPoint.X = startPoint.X + strokeLength;
+                            break;
+                        case Stroke.UpToTheLeft:
+                            endPoint.X = startPoint.X - strokeLength;
+                            endPoint.Y = startPoint.Y + strokeLength;
+                            break;
+                        case Stroke.UpToTheRight:
+                            endPoint.X = startPoint.X + strokeLength;
+                            endPoint.Y = startPoint.Y + strokeLength;
+                            break;
+                        case Stroke.DownToTheLeft:
+                            endPoint.X = startPoint.X - strokeLength;
+                            endPoint.Y = startPoint.Y - strokeLength;
+                            break;
+                        case Stroke.DownToTheRight:
+                            endPoint.X = startPoint.X + strokeLength;
+                            endPoint.Y = startPoint.Y - strokeLength;
+                            break;
+                    }
+                    strokesGraphics.DrawLine(new Pen(Color.Green), startPoint, endPoint);
+                    startPoint = endPoint;
+                }
+            }
+
+			pbIR.Image = irBitmap;
+            pbStrokes.Image = strokesBitmap;
 
 			pbBattery.Value = (ws.Battery > 0xc8 ? 0xc8 : (int)ws.Battery);
 			lblBattery.Text = ws.Battery.ToString();
@@ -219,7 +298,7 @@ namespace WiiWandz
 			{
 				lblNorm.Text = irSensor.Position.ToString() + ", " + irSensor.Size;
 				lblRaw.Text = irSensor.RawPosition.ToString();
-				g.DrawEllipse(new Pen(color), (int)(irSensor.RawPosition.X / 4), (int)(irSensor.RawPosition.Y / 4),
+				irGraphics.DrawEllipse(new Pen(color), (int)(irSensor.RawPosition.X / 4), (int)(irSensor.RawPosition.Y / 4),
 							 irSensor.Size+1, irSensor.Size+1);
 			}
 		}
@@ -236,5 +315,20 @@ namespace WiiWandz
 		{
 			set { mWiimote = value; }
 		}
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cloudBitID_TextChanged(object sender, EventArgs e)
+        {
+            wandTracker.setDeviceInfo(cloudBitID.Text, cloudBitAuthentication.Text);
+        }
+
+        private void cloudBitAuthentication_TextChanged(object sender, EventArgs e)
+        {
+            wandTracker.setDeviceInfo(cloudBitID.Text, cloudBitAuthentication.Text);
+        }
 	}
 }

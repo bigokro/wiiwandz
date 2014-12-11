@@ -13,7 +13,7 @@ namespace WiiWandz.Strokes
 		{
 			this.maxX = maxX;
 			this.maxY = maxY;
-			this.minPctForStroke;
+			this.minPctForStroke = minPctForStroke;
 		}
 
 		public List<Stroke> determineStrokes(List<Position> positions)
@@ -24,7 +24,7 @@ namespace WiiWandz.Strokes
 				return strokes;
 			}
 
-			int increment = 5;
+			int increment = 1;
 			int count = 0;
 
 			Position lastPivot = positions [0];
@@ -70,9 +70,11 @@ namespace WiiWandz.Strokes
 					Stroke stroke = allStrokes[i+j];
 					Stroke expectedStroke = expected [j];
 					if (stroke != expectedStroke) {
-						break;
+                        // Break out of this loop
+						j = allStrokes.Count;
 					} else if (j == expected.Count - 1) {
 						matched = true;
+                        break;
 					}
 				}
 			}
@@ -112,7 +114,7 @@ namespace WiiWandz.Strokes
 				} else {
 					stroke = Stroke.UpToTheLeft;
 				}
-			} else if (slope >= -0.25 && < 0.25) {
+			} else if (slope >= -0.25 && slope < 0.25) {
 				if (deltaX > 0) {
 					stroke = Stroke.Right;
 				} else {
@@ -134,8 +136,9 @@ namespace WiiWandz.Strokes
 			int deltaX = start.point.X - end.point.X;
 			int deltaY = start.point.Y - end.point.Y;
 
-			float length = Math.Sqrt (deltaX ^ 2 + deltaY ^ 2);
-			float percent = length / Math.Max (maxX, maxY);
+			double length = Math.Sqrt (deltaX ^ 2 + deltaY ^ 2);
+			double percent = length / Math.Max (maxX, maxY);
+            percent *= 100;
 
 			return percent >= minPctForStroke;
 		}
