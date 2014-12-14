@@ -24,7 +24,7 @@ namespace WiiWandz.Strokes
 				return strokes;
 			}
 
-			int increment = 1;
+			int increment = 5;
 			int count = 0;
 
 			Position lastPivot = positions [0];
