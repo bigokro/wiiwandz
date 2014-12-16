@@ -1,22 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace WiiWandz.Strokes
 {
-	public enum Stroke
-	{
-		Left,
-		Right,
-		Up,
-		Down,
-		UpToTheLeft,
-		UpToTheRight,
-		DownToTheLeft,
-		DownToTheRight,
-		ClockwiseLeft,
-		ClockwiseRight,
-		CounterclockwiseLeft,
-		CounterclockwiseRight,
-		Bumbled
-	}
-}
+    public class Stroke
+    {
+        public StrokeDirection direction;
+        public Position start;
+        public Position end;
 
+        public Stroke(StrokeDirection direction, Position start, Position end)
+        {
+            this.direction = direction;
+            this.start = start;
+            this.end = end;
+        }
+
+    }
+}

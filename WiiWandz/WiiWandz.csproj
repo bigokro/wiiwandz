@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Position.cs" />
+    <Compile Include="Strokes\Stroke.cs" />
     <Compile Include="Test\StrokeDecomposerTest.cs" />
     <Compile Include="WandTracker.cs" />
     <Compile Include="Settings.cs" />
@@ -141,7 +142,7 @@
     <Compile Include="Spells\Aguamenti.cs" />
     <Compile Include="Spells\Incendio.cs" />
     <Compile Include="Spells\Locomotor.cs" />
-    <Compile Include="Strokes\Stroke.cs" />
+    <Compile Include="Strokes\StrokeDirection.cs" />
     <Compile Include="Strokes\StrokeDecomposer.cs" />
     <Compile Include="CloudBit\CloudBitSignal.cs" />
   </ItemGroup>

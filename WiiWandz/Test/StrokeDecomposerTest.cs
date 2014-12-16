@@ -18,88 +18,88 @@ namespace WiiWandz.Test
 
             StrokeDecomposer decomposer = new StrokeDecomposer(1024, 1024, 2);
 
-            List<Stroke> strokes = new List<Stroke>();
-            strokes.Add(Stroke.Bumbled);
+            List<StrokeDirection> strokes = new List<StrokeDirection>();
+            strokes.Add(StrokeDirection.Bumbled);
 
-            List<Stroke> toMatch = new List<Stroke>();
-            toMatch.Add(Stroke.Right);
+            List<StrokeDirection> toMatch = new List<StrokeDirection>();
+            toMatch.Add(StrokeDirection.Right);
             pass = pass && !decomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
-            strokes.Add(Stroke.Bumbled);
-            strokes.Add(Stroke.Right);
+            strokes.Add(StrokeDirection.Bumbled);
+            strokes.Add(StrokeDirection.Right);
             pass = pass && decomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
-            strokes.Add(Stroke.Bumbled);
-            strokes.Add(Stroke.Left);
+            strokes.Add(StrokeDirection.Bumbled);
+            strokes.Add(StrokeDirection.Left);
             pass = pass && !decomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
-            strokes.Add(Stroke.Right);
+            strokes.Add(StrokeDirection.Right);
             pass = pass && decomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
-            strokes.Add(Stroke.Bumbled);
-            strokes.Add(Stroke.Right);
-            strokes.Add(Stroke.Bumbled);
+            strokes.Add(StrokeDirection.Bumbled);
+            strokes.Add(StrokeDirection.Right);
+            strokes.Add(StrokeDirection.Bumbled);
             pass = pass && decomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
-            strokes.Add(Stroke.Bumbled);
-            strokes.Add(Stroke.Left);
-            strokes.Add(Stroke.Right);
-            strokes.Add(Stroke.Bumbled);
+            strokes.Add(StrokeDirection.Bumbled);
+            strokes.Add(StrokeDirection.Left);
+            strokes.Add(StrokeDirection.Right);
+            strokes.Add(StrokeDirection.Bumbled);
             pass = pass && decomposer.strokesMatch(strokes, toMatch);
 
             toMatch.Clear();
-            toMatch.Add(Stroke.UpToTheRight);
-            toMatch.Add(Stroke.DownToTheRight);
-            toMatch.Add(Stroke.Left);
+            toMatch.Add(StrokeDirection.UpToTheRight);
+            toMatch.Add(StrokeDirection.DownToTheRight);
+            toMatch.Add(StrokeDirection.Left);
 
             strokes.Clear();
-            strokes.Add(Stroke.Bumbled);
-            strokes.Add(Stroke.Right);
+            strokes.Add(StrokeDirection.Bumbled);
+            strokes.Add(StrokeDirection.Right);
             pass = pass && !decomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
-            strokes.Add(Stroke.Bumbled);
-            strokes.Add(Stroke.UpToTheRight);
-            strokes.Add(Stroke.DownToTheRight);
-            strokes.Add(Stroke.Left);
+            strokes.Add(StrokeDirection.Bumbled);
+            strokes.Add(StrokeDirection.UpToTheRight);
+            strokes.Add(StrokeDirection.DownToTheRight);
+            strokes.Add(StrokeDirection.Left);
             pass = pass && decomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
-            strokes.Add(Stroke.UpToTheRight);
-            strokes.Add(Stroke.DownToTheRight);
-            strokes.Add(Stroke.Left);
+            strokes.Add(StrokeDirection.UpToTheRight);
+            strokes.Add(StrokeDirection.DownToTheRight);
+            strokes.Add(StrokeDirection.Left);
             pass = pass && decomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
-            strokes.Add(Stroke.UpToTheRight);
-            strokes.Add(Stroke.DownToTheRight);
-            strokes.Add(Stroke.Right);
+            strokes.Add(StrokeDirection.UpToTheRight);
+            strokes.Add(StrokeDirection.DownToTheRight);
+            strokes.Add(StrokeDirection.Right);
             pass = pass && !decomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
-            strokes.Add(Stroke.Up);
-            strokes.Add(Stroke.Left);
-            strokes.Add(Stroke.UpToTheRight);
-            strokes.Add(Stroke.DownToTheRight);
-            strokes.Add(Stroke.Left);
-            strokes.Add(Stroke.UpToTheRight);
-            strokes.Add(Stroke.Down);
+            strokes.Add(StrokeDirection.Up);
+            strokes.Add(StrokeDirection.Left);
+            strokes.Add(StrokeDirection.UpToTheRight);
+            strokes.Add(StrokeDirection.DownToTheRight);
+            strokes.Add(StrokeDirection.Left);
+            strokes.Add(StrokeDirection.UpToTheRight);
+            strokes.Add(StrokeDirection.Down);
             pass = pass && decomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
-            strokes.Add(Stroke.Up);
-            strokes.Add(Stroke.Left);
-            strokes.Add(Stroke.UpToTheRight);
-            strokes.Add(Stroke.Bumbled);
-            strokes.Add(Stroke.DownToTheRight);
-            strokes.Add(Stroke.Left);
-            strokes.Add(Stroke.UpToTheRight);
-            strokes.Add(Stroke.Down);
+            strokes.Add(StrokeDirection.Up);
+            strokes.Add(StrokeDirection.Left);
+            strokes.Add(StrokeDirection.UpToTheRight);
+            strokes.Add(StrokeDirection.Bumbled);
+            strokes.Add(StrokeDirection.DownToTheRight);
+            strokes.Add(StrokeDirection.Left);
+            strokes.Add(StrokeDirection.UpToTheRight);
+            strokes.Add(StrokeDirection.Down);
             pass = pass && !decomposer.strokesMatch(strokes, toMatch);
 
             return pass;

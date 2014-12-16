@@ -16,5 +16,10 @@ namespace WiiWandz
             this.time = time;
         }
 
+        public System.Drawing.Point SystemPoint()
+        {
+            return new System.Drawing.Point((1023-point.X)/4, (1023-point.Y)/4);
+        }
+
     }
 }

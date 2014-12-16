@@ -226,10 +226,10 @@ namespace WiiWandz
 
                 System.Drawing.Point pointA = new System.Drawing.Point();
                 System.Drawing.Point pointB = new System.Drawing.Point();
-                pointA.X = previous.point.X/4;
-                pointA.Y = previous.point.Y/4;
-                pointB.X = p.point.X/4;
-                pointB.Y = p.point.Y/4;
+                pointA.X = (1023-previous.point.X)/4;
+                pointA.Y = (1023-previous.point.Y)/4;
+                pointB.X = (1023-p.point.X)/4;
+                pointB.Y = (1023-p.point.Y)/4;
                 strokesGraphics.DrawLine(new Pen(Color.Yellow), pointA, pointB);
 
                 previous = p;
@@ -237,48 +237,37 @@ namespace WiiWandz
 
             if (wandTracker.strokes != null)
             {
-                int strokeLength = 30;
-                System.Drawing.Point startPoint = new System.Drawing.Point(100, 100);
                 foreach (Stroke stroke in wandTracker.strokes)
                 {
-                    System.Drawing.Point endPoint = new System.Drawing.Point(startPoint.X, startPoint.Y);
-                    switch (stroke)
+                    switch (stroke.direction)
                     {
-                        case Stroke.Bumbled:
-                            strokesGraphics.DrawEllipse(new Pen(Color.Purple), startPoint.X, startPoint.Y, 10, 5);
+                        case StrokeDirection.Bumbled:
+                            strokesGraphics.DrawEllipse(
+                                new Pen(Color.Purple), 
+                                (stroke.start.SystemPoint().X + stroke.end.SystemPoint().X) / 2,
+                                (stroke.start.SystemPoint().Y + stroke.end.SystemPoint().Y) / 2,
+                                10, 5);
+                            strokesGraphics.DrawLine(
+                                new Pen(Color.Red), 
+                                stroke.start.SystemPoint(), 
+                                stroke.end.SystemPoint());
                             break;
-                        case Stroke.Up:
-                            endPoint.Y = startPoint.Y + strokeLength;
-                            break;
-                        case Stroke.Down:
-                            endPoint.Y = startPoint.Y - strokeLength;
-                            break;
-                        case Stroke.Left:
-                            endPoint.X = startPoint.X - strokeLength;
-                            break;
-                        case Stroke.Right:
-                            endPoint.X = startPoint.X + strokeLength;
-                            break;
-                        case Stroke.UpToTheLeft:
-                            endPoint.X = startPoint.X - strokeLength;
-                            endPoint.Y = startPoint.Y + strokeLength;
-                            break;
-                        case Stroke.UpToTheRight:
-                            endPoint.X = startPoint.X + strokeLength;
-                            endPoint.Y = startPoint.Y + strokeLength;
-                            break;
-                        case Stroke.DownToTheLeft:
-                            endPoint.X = startPoint.X - strokeLength;
-                            endPoint.Y = startPoint.Y - strokeLength;
-                            break;
-                        case Stroke.DownToTheRight:
-                            endPoint.X = startPoint.X + strokeLength;
-                            endPoint.Y = startPoint.Y - strokeLength;
+                        default:
+                            strokesGraphics.DrawLine(
+                                new Pen(Color.Green), 
+                                stroke.start.SystemPoint(), 
+                                stroke.end.SystemPoint());
                             break;
                     }
-                    strokesGraphics.DrawLine(new Pen(Color.Green), startPoint, endPoint);
-                    startPoint = endPoint;
+                    strokesGraphics.DrawString(
+                        stroke.direction.ToString(),
+                        new Font(FontFamily.GenericMonospace, 12.0f, FontStyle.Bold),
+                        new SolidBrush(Color.Orange),
+                        (stroke.start.SystemPoint().X + stroke.end.SystemPoint().X) / 2,
+                        (stroke.start.SystemPoint().Y + stroke.end.SystemPoint().Y) / 2);
+
                 }
+
             }
 
 			pbIR.Image = irBitmap;

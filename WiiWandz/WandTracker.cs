@@ -25,7 +25,7 @@ namespace WiiWandz
         public WandTracker()
         {
             this.positions = new List<Position>();
-			this.decomposer = new StrokeDecomposer (1023, 1023, 2);
+			this.decomposer = new StrokeDecomposer (1023, 1023, 10);
 
             spells = new List<SpellTrigger>();
 

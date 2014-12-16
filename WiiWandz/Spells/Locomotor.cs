@@ -12,7 +12,7 @@ namespace WiiWandz.Spells
 		public String device;
 		public String authorization;
 		private CloudBitSignal cloudBit;
-		private List<Stroke> strokesForSpell;
+		private List<StrokeDirection> strokesForSpell;
 
 		public DateTime lastTrigger;
 
@@ -22,10 +22,10 @@ namespace WiiWandz.Spells
 			this.authorization = authorization;
 			this.cloudBit = new CloudBitSignal (this.device, this.authorization, 50, 10 * 1000);
 
-			this.strokesForSpell = new List<Stroke> ();
-			//this.strokesForSpell.Add (Stroke.Up);
-			//this.strokesForSpell.Add (Stroke.DownToTheLeft);
-			this.strokesForSpell.Add (Stroke.Right);
+			this.strokesForSpell = new List<StrokeDirection> ();
+			this.strokesForSpell.Add (StrokeDirection.Up);
+			this.strokesForSpell.Add (StrokeDirection.DownToTheLeft);
+			this.strokesForSpell.Add (StrokeDirection.Right);
 		}
 
 		public void castSpell()
@@ -39,10 +39,15 @@ namespace WiiWandz.Spells
 				&& (DateTime.Now.Subtract(lastTrigger).TotalSeconds < 10);
 		}
 
-		public Boolean triggered(List<Stroke> strokes)
-		{
+        public Boolean triggered(List<Stroke> strokes)
+        {
             StrokeDecomposer decomposer = new StrokeDecomposer(1023, 1023, 10);
-            Boolean trig = decomposer.strokesMatch(strokes, this.strokesForSpell);
+            List<StrokeDirection> directions = new List<StrokeDirection>();
+            foreach (Stroke stroke in strokes)
+            {
+                directions.Add(stroke.direction);
+            }
+            Boolean trig = decomposer.strokesMatch(directions, this.strokesForSpell);
 
             if (trig)
             {
