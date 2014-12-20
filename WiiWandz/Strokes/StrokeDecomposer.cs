@@ -94,15 +94,25 @@ namespace WiiWandz.Strokes
 
 		public Boolean strokesMatch(List<StrokeDirection> allStrokes, List<StrokeDirection> expected)
 		{
+            // Ignore bumbled strokes
+            List<StrokeDirection> allGoodStrokes = new List<StrokeDirection>();
+            foreach (StrokeDirection stroke in allStrokes)
+            {
+                if (stroke != StrokeDirection.Bumbled)
+                {
+                    allGoodStrokes.Add(stroke);
+                }
+            }
+
 			Boolean matched = false;
 
-			for (int i = 0; i < (allStrokes.Count - expected.Count + 1); i++) {
-				for (int j = 0; j < expected.Count && (i + j) < allStrokes.Count; j++) {
-					StrokeDirection stroke = allStrokes[i+j];
+			for (int i = 0; i < (allGoodStrokes.Count - expected.Count + 1); i++) {
+				for (int j = 0; j < expected.Count && (i + j) < allGoodStrokes.Count; j++) {
+					StrokeDirection stroke = allGoodStrokes[i+j];
 					StrokeDirection expectedStroke = expected [j];
 					if (stroke != expectedStroke) {
                         // Break out of this loop
-						j = allStrokes.Count;
+						j = allGoodStrokes.Count;
 					} else if (j == expected.Count - 1) {
 						matched = true;
                         break;

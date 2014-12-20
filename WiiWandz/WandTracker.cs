@@ -5,6 +5,7 @@ using System.Text;
 using WiiWandz.Spells;
 using WiiWandz.Strokes;
 using WiiWandz.Test;
+using System.Windows.Forms;
 
 namespace WiiWandz
 {
@@ -13,6 +14,7 @@ namespace WiiWandz
 
 		public String device;
 		public String authorization;
+        public static Boolean cloudBitWarningShown = false;
 
 		public List<Position> positions;
         public List<Stroke> strokes;
@@ -50,8 +52,19 @@ namespace WiiWandz
             spells.Add(new Aguamenti(device, authorization));
         }
 
-        internal SpellTrigger addPosition(WiimoteLib.Point pointF, DateTime dateTime)
+        public SpellTrigger addPosition(WiimoteLib.Point pointF, DateTime dateTime)
         {
+            if (spells.Count == 0 && !cloudBitWarningShown)
+            {
+                cloudBitWarningShown = true;
+                MessageBox.Show(
+                    "You need to set the cloudBit configurations before casting spells!", 
+                    "cloudBit not configured", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+                return null;
+            }
+
 
             if (spell == null)
             {

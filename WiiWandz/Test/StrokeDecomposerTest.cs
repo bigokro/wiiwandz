@@ -97,10 +97,11 @@ namespace WiiWandz.Test
             strokes.Add(StrokeDirection.UpToTheRight);
             strokes.Add(StrokeDirection.Bumbled);
             strokes.Add(StrokeDirection.DownToTheRight);
+            strokes.Add(StrokeDirection.Bumbled);
             strokes.Add(StrokeDirection.Left);
             strokes.Add(StrokeDirection.UpToTheRight);
             strokes.Add(StrokeDirection.Down);
-            pass = pass && !decomposer.strokesMatch(strokes, toMatch);
+            pass = pass && decomposer.strokesMatch(strokes, toMatch);
 
             return pass;
         }

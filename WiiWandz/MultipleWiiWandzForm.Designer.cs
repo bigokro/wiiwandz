@@ -28,32 +28,32 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.tabWiimotes = new System.Windows.Forms.TabControl();
-			this.SuspendLayout();
-			// 
-			// tabWiimotes
-			// 
-			this.tabWiimotes.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabWiimotes.Location = new System.Drawing.Point(0, 0);
-			this.tabWiimotes.Name = "tabWiimotes";
-			this.tabWiimotes.SelectedIndex = 0;
-			this.tabWiimotes.Size = new System.Drawing.Size(710, 484);
-			this.tabWiimotes.TabIndex = 0;
-			// 
-			// MultipleWiimoteForm
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(710, 484);
-			this.Controls.Add(this.tabWiimotes);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-			this.MaximizeBox = false;
-			this.Name = "MultipleWiimoteForm";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Multiple Wiimote Tester";
-			this.Load += new System.EventHandler(this.MultipleWiimoteForm_Load);
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MultipleWiimoteForm_FormClosing);
-			this.ResumeLayout(false);
+            this.tabWiimotes = new System.Windows.Forms.TabControl();
+            this.SuspendLayout();
+            // 
+            // tabWiimotes
+            // 
+            this.tabWiimotes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabWiimotes.Location = new System.Drawing.Point(0, 0);
+            this.tabWiimotes.Name = "tabWiimotes";
+            this.tabWiimotes.SelectedIndex = 0;
+            this.tabWiimotes.Size = new System.Drawing.Size(710, 484);
+            this.tabWiimotes.TabIndex = 0;
+            // 
+            // MultipleWiiWandzForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(710, 484);
+            this.Controls.Add(this.tabWiimotes);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "MultipleWiiWandzForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "WiiWandz";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MultipleWiimoteForm_FormClosing);
+            this.Load += new System.EventHandler(this.MultipleWiimoteForm_Load);
+            this.ResumeLayout(false);
 
 		}
 
