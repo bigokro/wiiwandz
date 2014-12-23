@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using WiimoteLib;
 using WiiWandz.Spells;
 using WiiWandz.Strokes;
+using System.Collections.Generic;
 
 namespace WiiWandz
 {
@@ -319,5 +320,75 @@ namespace WiiWandz
         {
             wandTracker.setDeviceInfo(cloudBitID.Text, cloudBitAuthentication.Text);
         }
+
+        private void spellBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            setSpells();
+        }
+
+        private void duration1_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(duration1.Text))
+            {
+                duration1.Text = "10";
+            }
+            setSpells();
+        }
+
+        private void spellBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            setSpells();
+        }
+
+        private void duration2_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(duration2.Text))
+            {
+                duration2.Text = "10";
+            }
+            setSpells();
+        }
+
+        private void spellBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            setSpells();
+        }
+
+        private void duration3_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(duration3.Text))
+            {
+                duration3.Text = "10";
+            }
+            setSpells();
+        }
+
+
+        private void setSpells()
+        {
+            List<String> spells = new List<string>();
+            List<int> durations = new List<int>();
+
+            if (!String.IsNullOrEmpty(spellBox1.SelectedText))
+            {
+                spells.Add(spellBox1.SelectedText.Replace(" ", ""));
+                durations.Add(int.Parse(duration1.Text));
+            }
+
+            if (!String.IsNullOrEmpty(spellBox2.SelectedText))
+            {
+                spells.Add(spellBox2.SelectedText.Replace(" ", ""));
+                durations.Add(int.Parse(duration2.Text));
+            }
+
+            if (!String.IsNullOrEmpty(spellBox3.SelectedText))
+            {
+                spells.Add(spellBox3.SelectedText.Replace(" ", ""));
+                durations.Add(int.Parse(duration3.Text));
+            }
+
+            wandTracker.setSpells(spells, durations);
+        }
+
 	}
 }

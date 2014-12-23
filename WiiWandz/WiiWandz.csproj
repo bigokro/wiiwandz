@@ -82,6 +82,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Position.cs" />
+    <Compile Include="Spells\Alohomora.cs" />
+    <Compile Include="Spells\ArrestoMomentum.cs" />
+    <Compile Include="Spells\Ascendio.cs" />
+    <Compile Include="Spells\Reparo.cs" />
+    <Compile Include="Spells\SpecialisRevelio.cs" />
+    <Compile Include="Spells\Silencio.cs" />
+    <Compile Include="Spells\Metelojinx.cs" />
+    <Compile Include="Spells\Tarantallegra.cs" />
+    <Compile Include="Spells\Mimblewimble.cs" />
+    <Compile Include="Spells\Descendo.cs" />
+    <Compile Include="Spells\Herbivicus.cs" />
+    <Compile Include="Spells\Revelio.cs" />
+    <Compile Include="Spells\WingardiumLeviosa.cs" />
+    <Compile Include="Spells\StrokeBasedSpell.cs" />
     <Compile Include="Strokes\Stroke.cs" />
     <Compile Include="Test\StrokeDecomposerTest.cs" />
     <Compile Include="WandTracker.cs" />

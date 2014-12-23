@@ -24,6 +24,9 @@ namespace WiiWandz
 		public SpellTrigger spell;
         public DateTime startSpell;
 
+        private List<String> spellNames;
+        private List<int> spellDurations;
+
         public WandTracker()
         {
             this.positions = new List<Position>();
@@ -46,10 +49,22 @@ namespace WiiWandz
 
         public void initializeSpells()
         {
-            spells = new List<SpellTrigger>();
-            spells.Add(new Incendio(device, authorization));
-            spells.Add(new Locomotor(device, authorization));
-            spells.Add(new Aguamenti(device, authorization));
+            if (device != null && authorization != null)
+            {
+                spells = new List<SpellTrigger>();
+
+                for (int i = 0; i < spellNames.Count; i++)
+                {
+                    String name = spellNames[i];
+                    int duration = spellDurations[i];
+
+                    var type = Type.GetType("WiiWandz.Spells."+name);
+                    object[] parms = new object[] { device, authorization, duration };
+                    SpellTrigger spell = (SpellTrigger) Activator.CreateInstance(type, parms);
+
+                    spells.Add(spell);
+                }
+            }
         }
 
         public SpellTrigger addPosition(WiimoteLib.Point pointF, DateTime dateTime)
@@ -58,8 +73,8 @@ namespace WiiWandz
             {
                 cloudBitWarningShown = true;
                 MessageBox.Show(
-                    "You need to set the cloudBit configurations before casting spells!", 
-                    "cloudBit not configured", 
+                    "You need to choose the spells and set the cloudBit configurations before casting spells", 
+                    "Configuration required", 
                     MessageBoxButtons.OK, 
                     MessageBoxIcon.Error);
                 return null;
@@ -122,5 +137,11 @@ namespace WiiWandz
 			}
 		}
 
+        public void setSpells(List<String> spellNames, List<int> spellDurations)
+        {
+            this.spellNames = spellNames;
+            this.spellDurations = spellDurations;
+            initializeSpells();
+        }
     }
 }

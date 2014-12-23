@@ -51,7 +51,20 @@
             this.lblAccel = new System.Windows.Forms.Label();
             this.lblDevicePath = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.duration3 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.duration2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.duration1 = new System.Windows.Forms.TextBox();
+            this.spellBox3 = new System.Windows.Forms.ComboBox();
+            this.spellBox2 = new System.Windows.Forms.ComboBox();
+            this.spellBox1 = new System.Windows.Forms.ComboBox();
+            this.lblSpell3 = new System.Windows.Forms.Label();
+            this.lblSpell2 = new System.Windows.Forms.Label();
+            this.lblSpell1 = new System.Windows.Forms.Label();
             this.lblSpellName = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblCloudBitAuthorization = new System.Windows.Forms.Label();
             this.lblCloudBitID = new System.Windows.Forms.Label();
@@ -297,22 +310,197 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.duration3);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.duration2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.duration1);
+            this.groupBox2.Controls.Add(this.spellBox3);
+            this.groupBox2.Controls.Add(this.spellBox2);
+            this.groupBox2.Controls.Add(this.spellBox1);
+            this.groupBox2.Controls.Add(this.lblSpell3);
+            this.groupBox2.Controls.Add(this.lblSpell2);
+            this.groupBox2.Controls.Add(this.lblSpell1);
             this.groupBox2.Controls.Add(this.lblSpellName);
-            this.groupBox2.Location = new System.Drawing.Point(340, 177);
+            this.groupBox2.Controls.Add(this.groupBox6);
+            this.groupBox2.Location = new System.Drawing.Point(260, 139);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(215, 45);
+            this.groupBox2.Size = new System.Drawing.Size(363, 103);
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Spell";
+            this.groupBox2.Text = "Spells";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(204, 77);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(12, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "s";
+            // 
+            // duration3
+            // 
+            this.duration3.Location = new System.Drawing.Point(186, 73);
+            this.duration3.Name = "duration3";
+            this.duration3.Size = new System.Drawing.Size(18, 20);
+            this.duration3.TabIndex = 12;
+            this.duration3.Text = "10";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(204, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(12, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "s";
+            // 
+            // duration2
+            // 
+            this.duration2.Location = new System.Drawing.Point(186, 45);
+            this.duration2.Name = "duration2";
+            this.duration2.Size = new System.Drawing.Size(18, 20);
+            this.duration2.TabIndex = 10;
+            this.duration2.Text = "10";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(204, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(12, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "s";
+            // 
+            // duration1
+            // 
+            this.duration1.Location = new System.Drawing.Point(186, 16);
+            this.duration1.Name = "duration1";
+            this.duration1.Size = new System.Drawing.Size(18, 20);
+            this.duration1.TabIndex = 8;
+            this.duration1.Text = "10";
+            this.duration1.TextChanged += new System.EventHandler(this.duration1_TextChanged);
+            // 
+            // spellBox3
+            // 
+            this.spellBox3.FormattingEnabled = true;
+            this.spellBox3.Items.AddRange(new object[] {
+            "Aguamenti",
+            "Alohomora",
+            "Arresto Momentum",
+            "Ascendio",
+            "Descendo",
+            "Herbivicus",
+            "Incendio",
+            "Locomotor",
+            "Metelojinx",
+            "Mimblewimble",
+            "Reparo",
+            "Silencio",
+            "Specialis Revelio",
+            "Tarantallegra",
+            "Wingardium Leviosa"});
+            this.spellBox3.Location = new System.Drawing.Point(58, 72);
+            this.spellBox3.Name = "spellBox3";
+            this.spellBox3.Size = new System.Drawing.Size(121, 21);
+            this.spellBox3.TabIndex = 6;
+            // 
+            // spellBox2
+            // 
+            this.spellBox2.FormattingEnabled = true;
+            this.spellBox2.Items.AddRange(new object[] {
+            "Aguamenti",
+            "Alohomora",
+            "Arresto Momentum",
+            "Ascendio",
+            "Descendo",
+            "Herbivicus",
+            "Incendio",
+            "Locomotor",
+            "Metelojinx",
+            "Mimblewimble",
+            "Reparo",
+            "Silencio",
+            "Specialis Revelio",
+            "Tarantallegra",
+            "Wingardium Leviosa"});
+            this.spellBox2.Location = new System.Drawing.Point(58, 44);
+            this.spellBox2.Name = "spellBox2";
+            this.spellBox2.Size = new System.Drawing.Size(121, 21);
+            this.spellBox2.TabIndex = 5;
+            this.spellBox2.SelectedIndexChanged += new System.EventHandler(this.spellBox2_SelectedIndexChanged);
+            // 
+            // spellBox1
+            // 
+            this.spellBox1.FormattingEnabled = true;
+            this.spellBox1.Items.AddRange(new object[] {
+            "Aguamenti",
+            "Alohomora",
+            "Arresto Momentum",
+            "Ascendio",
+            "Descendo",
+            "Herbivicus",
+            "Incendio",
+            "Locomotor",
+            "Metelojinx",
+            "Mimblewimble",
+            "Reparo",
+            "Silencio",
+            "Specialis Revelio",
+            "Tarantallegra",
+            "Wingardium Leviosa"});
+            this.spellBox1.Location = new System.Drawing.Point(58, 16);
+            this.spellBox1.Name = "spellBox1";
+            this.spellBox1.Size = new System.Drawing.Size(121, 21);
+            this.spellBox1.TabIndex = 4;
+            this.spellBox1.SelectedIndexChanged += new System.EventHandler(this.spellBox1_SelectedIndexChanged);
+            // 
+            // lblSpell3
+            // 
+            this.lblSpell3.AutoSize = true;
+            this.lblSpell3.Location = new System.Drawing.Point(11, 75);
+            this.lblSpell3.Name = "lblSpell3";
+            this.lblSpell3.Size = new System.Drawing.Size(39, 13);
+            this.lblSpell3.TabIndex = 3;
+            this.lblSpell3.Text = "Spell 3";
+            // 
+            // lblSpell2
+            // 
+            this.lblSpell2.AutoSize = true;
+            this.lblSpell2.Location = new System.Drawing.Point(11, 47);
+            this.lblSpell2.Name = "lblSpell2";
+            this.lblSpell2.Size = new System.Drawing.Size(39, 13);
+            this.lblSpell2.TabIndex = 2;
+            this.lblSpell2.Text = "Spell 2";
+            // 
+            // lblSpell1
+            // 
+            this.lblSpell1.AutoSize = true;
+            this.lblSpell1.Location = new System.Drawing.Point(11, 20);
+            this.lblSpell1.Name = "lblSpell1";
+            this.lblSpell1.Size = new System.Drawing.Size(39, 13);
+            this.lblSpell1.TabIndex = 1;
+            this.lblSpell1.Text = "Spell 1";
             // 
             // lblSpellName
             // 
             this.lblSpellName.AutoSize = true;
-            this.lblSpellName.Location = new System.Drawing.Point(22, 20);
+            this.lblSpellName.Location = new System.Drawing.Point(243, 67);
             this.lblSpellName.Name = "lblSpellName";
             this.lblSpellName.Size = new System.Drawing.Size(33, 13);
             this.lblSpellName.TabIndex = 0;
             this.lblSpellName.Text = "None";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Location = new System.Drawing.Point(233, 44);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(115, 49);
+            this.groupBox6.TabIndex = 7;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Now casting";
             // 
             // groupBox3
             // 
@@ -434,6 +622,19 @@
         private System.Windows.Forms.TextBox cloudBitAuthentication;
         private System.Windows.Forms.TextBox cloudBitID;
         public System.Windows.Forms.PictureBox pbStrokes;
+        private System.Windows.Forms.Label lblSpell3;
+        private System.Windows.Forms.Label lblSpell2;
+        private System.Windows.Forms.Label lblSpell1;
+        private System.Windows.Forms.ComboBox spellBox3;
+        private System.Windows.Forms.ComboBox spellBox2;
+        private System.Windows.Forms.ComboBox spellBox1;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox duration3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox duration2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox duration1;
 
 	}
 }
