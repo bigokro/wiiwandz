@@ -9,8 +9,8 @@ namespace WiiWandz.Spells
 {
 	class Metelojinx : StrokeBasedSpell
 	{
-        public Metelojinx(String device, String authorization, int duration)
-            : base(device, authorization, duration)
+        public Metelojinx(String device, String authorization, int order, int duration)
+            : base(device, authorization, order, duration)
 		{
             List<StrokeDirection> directions = new List<StrokeDirection>();
             directions.Add(StrokeDirection.Down);

@@ -9,8 +9,8 @@ namespace WiiWandz.Spells
 {
 	class Herbivicus : StrokeBasedSpell
 	{
-        public Herbivicus(String device, String authorization, int duration)
-            : base(device, authorization, duration)
+        public Herbivicus(String device, String authorization, int order, int duration)
+            : base(device, authorization, order, duration)
 		{
             List<StrokeDirection> directions = new List<StrokeDirection>();
             directions.Add(StrokeDirection.Down);

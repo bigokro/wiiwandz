@@ -11,18 +11,20 @@ namespace WiiWandz.Spells
     {
 		public String device;
 		public String authorization;
+        public int order;
         public int duration;
 		protected CloudBitSignal cloudBit;
 		protected List<List<StrokeDirection>> strokesForSpell;
 
 		public DateTime lastTrigger;
 
-        public StrokeBasedSpell(String device, String authorization, int duration)
+        public StrokeBasedSpell(String device, String authorization, int order, int duration)
 		{
 			this.device = device;
 			this.authorization = authorization;
+            this.order = order;
             this.duration = duration;
-			this.cloudBit = new CloudBitSignal (this.device, this.authorization, 75, 10 * 1000);
+			this.cloudBit = new CloudBitSignal (this.device, this.authorization, order * 25, duration * 1000);
 
 			this.strokesForSpell = new List<List<StrokeDirection>>();
 		}

@@ -9,7 +9,8 @@ namespace WiiWandz.Spells
 {
 	class Reparo : StrokeBasedSpell
 	{
-		public Reparo(String device, String authorization, int duration) : base(device, authorization, duration)
+        public Reparo(String device, String authorization, int order, int duration)
+            : base(device, authorization, order, duration)
 		{
             List<StrokeDirection> directions = new List<StrokeDirection>();
             directions.Add(StrokeDirection.UpToTheLeft);

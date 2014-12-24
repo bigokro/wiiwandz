@@ -9,8 +9,8 @@ namespace WiiWandz.Spells
 {
 	class Tarantallegra : StrokeBasedSpell
 	{
-        public Tarantallegra(String device, String authorization, int duration)
-            : base(device, authorization, duration)
+        public Tarantallegra(String device, String authorization, int order, int duration)
+            : base(device, authorization, order, duration)
 		{
             List<StrokeDirection> directions = new List<StrokeDirection>();
             directions.Add(StrokeDirection.DownToTheLeft);

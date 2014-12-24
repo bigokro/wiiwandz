@@ -347,6 +347,7 @@
             this.duration3.Size = new System.Drawing.Size(18, 20);
             this.duration3.TabIndex = 12;
             this.duration3.Text = "10";
+            this.duration3.TextChanged += new System.EventHandler(this.duration3_TextChanged);
             // 
             // label2
             // 
@@ -364,6 +365,7 @@
             this.duration2.Size = new System.Drawing.Size(18, 20);
             this.duration2.TabIndex = 10;
             this.duration2.Text = "10";
+            this.duration2.TextChanged += new System.EventHandler(this.duration2_TextChanged);
             // 
             // label1
             // 
@@ -406,6 +408,7 @@
             this.spellBox3.Name = "spellBox3";
             this.spellBox3.Size = new System.Drawing.Size(121, 21);
             this.spellBox3.TabIndex = 6;
+            this.spellBox3.SelectedIndexChanged += new System.EventHandler(this.spellBox3_SelectedIndexChanged);
             // 
             // spellBox2
             // 

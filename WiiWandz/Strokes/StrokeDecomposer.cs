@@ -24,7 +24,7 @@ namespace WiiWandz.Strokes
 				return strokes;
 			}
 
-			int increment = 5;
+			int increment = 3;
 			int count = 0;
             int lastPivotIdx = 0;
 
@@ -126,7 +126,9 @@ namespace WiiWandz.Strokes
 		// TODO: Not handling curved lines
 		public StrokeDirection determineDirection(Position start, Position end)
 		{
-			StrokeDirection stroke = StrokeDirection.Bumbled;
+            int angleFactor = 8;
+
+            StrokeDirection stroke = StrokeDirection.Bumbled;
 
 			int deltaX = start.point.X - end.point.X;
 			int deltaY = start.point.Y - end.point.Y;
@@ -143,25 +145,25 @@ namespace WiiWandz.Strokes
 
 			float slope = deltaY / deltaX;
 
-			if (slope < -4 || slope >= 4) {
+			if (slope < -angleFactor || slope >= angleFactor) {
 				if (deltaY > 0) {
 					stroke = StrokeDirection.Down;
 				} else {
 					stroke = StrokeDirection.Up;
 				}
-			} else if (slope >= -4 && slope < -0.25) {
+			} else if (slope >= -angleFactor && slope < -(1/angleFactor)) {
 				if (deltaX > 0) {
 					stroke = StrokeDirection.UpToTheRight;
 				} else {
 					stroke = StrokeDirection.DownToTheLeft;
 				}
-			} else if (slope >= -0.25 && slope < 0.25) {
+			} else if (slope >= -(1/angleFactor) && slope < (1/angleFactor)) {
 				if (deltaX > 0) {
 					stroke = StrokeDirection.Right;
 				} else {
 					stroke = StrokeDirection.Left;
 				}
-			} else if (slope >= 0.25 && slope < 4) {
+			} else if (slope >= (1/angleFactor) && slope < angleFactor) {
 				if (deltaX > 0) {
 					stroke = StrokeDirection.DownToTheRight;
 				} else {

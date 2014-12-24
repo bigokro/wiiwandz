@@ -9,7 +9,8 @@ namespace WiiWandz.Spells
 {
 	class Aguamenti : StrokeBasedSpell
 	{
-		public Aguamenti(String device, String authorization, int duration) : base(device, authorization, duration)
+        public Aguamenti(String device, String authorization, int order, int duration)
+            : base(device, authorization, order, duration)
 		{
             List<StrokeDirection> directions = new List<StrokeDirection>();
             directions.Add(StrokeDirection.UpToTheRight);

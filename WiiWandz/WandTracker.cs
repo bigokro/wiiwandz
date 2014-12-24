@@ -30,7 +30,7 @@ namespace WiiWandz
         public WandTracker()
         {
             this.positions = new List<Position>();
-			this.decomposer = new StrokeDecomposer (1023, 1023, 10);
+			this.decomposer = new StrokeDecomposer (1023, 1023, 4);
 
             spells = new List<SpellTrigger>();
 
@@ -59,7 +59,7 @@ namespace WiiWandz
                     int duration = spellDurations[i];
 
                     var type = Type.GetType("WiiWandz.Spells."+name);
-                    object[] parms = new object[] { device, authorization, duration };
+                    object[] parms = new object[] { device, authorization, i+1, duration };
                     SpellTrigger spell = (SpellTrigger) Activator.CreateInstance(type, parms);
 
                     spells.Add(spell);
@@ -122,12 +122,12 @@ namespace WiiWandz
 		{
 			positions.Add(position);
 
-			// Remove all but last 3 seconds
+			// Remove all but last 2 seconds
 			DateTime timeOfLatest = position.time;
 
 			int idx = positions.Count - 1;
 			while (idx >= 0 
-				&& timeOfLatest.Subtract(positions.ElementAt(idx).time).TotalSeconds < 3)
+				&& timeOfLatest.Subtract(positions.ElementAt(idx).time).TotalSeconds < 2)
 			{
 				idx--;
 			}

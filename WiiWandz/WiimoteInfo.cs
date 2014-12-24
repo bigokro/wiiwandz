@@ -209,7 +209,7 @@ namespace WiiWandz
 
             if (trigger != null && trigger.casting())
             {
-                lblSpellName.Text = trigger.GetType().ToString() + " - " + DateTime.Now.Subtract(wandTracker.startSpell).Seconds + " seconds";
+                lblSpellName.Text = trigger.GetType().Name + " - " + DateTime.Now.Subtract(wandTracker.startSpell).Seconds + " seconds";
             }
             else
             {
@@ -340,6 +340,33 @@ namespace WiiWandz
             setSpells();
         }
 
+
+        private void setSpells()
+        {
+            List<String> spells = new List<string>();
+            List<int> durations = new List<int>();
+
+            if (!String.IsNullOrEmpty(spellBox1.Text))
+            {
+                spells.Add(spellBox1.Text.Replace(" ", ""));
+                durations.Add(int.Parse(duration1.Text));
+            }
+
+            if (!String.IsNullOrEmpty(spellBox2.Text))
+            {
+                spells.Add(spellBox2.Text.Replace(" ", ""));
+                durations.Add(int.Parse(duration2.Text));
+            }
+
+            if (!String.IsNullOrEmpty(spellBox3.Text))
+            {
+                spells.Add(spellBox3.Text.Replace(" ", ""));
+                durations.Add(int.Parse(duration3.Text));
+            }
+
+            wandTracker.setSpells(spells, durations);
+        }
+
         private void duration2_TextChanged(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(duration2.Text))
@@ -361,33 +388,6 @@ namespace WiiWandz
                 duration3.Text = "10";
             }
             setSpells();
-        }
-
-
-        private void setSpells()
-        {
-            List<String> spells = new List<string>();
-            List<int> durations = new List<int>();
-
-            if (!String.IsNullOrEmpty(spellBox1.SelectedText))
-            {
-                spells.Add(spellBox1.SelectedText.Replace(" ", ""));
-                durations.Add(int.Parse(duration1.Text));
-            }
-
-            if (!String.IsNullOrEmpty(spellBox2.SelectedText))
-            {
-                spells.Add(spellBox2.SelectedText.Replace(" ", ""));
-                durations.Add(int.Parse(duration2.Text));
-            }
-
-            if (!String.IsNullOrEmpty(spellBox3.SelectedText))
-            {
-                spells.Add(spellBox3.SelectedText.Replace(" ", ""));
-                durations.Add(int.Parse(duration3.Text));
-            }
-
-            wandTracker.setSpells(spells, durations);
         }
 
 	}
