@@ -126,7 +126,7 @@ namespace WiiWandz.Strokes
 		// TODO: Not handling curved lines
 		public StrokeDirection determineDirection(Position start, Position end)
 		{
-            int angleFactor = 8;
+            int angleFactor = 2;
 
             StrokeDirection stroke = StrokeDirection.Bumbled;
 

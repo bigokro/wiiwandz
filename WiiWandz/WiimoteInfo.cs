@@ -6,6 +6,7 @@ using WiimoteLib;
 using WiiWandz.Spells;
 using WiiWandz.Strokes;
 using System.Collections.Generic;
+using System.Text;
 
 namespace WiiWandz
 {
@@ -224,13 +225,12 @@ namespace WiiWandz
                     previous = p;
                     continue;
                 }
-
                 System.Drawing.Point pointA = new System.Drawing.Point();
                 System.Drawing.Point pointB = new System.Drawing.Point();
                 pointA.X = (1023-previous.point.X)/4;
-                pointA.Y = (1023-previous.point.Y)/4;
+                pointA.Y = (760-previous.point.Y)/4;
                 pointB.X = (1023-p.point.X)/4;
-                pointB.Y = (1023-p.point.Y)/4;
+                pointB.Y = (760-p.point.Y)/4;
                 strokesGraphics.DrawLine(new Pen(Color.Yellow), pointA, pointB);
 
                 previous = p;
@@ -240,6 +240,7 @@ namespace WiiWandz
             {
                 foreach (Stroke stroke in wandTracker.strokes)
                 {
+                    /*
                     switch (stroke.direction)
                     {
                         case StrokeDirection.Bumbled:
@@ -260,13 +261,15 @@ namespace WiiWandz
                                 stroke.end.SystemPoint());
                             break;
                     }
+                     */ 
+                    /*
                     strokesGraphics.DrawString(
                         stroke.direction.ToString(),
                         new Font(FontFamily.GenericMonospace, 12.0f, FontStyle.Bold),
                         new SolidBrush(Color.Orange),
                         (stroke.start.SystemPoint().X + stroke.end.SystemPoint().X) / 2,
                         (stroke.start.SystemPoint().Y + stroke.end.SystemPoint().Y) / 2);
-
+                    */
                 }
 
             }
@@ -388,6 +391,27 @@ namespace WiiWandz
                 duration3.Text = "10";
             }
             setSpells();
+        }
+
+        private void recordButton_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(spellBox1.Text.Replace(" ", ""));
+            sb.Append(";");
+            foreach (Position p in wandTracker.positions)
+            {
+                sb.Append(p.point.X);
+                sb.Append(",");
+                sb.Append(p.point.Y);
+                sb.Append(";");
+            }
+            sb.Append("\n");
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\Public\wiiwands-test-data.txt", true))
+            {
+                file.WriteLine(sb.ToString());
+            }
+
         }
 
 	}

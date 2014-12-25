@@ -18,7 +18,7 @@ namespace WiiWandz
 
         public System.Drawing.Point SystemPoint()
         {
-            return new System.Drawing.Point((1023-point.X)/4, (1023-point.Y)/4);
+            return new System.Drawing.Point((1023-point.X)/4, (760-point.Y)/4);
         }
 
     }

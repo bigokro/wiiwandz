@@ -71,6 +71,7 @@
             this.cloudBitAuthentication = new System.Windows.Forms.TextBox();
             this.cloudBitID = new System.Windows.Forms.TextBox();
             this.pbStrokes = new System.Windows.Forms.PictureBox();
+            this.recordButton = new System.Windows.Forms.Button();
             this.groupBox8.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIR)).BeginInit();
@@ -326,7 +327,7 @@
             this.groupBox2.Controls.Add(this.groupBox6);
             this.groupBox2.Location = new System.Drawing.Point(260, 139);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(363, 103);
+            this.groupBox2.Size = new System.Drawing.Size(416, 103);
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Spells";
@@ -400,6 +401,7 @@
             "Metelojinx",
             "Mimblewimble",
             "Reparo",
+            "Revelio",
             "Silencio",
             "Specialis Revelio",
             "Tarantallegra",
@@ -425,6 +427,7 @@
             "Metelojinx",
             "Mimblewimble",
             "Reparo",
+            "Revelio",
             "Silencio",
             "Specialis Revelio",
             "Tarantallegra",
@@ -450,6 +453,7 @@
             "Metelojinx",
             "Mimblewimble",
             "Reparo",
+            "Revelio",
             "Silencio",
             "Specialis Revelio",
             "Tarantallegra",
@@ -500,7 +504,7 @@
             // 
             this.groupBox6.Location = new System.Drawing.Point(233, 44);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(115, 49);
+            this.groupBox6.Size = new System.Drawing.Size(169, 49);
             this.groupBox6.TabIndex = 7;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Now casting";
@@ -513,7 +517,7 @@
             this.groupBox3.Controls.Add(this.cloudBitID);
             this.groupBox3.Location = new System.Drawing.Point(423, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 130);
+            this.groupBox3.Size = new System.Drawing.Size(253, 130);
             this.groupBox3.TabIndex = 41;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "littleBits CloudBit";
@@ -541,7 +545,7 @@
             // 
             this.cloudBitAuthentication.Location = new System.Drawing.Point(6, 91);
             this.cloudBitAuthentication.Name = "cloudBitAuthentication";
-            this.cloudBitAuthentication.Size = new System.Drawing.Size(188, 20);
+            this.cloudBitAuthentication.Size = new System.Drawing.Size(233, 20);
             this.cloudBitAuthentication.TabIndex = 1;
             this.cloudBitAuthentication.TextChanged += new System.EventHandler(this.cloudBitAuthentication_TextChanged);
             // 
@@ -549,7 +553,7 @@
             // 
             this.cloudBitID.Location = new System.Drawing.Point(7, 42);
             this.cloudBitID.Name = "cloudBitID";
-            this.cloudBitID.Size = new System.Drawing.Size(100, 20);
+            this.cloudBitID.Size = new System.Drawing.Size(132, 20);
             this.cloudBitID.TabIndex = 0;
             this.cloudBitID.TextChanged += new System.EventHandler(this.cloudBitID_TextChanged);
             // 
@@ -561,10 +565,21 @@
             this.pbStrokes.TabIndex = 42;
             this.pbStrokes.TabStop = false;
             // 
+            // recordButton
+            // 
+            this.recordButton.Location = new System.Drawing.Point(602, 417);
+            this.recordButton.Name = "recordButton";
+            this.recordButton.Size = new System.Drawing.Size(75, 23);
+            this.recordButton.TabIndex = 43;
+            this.recordButton.Text = "Record";
+            this.recordButton.UseVisualStyleBackColor = true;
+            this.recordButton.Click += new System.EventHandler(this.recordButton_Click);
+            // 
             // WiimoteInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.recordButton);
             this.Controls.Add(this.pbStrokes);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -638,6 +653,7 @@
         private System.Windows.Forms.TextBox duration2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox duration1;
+        private System.Windows.Forms.Button recordButton;
 
 	}
 }
