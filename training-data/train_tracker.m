@@ -70,7 +70,10 @@ fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 
 dlmwrite('thetas.txt', [Theta1(:); Theta2(:)]);
 
-
+%Theta1
+%Theta2
+%size(Theta1)
+%size(Theta2)
 
 % Test against test set
 
