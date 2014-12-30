@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WiiWandz.Positions;
 
 namespace WiiWandz.Strokes
 {
@@ -92,7 +93,7 @@ namespace WiiWandz.Strokes
 
 		}
 
-		public Boolean strokesMatch(List<StrokeDirection> allStrokes, List<StrokeDirection> expected)
+		public static bool strokesMatch(List<StrokeDirection> allStrokes, List<StrokeDirection> expected)
 		{
             // Ignore bumbled strokes
             List<StrokeDirection> allGoodStrokes = new List<StrokeDirection>();
@@ -104,7 +105,7 @@ namespace WiiWandz.Strokes
                 }
             }
 
-			Boolean matched = false;
+			bool matched = false;
 
 			for (int i = 0; i < (allGoodStrokes.Count - expected.Count + 1); i++) {
 				for (int j = 0; j < expected.Count && (i + j) < allGoodStrokes.Count; j++) {
@@ -124,7 +125,7 @@ namespace WiiWandz.Strokes
 		}
 
 		// TODO: Not handling curved lines
-		public StrokeDirection determineDirection(Position start, Position end)
+		public static StrokeDirection determineDirection(Position start, Position end)
 		{
             int angleFactor = 2;
 

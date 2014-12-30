@@ -16,41 +16,39 @@ namespace WiiWandz.Test
         {
             Boolean pass = true;
 
-            StrokeDecomposer decomposer = new StrokeDecomposer(1024, 1024, 2);
-
             List<StrokeDirection> strokes = new List<StrokeDirection>();
             strokes.Add(StrokeDirection.Bumbled);
 
             List<StrokeDirection> toMatch = new List<StrokeDirection>();
             toMatch.Add(StrokeDirection.Right);
-            pass = pass && !decomposer.strokesMatch(strokes, toMatch);
+            pass = pass && !StrokeDecomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
             strokes.Add(StrokeDirection.Bumbled);
             strokes.Add(StrokeDirection.Right);
-            pass = pass && decomposer.strokesMatch(strokes, toMatch);
+            pass = pass && StrokeDecomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
             strokes.Add(StrokeDirection.Bumbled);
             strokes.Add(StrokeDirection.Left);
-            pass = pass && !decomposer.strokesMatch(strokes, toMatch);
+            pass = pass && !StrokeDecomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
             strokes.Add(StrokeDirection.Right);
-            pass = pass && decomposer.strokesMatch(strokes, toMatch);
+            pass = pass && StrokeDecomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
             strokes.Add(StrokeDirection.Bumbled);
             strokes.Add(StrokeDirection.Right);
             strokes.Add(StrokeDirection.Bumbled);
-            pass = pass && decomposer.strokesMatch(strokes, toMatch);
+            pass = pass && StrokeDecomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
             strokes.Add(StrokeDirection.Bumbled);
             strokes.Add(StrokeDirection.Left);
             strokes.Add(StrokeDirection.Right);
             strokes.Add(StrokeDirection.Bumbled);
-            pass = pass && decomposer.strokesMatch(strokes, toMatch);
+            pass = pass && StrokeDecomposer.strokesMatch(strokes, toMatch);
 
             toMatch.Clear();
             toMatch.Add(StrokeDirection.UpToTheRight);
@@ -60,26 +58,26 @@ namespace WiiWandz.Test
             strokes.Clear();
             strokes.Add(StrokeDirection.Bumbled);
             strokes.Add(StrokeDirection.Right);
-            pass = pass && !decomposer.strokesMatch(strokes, toMatch);
+            pass = pass && !StrokeDecomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
             strokes.Add(StrokeDirection.Bumbled);
             strokes.Add(StrokeDirection.UpToTheRight);
             strokes.Add(StrokeDirection.DownToTheRight);
             strokes.Add(StrokeDirection.Left);
-            pass = pass && decomposer.strokesMatch(strokes, toMatch);
+            pass = pass && StrokeDecomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
             strokes.Add(StrokeDirection.UpToTheRight);
             strokes.Add(StrokeDirection.DownToTheRight);
             strokes.Add(StrokeDirection.Left);
-            pass = pass && decomposer.strokesMatch(strokes, toMatch);
+            pass = pass && StrokeDecomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
             strokes.Add(StrokeDirection.UpToTheRight);
             strokes.Add(StrokeDirection.DownToTheRight);
             strokes.Add(StrokeDirection.Right);
-            pass = pass && !decomposer.strokesMatch(strokes, toMatch);
+            pass = pass && !StrokeDecomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
             strokes.Add(StrokeDirection.Up);
@@ -89,7 +87,7 @@ namespace WiiWandz.Test
             strokes.Add(StrokeDirection.Left);
             strokes.Add(StrokeDirection.UpToTheRight);
             strokes.Add(StrokeDirection.Down);
-            pass = pass && decomposer.strokesMatch(strokes, toMatch);
+            pass = pass && StrokeDecomposer.strokesMatch(strokes, toMatch);
 
             strokes.Clear();
             strokes.Add(StrokeDirection.Up);
@@ -101,7 +99,7 @@ namespace WiiWandz.Test
             strokes.Add(StrokeDirection.Left);
             strokes.Add(StrokeDirection.UpToTheRight);
             strokes.Add(StrokeDirection.Down);
-            pass = pass && decomposer.strokesMatch(strokes, toMatch);
+            pass = pass && StrokeDecomposer.strokesMatch(strokes, toMatch);
 
             return pass;
         }

@@ -7,8 +7,16 @@ using WiiWandz.CloudBit;
 
 namespace WiiWandz.Spells
 {
-	class Locomotor : StrokeBasedSpell
+	class Locomotor : CloudBitSpell
 	{
+        public Locomotor(double confidence)
+            : base(confidence)
+        {
+            this.minPercentOfTotalBetweenStartAndEndPoints = 20;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 50;
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheRight);
+        }
+
         public Locomotor(String device, String authorization, int order, int duration)
             : base(device, authorization, order, duration)
 		{
@@ -17,6 +25,6 @@ namespace WiiWandz.Spells
             directions.Add(StrokeDirection.DownToTheLeft);
             directions.Add(StrokeDirection.Right);
             this.strokesForSpell.Add(directions);
-		}
+        }
     }
 }

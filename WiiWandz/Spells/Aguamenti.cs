@@ -7,8 +7,16 @@ using WiiWandz.CloudBit;
 
 namespace WiiWandz.Spells
 {
-	class Aguamenti : StrokeBasedSpell
+	class Aguamenti : CloudBitSpell
 	{
+        public Aguamenti(double confidence) : base(confidence) 
+        {
+            this.minPercentOfTotalBetweenStartAndEndPoints = 70;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 100;
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheRight);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
+        }
+
         public Aguamenti(String device, String authorization, int order, int duration)
             : base(device, authorization, order, duration)
 		{
@@ -16,6 +24,7 @@ namespace WiiWandz.Spells
             directions.Add(StrokeDirection.UpToTheRight);
             directions.Add(StrokeDirection.Right);
             this.strokesForSpell.Add(directions);
-		}
+
+        }
 	}
 }

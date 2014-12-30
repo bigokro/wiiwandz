@@ -7,8 +7,15 @@ using WiiWandz.CloudBit;
 
 namespace WiiWandz.Spells
 {
-    class WingardiumLeviosa : StrokeBasedSpell
+    class WingardiumLeviosa : CloudBitSpell
     {
+        public WingardiumLeviosa(double confidence) : base(confidence) 
+        {
+            this.minPercentOfTotalBetweenStartAndEndPoints = 30;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 60;
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheRight);
+        }
+
         public WingardiumLeviosa(String device, String authorization, int order, int duration)
             : base(device, authorization, order, duration)
         {

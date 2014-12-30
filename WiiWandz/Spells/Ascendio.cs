@@ -7,8 +7,17 @@ using WiiWandz.CloudBit;
 
 namespace WiiWandz.Spells
 {
-	class Ascendio : StrokeBasedSpell
+	class Ascendio : CloudBitSpell
 	{
+        public Ascendio(double confidence) : base(confidence) 
+        {
+            this.minPercentOfTotalBetweenStartAndEndPoints = 30;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 60;
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheLeft);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Up);
+
+        }
+
         public Ascendio(String device, String authorization, int order, int duration)
             : base(device, authorization, order, duration)
 		{

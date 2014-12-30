@@ -7,8 +7,16 @@ using WiiWandz.CloudBit;
 
 namespace WiiWandz.Spells
 {
-	class Metelojinx : StrokeBasedSpell
+	class Metelojinx : CloudBitSpell
 	{
+        public Metelojinx(double confidence)
+            : base(confidence)
+        {
+            this.minPercentOfTotalBetweenStartAndEndPoints = 5;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 60;
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
+        }
+
         public Metelojinx(String device, String authorization, int order, int duration)
             : base(device, authorization, order, duration)
 		{
@@ -32,7 +40,6 @@ namespace WiiWandz.Spells
             directions.Add(StrokeDirection.DownToTheRight);
             directions.Add(StrokeDirection.UpToTheRight);
             this.strokesForSpell.Add(directions);
-
-		}
+        }
 	}
 }

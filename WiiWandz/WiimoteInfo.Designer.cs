@@ -72,6 +72,12 @@
             this.cloudBitID = new System.Windows.Forms.TextBox();
             this.pbStrokes = new System.Windows.Forms.PictureBox();
             this.recordButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblMaxConfidence = new System.Windows.Forms.Label();
+            this.lblMinConfidence = new System.Windows.Forms.Label();
+            this.lblCurrentConfidence = new System.Windows.Forms.Label();
             this.groupBox8.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIR)).BeginInit();
@@ -575,10 +581,70 @@
             this.recordButton.UseVisualStyleBackColor = true;
             this.recordButton.Click += new System.EventHandler(this.recordButton_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(603, 249);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(30, 13);
+            this.label4.TabIndex = 44;
+            this.label4.Text = "Max:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(603, 270);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(27, 13);
+            this.label5.TabIndex = 45;
+            this.label5.Text = "Min:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(603, 293);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(44, 13);
+            this.label6.TabIndex = 46;
+            this.label6.Text = "Current:";
+            // 
+            // lblMaxConfidence
+            // 
+            this.lblMaxConfidence.AutoSize = true;
+            this.lblMaxConfidence.Location = new System.Drawing.Point(648, 249);
+            this.lblMaxConfidence.Name = "lblMaxConfidence";
+            this.lblMaxConfidence.Size = new System.Drawing.Size(22, 13);
+            this.lblMaxConfidence.TabIndex = 47;
+            this.lblMaxConfidence.Text = "0.0";
+            // 
+            // lblMinConfidence
+            // 
+            this.lblMinConfidence.AutoSize = true;
+            this.lblMinConfidence.Location = new System.Drawing.Point(648, 270);
+            this.lblMinConfidence.Name = "lblMinConfidence";
+            this.lblMinConfidence.Size = new System.Drawing.Size(22, 13);
+            this.lblMinConfidence.TabIndex = 48;
+            this.lblMinConfidence.Text = "1.0";
+            // 
+            // lblCurrentConfidence
+            // 
+            this.lblCurrentConfidence.AutoSize = true;
+            this.lblCurrentConfidence.Location = new System.Drawing.Point(648, 292);
+            this.lblCurrentConfidence.Name = "lblCurrentConfidence";
+            this.lblCurrentConfidence.Size = new System.Drawing.Size(22, 13);
+            this.lblCurrentConfidence.TabIndex = 49;
+            this.lblCurrentConfidence.Text = "0.0";
+            // 
             // WiimoteInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblCurrentConfidence);
+            this.Controls.Add(this.lblMinConfidence);
+            this.Controls.Add(this.lblMaxConfidence);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.recordButton);
             this.Controls.Add(this.pbStrokes);
             this.Controls.Add(this.groupBox3);
@@ -654,6 +720,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox duration1;
         private System.Windows.Forms.Button recordButton;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblMaxConfidence;
+        private System.Windows.Forms.Label lblMinConfidence;
+        private System.Windows.Forms.Label lblCurrentConfidence;
 
 	}
 }

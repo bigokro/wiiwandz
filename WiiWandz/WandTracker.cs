@@ -6,6 +6,8 @@ using WiiWandz.Spells;
 using WiiWandz.Strokes;
 using WiiWandz.Test;
 using System.Windows.Forms;
+using WiiWandz.NN;
+using WiiWandz.Positions;
 
 namespace WiiWandz
 {
@@ -18,10 +20,11 @@ namespace WiiWandz
 
 		public List<Position> positions;
         public List<Stroke> strokes;
-		public List<SpellTrigger> spells;
+		public List<Spell> spells;
 		public StrokeDecomposer decomposer;
+        public Brain brain;
 
-		public SpellTrigger spell;
+		public Spell spell;
         public DateTime startSpell;
 
         private List<String> spellNames;
@@ -31,8 +34,9 @@ namespace WiiWandz
         {
             this.positions = new List<Position>();
 			this.decomposer = new StrokeDecomposer (1023, 1023, 4);
+            this.brain = new Brain();
 
-            spells = new List<SpellTrigger>();
+            spells = new List<Spell>();
 
             /*
             StrokeDecomposerTest test = new StrokeDecomposerTest();
@@ -51,7 +55,7 @@ namespace WiiWandz
         {
             if (device != null && authorization != null)
             {
-                spells = new List<SpellTrigger>();
+                spells = new List<Spell>();
 
                 for (int i = 0; i < spellNames.Count; i++)
                 {
@@ -60,14 +64,14 @@ namespace WiiWandz
 
                     var type = Type.GetType("WiiWandz.Spells."+name);
                     object[] parms = new object[] { device, authorization, i+1, duration };
-                    SpellTrigger spell = (SpellTrigger) Activator.CreateInstance(type, parms);
+                    Spell spell = (Spell) Activator.CreateInstance(type, parms);
 
                     spells.Add(spell);
                 }
             }
         }
 
-        public SpellTrigger addPosition(WiimoteLib.Point pointF, DateTime dateTime)
+        public Spell addPosition(WiimoteLib.Point pointF, DateTime dateTime)
         {
             if (spells.Count == 0 && !cloudBitWarningShown)
             {
@@ -81,12 +85,21 @@ namespace WiiWandz
             }
 
 
-            if (spell == null)
+            if (spell == null || true)
             {
                 addPosition(new Position(pointF, dateTime));
 
                 if (positions.Count > 2)
                 {
+                    spell = brain.chooseSpell(positions);
+                    ((CloudBitSpell)spell).device = device;
+                    ((CloudBitSpell)spell).authorization = authorization;
+                    ((CloudBitSpell)spell).duration = 3;
+                    ((CloudBitSpell)spell).order = 1;
+                    spell.castSpell();
+                    startSpell = DateTime.Now;
+
+                    /*
                     strokes = decomposer.determineStrokes(positions);
 
                     // TODO: move to class for choosing which spell was cast
@@ -99,6 +112,7 @@ namespace WiiWandz
                             startSpell = DateTime.Now;
                         }
                     }
+                     */
                 }
             }
             else if (!spell.casting()) 

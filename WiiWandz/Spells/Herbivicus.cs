@@ -7,8 +7,16 @@ using WiiWandz.CloudBit;
 
 namespace WiiWandz.Spells
 {
-	class Herbivicus : StrokeBasedSpell
+	class Herbivicus : CloudBitSpell
 	{
+        public Herbivicus(double confidence) : base(confidence) 
+        {
+
+            this.minPercentOfTotalBetweenStartAndEndPoints = 50;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 80;
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheRight);
+        }
+
         public Herbivicus(String device, String authorization, int order, int duration)
             : base(device, authorization, order, duration)
 		{

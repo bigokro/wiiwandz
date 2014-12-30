@@ -7,8 +7,16 @@ using WiiWandz.CloudBit;
 
 namespace WiiWandz.Spells
 {
-	class ArrestoMomentum : StrokeBasedSpell
+	class ArrestoMomentum : CloudBitSpell
 	{
+        public ArrestoMomentum(double confidence) : base(confidence)
+        {
+
+            this.minPercentOfTotalBetweenStartAndEndPoints = 50;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 80;
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
+        }
+
         public ArrestoMomentum(String device, String authorization, int order, int duration)
             : base(device, authorization, order, duration)
 		{

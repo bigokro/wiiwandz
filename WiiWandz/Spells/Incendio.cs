@@ -9,8 +9,23 @@ using WiiWandz.CloudBit;
 
 namespace WiiWandz.Spells
 {
-    class Incendio : StrokeBasedSpell
+    class Incendio : CloudBitSpell
     {
+        public Incendio(double confidence)
+            : base(confidence)
+        {
+            this.minPercentOfTotalBetweenStartAndEndPoints = 0;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 10;
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheRight);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheRight);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Down);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheLeft);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Left);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheLeft);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Up);
+        }
+
         public Incendio(String device, String authorization, int order, int duration)
             : base(device, authorization, order, duration)
         {

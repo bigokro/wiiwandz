@@ -7,6 +7,7 @@ using WiiWandz.Spells;
 using WiiWandz.Strokes;
 using System.Collections.Generic;
 using System.Text;
+using WiiWandz.Positions;
 
 namespace WiiWandz
 {
@@ -21,15 +22,22 @@ namespace WiiWandz
         private Graphics strokesGraphics;
 		private Wiimote mWiimote;
         private WandTracker wandTracker;
-        private SpellTrigger trigger;
+        private Spell trigger;
 
-		public WiimoteInfo()
+        private double maxConfidence;
+        private double minConfidence;
+
+        public WiimoteInfo()
 		{
 			InitializeComponent();
             irGraphics = Graphics.FromImage(irBitmap);
             strokesGraphics = Graphics.FromImage(strokesBitmap);
             wandTracker = new WandTracker();
-		}
+
+            this.maxConfidence = 0.0;
+            this.minConfidence = 1.0;
+
+        }
 
 		public WiimoteInfo(Wiimote wm) : this()
 		{
@@ -208,9 +216,20 @@ namespace WiiWandz
                 trigger = wandTracker.addPosition(ws.IRState.IRSensors[0].RawPosition, DateTime.Now);
             }
 
-            if (trigger != null && trigger.casting())
+            if (trigger != null) // && trigger.casting())
             {
+                if (trigger.getConfidence() > maxConfidence)
+                {
+                    maxConfidence = trigger.getConfidence();
+                }
+                if (trigger.getConfidence() < minConfidence)
+                {
+                    minConfidence = trigger.getConfidence();
+                }
                 lblSpellName.Text = trigger.GetType().Name + " - " + DateTime.Now.Subtract(wandTracker.startSpell).Seconds + " seconds";
+                lblMaxConfidence.Text = maxConfidence.ToString();
+                lblMinConfidence.Text = minConfidence.ToString();
+                lblCurrentConfidence.Text = trigger.getConfidence().ToString();
             }
             else
             {

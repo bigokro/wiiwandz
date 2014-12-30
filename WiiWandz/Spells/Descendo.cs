@@ -7,8 +7,16 @@ using WiiWandz.CloudBit;
 
 namespace WiiWandz.Spells
 {
-	class Descendo : StrokeBasedSpell
+	class Descendo : CloudBitSpell
 	{
+        public Descendo(double confidence) : base(confidence)
+        {
+            this.minPercentOfTotalBetweenStartAndEndPoints = 30;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 60;
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheLeft);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Down);
+        }
+
         public Descendo(String device, String authorization, int order, int duration)
             : base(device, authorization, order, duration)
 		{

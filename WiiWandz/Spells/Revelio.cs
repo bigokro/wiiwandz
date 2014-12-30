@@ -7,8 +7,17 @@ using WiiWandz.CloudBit;
 
 namespace WiiWandz.Spells
 {
-	class Revelio : StrokeBasedSpell
+	class Revelio : CloudBitSpell
 	{
+        public Revelio(double confidence)
+            : base(confidence)
+        {
+            this.minPercentOfTotalBetweenStartAndEndPoints = 10;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 30;
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheRight);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
+        }
+
         public Revelio(String device, String authorization, int order, int duration)
             : base(device, authorization, order, duration)
 		{

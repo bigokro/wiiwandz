@@ -81,7 +81,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Position.cs" />
+    <Compile Include="NN\Brain.cs" />
+    <Compile Include="Positions\PositionStatistics.cs" />
+    <Compile Include="Positions\Position.cs" />
     <Compile Include="Spells\Alohomora.cs" />
     <Compile Include="Spells\ArrestoMomentum.cs" />
     <Compile Include="Spells\Ascendio.cs" />
@@ -95,7 +97,7 @@
     <Compile Include="Spells\Herbivicus.cs" />
     <Compile Include="Spells\Revelio.cs" />
     <Compile Include="Spells\WingardiumLeviosa.cs" />
-    <Compile Include="Spells\StrokeBasedSpell.cs" />
+    <Compile Include="Spells\CloudBitSpell.cs" />
     <Compile Include="Strokes\Stroke.cs" />
     <Compile Include="Test\StrokeDecomposerTest.cs" />
     <Compile Include="WandTracker.cs" />
@@ -152,7 +154,7 @@
       <DependentUpon>WiimoteInfo.cs</DependentUpon>
     </Compile>
     <None Include="WiiWandz_TemporaryKey.pfx" />
-    <Compile Include="Spells\SpellTrigger.cs" />
+    <Compile Include="Spells\Spell.cs" />
     <Compile Include="Spells\Aguamenti.cs" />
     <Compile Include="Spells\Incendio.cs" />
     <Compile Include="Spells\Locomotor.cs" />

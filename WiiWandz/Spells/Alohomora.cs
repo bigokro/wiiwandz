@@ -7,8 +7,16 @@ using WiiWandz.CloudBit;
 
 namespace WiiWandz.Spells
 {
-	class Alohomora : StrokeBasedSpell
+	class Alohomora : CloudBitSpell
 	{
+        public Alohomora(double confidence) : base(confidence) 
+        {
+            this.minPercentOfTotalBetweenStartAndEndPoints = 50;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 95;
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Down);
+
+        }
+
         public Alohomora(String device, String authorization, int order, int duration)
             : base(device, authorization, order, duration)
 		{

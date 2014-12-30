@@ -7,8 +7,17 @@ using WiiWandz.CloudBit;
 
 namespace WiiWandz.Spells
 {
-	class Mimblewimble : StrokeBasedSpell
+	class Mimblewimble : CloudBitSpell
 	{
+        public Mimblewimble(double confidence)
+            : base(confidence)
+        {
+            this.minPercentOfTotalBetweenStartAndEndPoints = 10;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 30;
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheRight);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
+        }
+
         public Mimblewimble(String device, String authorization, int order, int duration)
             : base(device, authorization, order, duration)
 		{
@@ -29,7 +38,6 @@ namespace WiiWandz.Spells
             directions.Add(StrokeDirection.UpToTheLeft);
             directions.Add(StrokeDirection.Up);
             this.strokesForSpell.Add(directions);
-
-		}
+        }
 	}
 }
