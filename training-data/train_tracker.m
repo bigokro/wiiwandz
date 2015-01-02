@@ -68,7 +68,9 @@ pred = predict(Theta1, Theta2, X);
 
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 
-dlmwrite('thetas.txt', [Theta1(:); Theta2(:)]);
+%dlmwrite('thetas.txt', [Theta1(:); Theta2(:)]);
+dlmwrite('theta2.txt', Theta2);
+dlmwrite('theta1.txt', Theta1);
 
 %Theta1
 %Theta2

@@ -86,7 +86,7 @@ filenames.each do |filename|
       line.gsub!(/[\r\n]/, "")
       #puts line
       points = line.split(';')
-      unless points.empty?
+      unless points.empty? or points.size < 3
         answer = Converter.answer_index points[0]
         
         points = points[1..-1]
