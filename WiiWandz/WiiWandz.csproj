@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{48223EAB-B2E0-4A64-9074-4444662EB693}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WiiWandz</RootNamespace>
     <AssemblyName>WiiWandz</AssemblyName>
@@ -115,10 +115,10 @@
       <DependentUpon>MultipleWiiWandzForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TrainingDataForm.cs">
-    	<SubType>Form</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="TrainingDataForm.Designer.cs">
-	<DependentUpon>TrainingDataForm.cs</DependentUpon>
+      <DependentUpon>TrainingDataForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

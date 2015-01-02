@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using WiiWandz.Strokes;
 using WiiWandz.CloudBit;
+using WiiWandz.Positions;
 
 namespace WiiWandz.Spells
 {
@@ -12,6 +13,7 @@ namespace WiiWandz.Spells
         public Metelojinx(double confidence)
             : base(confidence)
         {
+            this.minConfidence = 0.999;
             this.minPercentOfTotalBetweenStartAndEndPoints = 5;
             this.maxPercentOfTotalBetweenStartAndEndPoints = 60;
             this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
@@ -40,6 +42,34 @@ namespace WiiWandz.Spells
             directions.Add(StrokeDirection.DownToTheRight);
             directions.Add(StrokeDirection.UpToTheRight);
             this.strokesForSpell.Add(directions);
+        }
+
+
+        protected override bool verifyTrigger(List<Position> positions)
+        {
+            bool verified = base.verifyTrigger(positions);
+            if (verified)
+            {
+                // Verify that there is no line underneath the endpoint (to avoid confusion with Reparo)
+                Position last = positions[positions.Count - 1];
+                for (int i = 0; i < positions.Count - 1; i++)
+                {
+                    Position start = positions[i];
+                    Position end = positions[i + 1];
+
+                    if ((start.point.X <= last.point.X && end.point.X >= last.point.X)
+                        || (start.point.X >= last.point.X && end.point.X <= last.point.X))
+                    {
+                        if (start.point.Y < last.point.Y && end.point.Y < last.point.Y)
+                        {
+                            verified = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return verified;
         }
 	}
 }

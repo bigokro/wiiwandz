@@ -58,10 +58,15 @@ namespace WiiWandz.Positions
             return yMax - yMin;
         }
 
+        public double Diagonal()
+        {
+            return Math.Sqrt(Math.Pow(Width(), 2) + Math.Pow(Height(), 2));
+        }
+
         public double FractionOfTotal(Position start, Position end)
         {
             double size = Distance(start, end);
-            double totalSize = Math.Sqrt(Math.Pow(Width(), 2) + Math.Pow(Height(), 2));
+            double totalSize = Diagonal();
             if (totalSize == 0.0)
             {
                 return double.PositiveInfinity;

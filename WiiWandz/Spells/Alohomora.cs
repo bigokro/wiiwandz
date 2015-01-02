@@ -11,7 +11,8 @@ namespace WiiWandz.Spells
 	{
         public Alohomora(double confidence) : base(confidence) 
         {
-            this.minPercentOfTotalBetweenStartAndEndPoints = 50;
+            this.minConfidence = 0.999;
+            this.minPercentOfTotalBetweenStartAndEndPoints = 80;
             this.maxPercentOfTotalBetweenStartAndEndPoints = 95;
             this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Down);
 

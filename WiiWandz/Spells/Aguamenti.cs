@@ -11,6 +11,7 @@ namespace WiiWandz.Spells
 	{
         public Aguamenti(double confidence) : base(confidence) 
         {
+            this.minConfidence = 0.99;
             this.minPercentOfTotalBetweenStartAndEndPoints = 70;
             this.maxPercentOfTotalBetweenStartAndEndPoints = 100;
             this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheRight);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using WiiWandz.Strokes;
 using WiiWandz.CloudBit;
+using WiiWandz.Positions;
 
 namespace WiiWandz.Spells
 {
@@ -12,8 +13,9 @@ namespace WiiWandz.Spells
         public Tarantallegra(double confidence)
             : base(confidence)
         {
-            this.minPercentOfTotalBetweenStartAndEndPoints = 50;
-            this.maxPercentOfTotalBetweenStartAndEndPoints = 90;
+            this.minConfidence = 0.999;
+            this.minPercentOfTotalBetweenStartAndEndPoints = 70;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 95;
             this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
 
         }
@@ -43,5 +45,5 @@ namespace WiiWandz.Spells
             directions.Add(StrokeDirection.DownToTheLeft);
             this.strokesForSpell.Add(directions);
 		}
-	}
+    }
 }

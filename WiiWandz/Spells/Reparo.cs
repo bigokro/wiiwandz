@@ -12,10 +12,12 @@ namespace WiiWandz.Spells
         public Reparo(double confidence)
             : base(confidence)
         {
-            this.minPercentOfTotalBetweenStartAndEndPoints = 5;
-            this.maxPercentOfTotalBetweenStartAndEndPoints = 50;
+            this.minConfidence = 0.999;
+            this.minPercentOfTotalBetweenStartAndEndPoints = 30;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 70;
             this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheRight);
-            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Up);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheRight);
         }
 
         public Reparo(String device, String authorization, int order, int duration)

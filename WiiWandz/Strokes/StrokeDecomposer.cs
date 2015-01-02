@@ -127,36 +127,38 @@ namespace WiiWandz.Strokes
 		// TODO: Not handling curved lines
 		public static StrokeDirection determineDirection(Position start, Position end)
 		{
-            int angleFactor = 2;
+            double angleFactor = 2.0;
+            double ratioXToY = ((double)PositionStatistics.MAX_X) / PositionStatistics.MAX_Y;
+            angleFactor = angleFactor * ratioXToY;
 
             StrokeDirection stroke = StrokeDirection.Bumbled;
 
-			int deltaX = start.point.X - end.point.X;
-			int deltaY = start.point.Y - end.point.Y;
+			int deltaX = start.point.X - end.point.X; // 0 is far right for some reason
+			int deltaY = end.point.Y - start.point.Y;
 
 			// Avoid divide by zero
 			if (deltaX == 0) {
 				if (deltaY > 0) {
-					stroke = StrokeDirection.Down;
-				} else {
 					stroke = StrokeDirection.Up;
+				} else {
+					stroke = StrokeDirection.Down;
 				}
 				return stroke;
 			}
 
-			float slope = deltaY / deltaX;
+			double slope = ((double) deltaY) / deltaX;
 
 			if (slope < -angleFactor || slope >= angleFactor) {
 				if (deltaY > 0) {
-					stroke = StrokeDirection.Down;
-				} else {
 					stroke = StrokeDirection.Up;
+				} else {
+					stroke = StrokeDirection.Down;
 				}
 			} else if (slope >= -angleFactor && slope < -(1/angleFactor)) {
 				if (deltaX > 0) {
-					stroke = StrokeDirection.UpToTheRight;
+					stroke = StrokeDirection.DownToTheRight;
 				} else {
-					stroke = StrokeDirection.DownToTheLeft;
+					stroke = StrokeDirection.UpToTheLeft;
 				}
 			} else if (slope >= -(1/angleFactor) && slope < (1/angleFactor)) {
 				if (deltaX > 0) {
@@ -166,9 +168,9 @@ namespace WiiWandz.Strokes
 				}
 			} else if (slope >= (1/angleFactor) && slope < angleFactor) {
 				if (deltaX > 0) {
-					stroke = StrokeDirection.DownToTheRight;
+					stroke = StrokeDirection.UpToTheRight;
 				} else {
-					stroke = StrokeDirection.UpToTheLeft;
+					stroke = StrokeDirection.DownToTheLeft;
 				}
 			}
 

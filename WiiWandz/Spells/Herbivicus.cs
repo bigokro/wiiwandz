@@ -11,9 +11,9 @@ namespace WiiWandz.Spells
 	{
         public Herbivicus(double confidence) : base(confidence) 
         {
-
-            this.minPercentOfTotalBetweenStartAndEndPoints = 50;
-            this.maxPercentOfTotalBetweenStartAndEndPoints = 80;
+            this.minConfidence = 0.9999;
+            this.minPercentOfTotalBetweenStartAndEndPoints = 85;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 100;
             this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheRight);
         }
 

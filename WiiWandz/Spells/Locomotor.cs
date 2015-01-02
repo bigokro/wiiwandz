@@ -12,9 +12,11 @@ namespace WiiWandz.Spells
         public Locomotor(double confidence)
             : base(confidence)
         {
+            this.minConfidence = 0.999;
             this.minPercentOfTotalBetweenStartAndEndPoints = 20;
             this.maxPercentOfTotalBetweenStartAndEndPoints = 50;
             this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheRight);
+            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
         }
 
         public Locomotor(String device, String authorization, int order, int duration)

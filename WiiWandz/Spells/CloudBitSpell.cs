@@ -31,7 +31,7 @@ namespace WiiWandz.Spells
         {
             this.confidence = confidence;
             this.acceptableDirectionsFromStartToEndPoint = new List<StrokeDirection>();
-            this.minConfidence = 0.99999;
+            this.minConfidence = 0.9999;
         }
 
         public CloudBitSpell(String device, String authorization, int order, int duration)
@@ -85,27 +85,38 @@ namespace WiiWandz.Spells
             return trig;
         }
 
-        protected bool verifyTrigger(List<Position> positions)
+        protected virtual bool verifyTrigger(List<Position> positions)
         {
             PositionStatistics stats = new PositionStatistics(positions);
 
             StrokeDirection direction = StrokeDecomposer.determineDirection(stats.Start(), stats.End());
+            double distance = stats.Diagonal();
             double relativeStartAndEndDistance = stats.FractionOfTotal(stats.Start(), stats.End());
+
+            if (this.GetType() == typeof(WingardiumLeviosa))
+            {
+                Console.WriteLine(
+                    "Confidence: " + confidence 
+                    + " direction: " + direction
+                    + " (" + stats.Start().point.ToString() + " -> " + stats.End().point.ToString() + ")"
+                    + " distance: " + distance + " (" + relativeStartAndEndDistance + ")");
+            }
 
             bool verified = false;
 
             foreach (StrokeDirection dir in acceptableDirectionsFromStartToEndPoint)
             {
-//                if (dir == direction)
-//                {
+                if (dir == direction)
+                {
                     verified = true;
-//                }
+                }
             }
 
-            //verified = verified && confidence >= minConfidence;
+            verified = verified && confidence >= minConfidence;
 
-//            verified = verified && (relativeStartAndEndDistance * 100) >= minPercentOfTotalBetweenStartAndEndPoints;
-//            verified = verified && (relativeStartAndEndDistance * 100) <= maxPercentOfTotalBetweenStartAndEndPoints;
+            verified = verified && distance >= 400.0;
+            verified = verified && (relativeStartAndEndDistance * 100) >= minPercentOfTotalBetweenStartAndEndPoints;
+            verified = verified && (relativeStartAndEndDistance * 100) <= maxPercentOfTotalBetweenStartAndEndPoints;
 
             return verified;
         }

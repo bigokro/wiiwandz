@@ -12,8 +12,8 @@ namespace WiiWandz.Spells
         public ArrestoMomentum(double confidence) : base(confidence)
         {
 
-            this.minPercentOfTotalBetweenStartAndEndPoints = 50;
-            this.maxPercentOfTotalBetweenStartAndEndPoints = 80;
+            this.minPercentOfTotalBetweenStartAndEndPoints = 70;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 90;
             this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
         }
 

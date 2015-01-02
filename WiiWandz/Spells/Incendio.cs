@@ -14,6 +14,7 @@ namespace WiiWandz.Spells
         public Incendio(double confidence)
             : base(confidence)
         {
+            this.minConfidence = 0.99;
             this.minPercentOfTotalBetweenStartAndEndPoints = 0;
             this.maxPercentOfTotalBetweenStartAndEndPoints = 10;
             this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheRight);

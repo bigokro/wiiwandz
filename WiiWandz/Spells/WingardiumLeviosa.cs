@@ -11,8 +11,8 @@ namespace WiiWandz.Spells
     {
         public WingardiumLeviosa(double confidence) : base(confidence) 
         {
-            this.minPercentOfTotalBetweenStartAndEndPoints = 30;
-            this.maxPercentOfTotalBetweenStartAndEndPoints = 60;
+            this.minPercentOfTotalBetweenStartAndEndPoints = 50;
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 100;
             this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheRight);
         }
 
