@@ -96,16 +96,16 @@ namespace WiiWandz.Spells
 
             foreach (StrokeDirection dir in acceptableDirectionsFromStartToEndPoint)
             {
-                if (dir == direction)
-                {
+//                if (dir == direction)
+//                {
                     verified = true;
-                }
+//                }
             }
 
-            verified = verified && confidence >= minConfidence;
+            //verified = verified && confidence >= minConfidence;
 
-            verified = verified && (relativeStartAndEndDistance * 100) >= minPercentOfTotalBetweenStartAndEndPoints;
-            verified = verified && (relativeStartAndEndDistance * 100) <= maxPercentOfTotalBetweenStartAndEndPoints;
+//            verified = verified && (relativeStartAndEndDistance * 100) >= minPercentOfTotalBetweenStartAndEndPoints;
+//            verified = verified && (relativeStartAndEndDistance * 100) <= maxPercentOfTotalBetweenStartAndEndPoints;
 
             return verified;
         }

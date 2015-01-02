@@ -215,6 +215,11 @@ namespace WiiWandz
                 // Check for spell action
                 trigger = wandTracker.addPosition(ws.IRState.IRSensors[0].RawPosition, DateTime.Now);
             }
+            else if (ws.IRState.IRSensors[1].Found)
+            {
+                // Check for spell action
+                trigger = wandTracker.addPosition(ws.IRState.IRSensors[1].RawPosition, DateTime.Now);
+            }
 
             if (trigger != null) // && trigger.casting())
             {
