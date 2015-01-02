@@ -13,7 +13,8 @@ namespace WiiWandz
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MultipleWiiWandzForm());
-		}
+            //Application.Run(new TrainingDataForm());
+            Application.Run(new MultipleWiiWandzForm());
+        }
 	}
 }

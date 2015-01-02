@@ -7,8 +7,8 @@ namespace WiiWandz.Positions
 {
     public class PositionStatistics
     {
-        private static int MAX_X = 1023;
-        private static int MAX_Y = 760;
+        public static int MAX_X = 1023;
+        public static int MAX_Y = 760;
 
         public List<Position> positions;
 

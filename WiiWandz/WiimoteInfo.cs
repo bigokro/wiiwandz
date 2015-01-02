@@ -246,10 +246,10 @@ namespace WiiWandz
                 }
                 System.Drawing.Point pointA = new System.Drawing.Point();
                 System.Drawing.Point pointB = new System.Drawing.Point();
-                pointA.X = (1023-previous.point.X)/4;
-                pointA.Y = (760-previous.point.Y)/4;
-                pointB.X = (1023-p.point.X)/4;
-                pointB.Y = (760-p.point.Y)/4;
+                pointA.X = (PositionStatistics.MAX_X - previous.point.X)/4;
+                pointA.Y = (PositionStatistics.MAX_Y - previous.point.Y)/4;
+                pointB.X = (PositionStatistics.MAX_X - p.point.X) / 4;
+                pointB.Y = (PositionStatistics.MAX_Y - p.point.Y) / 4;
                 strokesGraphics.DrawLine(new Pen(Color.Yellow), pointA, pointB);
 
                 previous = p;
@@ -431,6 +431,12 @@ namespace WiiWandz
                 file.WriteLine(sb.ToString());
             }
 
+        }
+
+        private void btnOpenEditor_Click(object sender, EventArgs e)
+        {
+            TrainingDataForm f2 = new TrainingDataForm();
+            f2.ShowDialog(); 
         }
 
 	}

@@ -78,6 +78,7 @@
             this.lblMaxConfidence = new System.Windows.Forms.Label();
             this.lblMinConfidence = new System.Windows.Forms.Label();
             this.lblCurrentConfidence = new System.Windows.Forms.Label();
+            this.btnOpenEditor = new System.Windows.Forms.Button();
             this.groupBox8.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIR)).BeginInit();
@@ -635,10 +636,21 @@
             this.lblCurrentConfidence.TabIndex = 49;
             this.lblCurrentConfidence.Text = "0.0";
             // 
+            // btnOpenEditor
+            // 
+            this.btnOpenEditor.Location = new System.Drawing.Point(602, 360);
+            this.btnOpenEditor.Name = "btnOpenEditor";
+            this.btnOpenEditor.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenEditor.TabIndex = 50;
+            this.btnOpenEditor.Text = "Data Editor";
+            this.btnOpenEditor.UseVisualStyleBackColor = true;
+            this.btnOpenEditor.Click += new System.EventHandler(this.btnOpenEditor_Click);
+            // 
             // WiimoteInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnOpenEditor);
             this.Controls.Add(this.lblCurrentConfidence);
             this.Controls.Add(this.lblMinConfidence);
             this.Controls.Add(this.lblMaxConfidence);
@@ -726,6 +738,7 @@
         private System.Windows.Forms.Label lblMaxConfidence;
         private System.Windows.Forms.Label lblMinConfidence;
         private System.Windows.Forms.Label lblCurrentConfidence;
+        private System.Windows.Forms.Button btnOpenEditor;
 
 	}
 }

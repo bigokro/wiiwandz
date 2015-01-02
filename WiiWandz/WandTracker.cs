@@ -92,11 +92,14 @@ namespace WiiWandz
                 if (positions.Count > 2)
                 {
                     spell = brain.chooseSpell(positions);
-                    ((CloudBitSpell)spell).device = device;
-                    ((CloudBitSpell)spell).authorization = authorization;
-                    ((CloudBitSpell)spell).duration = 3;
-                    ((CloudBitSpell)spell).order = 1;
-                    spell.castSpell();
+                    if (authorization != null && device != null)
+                    {
+                        ((CloudBitSpell)spell).device = device;
+                        ((CloudBitSpell)spell).authorization = authorization;
+                        ((CloudBitSpell)spell).duration = 3;
+                        ((CloudBitSpell)spell).order = 1;
+                        spell.castSpell();
+                    }
                     startSpell = DateTime.Now;
 
                     /*

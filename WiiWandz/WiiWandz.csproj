@@ -114,6 +114,12 @@
     <Compile Include="MultipleWiiWandzForm.Designer.cs">
       <DependentUpon>MultipleWiiWandzForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TrainingDataForm.cs">
+    	<SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrainingDataForm.Designer.cs">
+	<DependentUpon>TrainingDataForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="SingleWiiWandzForm.resx">
