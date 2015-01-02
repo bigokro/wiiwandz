@@ -11,10 +11,9 @@ namespace WiiWandz.Spells
 	{
         public Ascendio(double confidence) : base(confidence) 
         {
-            this.minConfidence = 0.999;
+            this.minConfidence = 0.99;
             this.minPercentOfTotalBetweenStartAndEndPoints = 30;
-            this.maxPercentOfTotalBetweenStartAndEndPoints = 60;
-            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheLeft);
+            this.maxPercentOfTotalBetweenStartAndEndPoints = 70;
             this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Up);
 
         }

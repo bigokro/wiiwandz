@@ -53,7 +53,7 @@ namespace WiiWandz
 
         public void initializeSpells()
         {
-            if (device != null && authorization != null)
+            if (device != null && authorization != null && spellNames != null)
             {
                 spells = new List<Spell>();
 
@@ -85,44 +85,54 @@ namespace WiiWandz
             }
 
 
-            if (spell == null || true)
+            if (spell == null)
             {
                 addPosition(new Position(pointF, dateTime));
 
-                if (positions.Count > 2)
+                if (positions.Count > 10)
                 {
-                    spell = brain.chooseSpell(positions);
-                    if (authorization != null && device != null)
+                    if (wandIsPaused(positions))
                     {
-                        ((CloudBitSpell)spell).device = device;
-                        ((CloudBitSpell)spell).authorization = authorization;
-                        ((CloudBitSpell)spell).duration = 3;
-                        ((CloudBitSpell)spell).order = 1;
-                        spell.castSpell();
-                    }
-                    startSpell = DateTime.Now;
-
-                    /*
-                    strokes = decomposer.determineStrokes(positions);
-
-                    // TODO: move to class for choosing which spell was cast
-                    foreach (SpellTrigger trigger in spells)
-                    {
-                        if (trigger.triggered(strokes))
+                        Spell chosen = brain.chooseSpell(positions);
+                        if (chosen != null && authorization != null && device != null && spellNames != null)
                         {
-                            spell = trigger;
-                            trigger.castSpell();
-                            startSpell = DateTime.Now;
+                            for (int i = 0; i < spellNames.Count; i++)
+                            {
+                                if (spellNames[i].Equals(chosen.GetType().Name))
+                                {
+                                    spell = chosen;
+                                    ((CloudBitSpell)spell).setConfigurations(device, authorization, i+1, spellDurations[i]);
+                                    spell.castSpell();
+                                    startSpell = DateTime.Now;
+                                }
+                            }
                         }
+
+                        /*
+                        strokes = decomposer.determineStrokes(positions);
+
+                        // TODO: move to class for choosing which spell was cast
+                        foreach (SpellTrigger trigger in spells)
+                        {
+                            if (trigger.triggered(strokes))
+                            {
+                                spell = trigger;
+                                trigger.castSpell();
+                                startSpell = DateTime.Now;
+                            }
+                        }
+                         */
                     }
-                     */
                 }
             }
             else if (!spell.casting()) 
             {
                 spell = null;
                 positions.Clear();
-                strokes.Clear();
+                if (strokes != null)
+                {
+                    strokes.Clear();
+                }
             }
 
             return spell;
@@ -154,11 +164,27 @@ namespace WiiWandz
 			}
 		}
 
+        protected bool wandIsPaused(List<Position> positions)
+        {
+            bool paused = false;
+            //PositionStatistics stats = new PositionStatistics(positions);
+            List<Position> lastFive = positions.GetRange(positions.Count - 5, 5);
+            PositionStatistics lastFiveStats = new PositionStatistics(lastFive);
+
+            if (lastFiveStats.Diagonal() < 10)
+            {
+                paused = true;
+                //Console.WriteLine("Paused. Diagonal: " + lastFiveStats.Diagonal());
+            }
+
+            return paused;
+        }
+
         public void setSpells(List<String> spellNames, List<int> spellDurations)
         {
             this.spellNames = spellNames;
             this.spellDurations = spellDurations;
-            initializeSpells();
+            //initializeSpells();
         }
     }
 }

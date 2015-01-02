@@ -36,24 +36,31 @@ namespace WiiWandz.Spells
 
         public CloudBitSpell(String device, String authorization, int order, int duration)
 		{
-			this.device = device;
-			this.authorization = authorization;
-            this.order = order;
-            this.duration = duration;
-			this.cloudBit = new CloudBitSignal (this.device, this.authorization, order * 25, duration * 1000);
-
+            setConfigurations(device, authorization, order, duration);
 			this.strokesForSpell = new List<List<StrokeDirection>>();
 		}
 
+        public void setConfigurations(String device, String authorization, int order, int duration)
+        {
+            this.device = device;
+            this.authorization = authorization;
+            this.order = order;
+            this.duration = duration;
+            this.cloudBit = new CloudBitSignal(this.device, this.authorization, order * 25, duration * 1000);
+        }
+
 		public void castSpell()
 		{
-			cloudBit.sendSignal ();
+            if (cloudBit != null)
+            {
+                cloudBit.sendSignal();
+            }
 		}
 
 		public Boolean casting()
 		{
 			return lastTrigger != null 
-				&& (DateTime.Now.Subtract(lastTrigger).TotalSeconds < 10);
+				&& (DateTime.Now.Subtract(lastTrigger).TotalMilliseconds < (this.duration * 1000));
 		}
 
 		public bool triggered(List<Position> positions)
@@ -93,7 +100,8 @@ namespace WiiWandz.Spells
             double distance = stats.Diagonal();
             double relativeStartAndEndDistance = stats.FractionOfTotal(stats.Start(), stats.End());
 
-            if (this.GetType() == typeof(WingardiumLeviosa))
+            /*
+            if (this.GetType() == typeof(Ascendio))
             {
                 Console.WriteLine(
                     "Confidence: " + confidence 
@@ -101,6 +109,7 @@ namespace WiiWandz.Spells
                     + " (" + stats.Start().point.ToString() + " -> " + stats.End().point.ToString() + ")"
                     + " distance: " + distance + " (" + relativeStartAndEndDistance + ")");
             }
+            */ 
 
             bool verified = false;
 
