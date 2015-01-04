@@ -18,8 +18,8 @@ namespace WiiWandz.Spells
             this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
         }
 
-        public Mimblewimble(String device, String authorization, int order, int duration)
-            : base(device, authorization, order, duration)
+        public Mimblewimble(String device, String authorization, int voltage, int duration)
+            : base(device, authorization, voltage, duration)
 		{
             List<StrokeDirection> directions = new List<StrokeDirection>();
             directions.Add(StrokeDirection.Right);

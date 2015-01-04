@@ -79,6 +79,12 @@
             this.lblMinConfidence = new System.Windows.Forms.Label();
             this.lblCurrentConfidence = new System.Windows.Forms.Label();
             this.btnOpenEditor = new System.Windows.Forms.Button();
+            this.voltage1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.voltage2 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.voltage3 = new System.Windows.Forms.TextBox();
             this.groupBox8.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIR)).BeginInit();
@@ -318,6 +324,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.voltage3);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.voltage2);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.voltage1);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.duration3);
             this.groupBox2.Controls.Add(this.label2);
@@ -334,7 +346,7 @@
             this.groupBox2.Controls.Add(this.groupBox6);
             this.groupBox2.Location = new System.Drawing.Point(260, 139);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(416, 103);
+            this.groupBox2.Size = new System.Drawing.Size(427, 103);
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Spells";
@@ -501,7 +513,7 @@
             // lblSpellName
             // 
             this.lblSpellName.AutoSize = true;
-            this.lblSpellName.Location = new System.Drawing.Point(243, 67);
+            this.lblSpellName.Location = new System.Drawing.Point(257, 34);
             this.lblSpellName.Name = "lblSpellName";
             this.lblSpellName.Size = new System.Drawing.Size(33, 13);
             this.lblSpellName.TabIndex = 0;
@@ -509,9 +521,9 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Location = new System.Drawing.Point(233, 44);
+            this.groupBox6.Location = new System.Drawing.Point(249, 11);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(169, 49);
+            this.groupBox6.Size = new System.Drawing.Size(172, 49);
             this.groupBox6.TabIndex = 7;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Now casting";
@@ -522,9 +534,9 @@
             this.groupBox3.Controls.Add(this.lblCloudBitID);
             this.groupBox3.Controls.Add(this.cloudBitAuthentication);
             this.groupBox3.Controls.Add(this.cloudBitID);
-            this.groupBox3.Location = new System.Drawing.Point(423, 3);
+            this.groupBox3.Location = new System.Drawing.Point(433, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(253, 130);
+            this.groupBox3.Size = new System.Drawing.Size(254, 130);
             this.groupBox3.TabIndex = 41;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "littleBits CloudBit";
@@ -533,7 +545,7 @@
             // lblCloudBitAuthorization
             // 
             this.lblCloudBitAuthorization.AutoSize = true;
-            this.lblCloudBitAuthorization.Location = new System.Drawing.Point(5, 76);
+            this.lblCloudBitAuthorization.Location = new System.Drawing.Point(15, 76);
             this.lblCloudBitAuthorization.Name = "lblCloudBitAuthorization";
             this.lblCloudBitAuthorization.Size = new System.Drawing.Size(68, 13);
             this.lblCloudBitAuthorization.TabIndex = 3;
@@ -542,7 +554,7 @@
             // lblCloudBitID
             // 
             this.lblCloudBitID.AutoSize = true;
-            this.lblCloudBitID.Location = new System.Drawing.Point(4, 26);
+            this.lblCloudBitID.Location = new System.Drawing.Point(14, 26);
             this.lblCloudBitID.Name = "lblCloudBitID";
             this.lblCloudBitID.Size = new System.Drawing.Size(55, 13);
             this.lblCloudBitID.TabIndex = 2;
@@ -550,7 +562,7 @@
             // 
             // cloudBitAuthentication
             // 
-            this.cloudBitAuthentication.Location = new System.Drawing.Point(6, 91);
+            this.cloudBitAuthentication.Location = new System.Drawing.Point(16, 91);
             this.cloudBitAuthentication.Name = "cloudBitAuthentication";
             this.cloudBitAuthentication.Size = new System.Drawing.Size(233, 20);
             this.cloudBitAuthentication.TabIndex = 1;
@@ -558,7 +570,7 @@
             // 
             // cloudBitID
             // 
-            this.cloudBitID.Location = new System.Drawing.Point(7, 42);
+            this.cloudBitID.Location = new System.Drawing.Point(17, 42);
             this.cloudBitID.Name = "cloudBitID";
             this.cloudBitID.Size = new System.Drawing.Size(132, 20);
             this.cloudBitID.TabIndex = 0;
@@ -576,7 +588,7 @@
             // 
             this.recordButton.Location = new System.Drawing.Point(602, 417);
             this.recordButton.Name = "recordButton";
-            this.recordButton.Size = new System.Drawing.Size(75, 23);
+            this.recordButton.Size = new System.Drawing.Size(85, 23);
             this.recordButton.TabIndex = 43;
             this.recordButton.Text = "Record";
             this.recordButton.UseVisualStyleBackColor = true;
@@ -640,11 +652,65 @@
             // 
             this.btnOpenEditor.Location = new System.Drawing.Point(602, 360);
             this.btnOpenEditor.Name = "btnOpenEditor";
-            this.btnOpenEditor.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenEditor.Size = new System.Drawing.Size(85, 23);
             this.btnOpenEditor.TabIndex = 50;
             this.btnOpenEditor.Text = "Data Editor";
             this.btnOpenEditor.UseVisualStyleBackColor = true;
             this.btnOpenEditor.Click += new System.EventHandler(this.btnOpenEditor_Click);
+            // 
+            // voltage1
+            // 
+            this.voltage1.Location = new System.Drawing.Point(216, 16);
+            this.voltage1.Name = "voltage1";
+            this.voltage1.Size = new System.Drawing.Size(18, 20);
+            this.voltage1.TabIndex = 14;
+            this.voltage1.Text = "25";
+            this.voltage1.TextChanged += new System.EventHandler(this.voltage1_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(231, 20);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(15, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "%";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(231, 49);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(15, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "%";
+            // 
+            // voltage2
+            // 
+            this.voltage2.Location = new System.Drawing.Point(216, 45);
+            this.voltage2.Name = "voltage2";
+            this.voltage2.Size = new System.Drawing.Size(18, 20);
+            this.voltage2.TabIndex = 16;
+            this.voltage2.Text = "50";
+            this.voltage2.TextChanged += new System.EventHandler(this.voltage2_TextChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(231, 76);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(15, 13);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "%";
+            // 
+            // voltage3
+            // 
+            this.voltage3.Location = new System.Drawing.Point(216, 72);
+            this.voltage3.Name = "voltage3";
+            this.voltage3.Size = new System.Drawing.Size(18, 20);
+            this.voltage3.TabIndex = 18;
+            this.voltage3.Text = "75";
+            this.voltage3.TextChanged += new System.EventHandler(this.voltage3_TextChanged);
             // 
             // WiimoteInfo
             // 
@@ -739,6 +805,12 @@
         private System.Windows.Forms.Label lblMinConfidence;
         private System.Windows.Forms.Label lblCurrentConfidence;
         private System.Windows.Forms.Button btnOpenEditor;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox voltage3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox voltage2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox voltage1;
 
 	}
 }

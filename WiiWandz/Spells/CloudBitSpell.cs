@@ -12,7 +12,7 @@ namespace WiiWandz.Spells
     {
 		public String device;
 		public String authorization;
-        public int order;
+        public int voltage;
         public int duration;
 
         public double confidence;
@@ -34,19 +34,19 @@ namespace WiiWandz.Spells
             this.minConfidence = 0.9999;
         }
 
-        public CloudBitSpell(String device, String authorization, int order, int duration)
+        public CloudBitSpell(String device, String authorization, int voltage, int duration)
 		{
-            setConfigurations(device, authorization, order, duration);
+            setConfigurations(device, authorization, voltage, duration);
 			this.strokesForSpell = new List<List<StrokeDirection>>();
 		}
 
-        public void setConfigurations(String device, String authorization, int order, int duration)
+        public void setConfigurations(String device, String authorization, int voltage, int duration)
         {
             this.device = device;
             this.authorization = authorization;
-            this.order = order;
+            this.voltage = voltage;
             this.duration = duration;
-            this.cloudBit = new CloudBitSignal(this.device, this.authorization, order * 25, duration * 1000);
+            this.cloudBit = new CloudBitSignal(this.device, this.authorization, voltage, duration * 1000);
         }
 
 		public void castSpell()

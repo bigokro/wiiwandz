@@ -29,6 +29,7 @@ namespace WiiWandz
 
         private List<String> spellNames;
         private List<int> spellDurations;
+        private List<int> spellVoltages;
 
         public WandTracker()
         {
@@ -61,9 +62,10 @@ namespace WiiWandz
                 {
                     String name = spellNames[i];
                     int duration = spellDurations[i];
+                    int voltage = spellVoltages[i];
 
                     var type = Type.GetType("WiiWandz.Spells."+name);
-                    object[] parms = new object[] { device, authorization, i+1, duration };
+                    object[] parms = new object[] { device, authorization, voltage, duration };
                     Spell spell = (Spell) Activator.CreateInstance(type, parms);
 
                     spells.Add(spell);
@@ -73,7 +75,7 @@ namespace WiiWandz
 
         public Spell addPosition(WiimoteLib.Point pointF, DateTime dateTime)
         {
-            if (spells.Count == 0 && !cloudBitWarningShown)
+            if (spellNames.Count == 0 && !cloudBitWarningShown)
             {
                 cloudBitWarningShown = true;
                 MessageBox.Show(
@@ -101,7 +103,7 @@ namespace WiiWandz
                                 if (spellNames[i].Equals(chosen.GetType().Name))
                                 {
                                     spell = chosen;
-                                    ((CloudBitSpell)spell).setConfigurations(device, authorization, i+1, spellDurations[i]);
+                                    ((CloudBitSpell)spell).setConfigurations(device, authorization, spellVoltages[i], spellDurations[i]);
                                     spell.castSpell();
                                     startSpell = DateTime.Now;
                                 }
@@ -180,10 +182,11 @@ namespace WiiWandz
             return paused;
         }
 
-        public void setSpells(List<String> spellNames, List<int> spellDurations)
+        public void setSpells(List<String> spellNames, List<int> spellDurations, List<int> spellVoltages)
         {
             this.spellNames = spellNames;
             this.spellDurations = spellDurations;
+            this.spellVoltages = spellVoltages;
             //initializeSpells();
         }
     }

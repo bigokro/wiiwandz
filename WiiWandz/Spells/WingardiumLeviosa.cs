@@ -16,8 +16,8 @@ namespace WiiWandz.Spells
             this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheRight);
         }
 
-        public WingardiumLeviosa(String device, String authorization, int order, int duration)
-            : base(device, authorization, order, duration)
+        public WingardiumLeviosa(String device, String authorization, int voltage, int duration)
+            : base(device, authorization, voltage, duration)
         {
             List<StrokeDirection> directions = new List<StrokeDirection>();
             directions.Add(StrokeDirection.Down);

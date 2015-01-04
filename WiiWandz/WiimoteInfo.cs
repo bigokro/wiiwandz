@@ -372,26 +372,30 @@ namespace WiiWandz
         {
             List<String> spells = new List<string>();
             List<int> durations = new List<int>();
+            List<int> voltages = new List<int>();
 
             if (!String.IsNullOrEmpty(spellBox1.Text))
             {
                 spells.Add(spellBox1.Text.Replace(" ", ""));
                 durations.Add(int.Parse(duration1.Text));
+                voltages.Add(int.Parse(voltage1.Text));
             }
 
             if (!String.IsNullOrEmpty(spellBox2.Text))
             {
                 spells.Add(spellBox2.Text.Replace(" ", ""));
                 durations.Add(int.Parse(duration2.Text));
+                voltages.Add(int.Parse(voltage3.Text));
             }
 
             if (!String.IsNullOrEmpty(spellBox3.Text))
             {
                 spells.Add(spellBox3.Text.Replace(" ", ""));
                 durations.Add(int.Parse(duration3.Text));
+                voltages.Add(int.Parse(voltage3.Text));
             }
 
-            wandTracker.setSpells(spells, durations);
+            wandTracker.setSpells(spells, durations, voltages);
         }
 
         private void duration2_TextChanged(object sender, EventArgs e)
@@ -442,6 +446,33 @@ namespace WiiWandz
         {
             TrainingDataForm f2 = new TrainingDataForm();
             f2.ShowDialog(); 
+        }
+
+        private void voltage1_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(voltage1.Text))
+            {
+                voltage1.Text = "25";
+            }
+            setSpells();
+        }
+
+        private void voltage2_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(voltage2.Text))
+            {
+                voltage2.Text = "50";
+            }
+            setSpells();
+        }
+
+        private void voltage3_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(voltage3.Text))
+            {
+                voltage3.Text = "75";
+            }
+            setSpells();
         }
 
 	}
