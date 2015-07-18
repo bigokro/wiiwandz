@@ -12,7 +12,7 @@ namespace WiiWandz.CloudBit
 		public int percent;
 		public int duration;
 
-		public CloudBitSignal (String device, String authorization, int percent, int duration)
+        public CloudBitSignal(String device, String authorization, int percent, int duration)
 		{
 			this.device = device;
             this.authorization = authorization;

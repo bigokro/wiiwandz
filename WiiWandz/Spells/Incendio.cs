@@ -5,7 +5,7 @@ using System.Text;
 using System.Net;
 using System.Collections.Specialized;
 using WiiWandz.Strokes;
-using WiiWandz.CloudBit;
+using WiiWandz.Ifttt;
 
 namespace WiiWandz.Spells
 {

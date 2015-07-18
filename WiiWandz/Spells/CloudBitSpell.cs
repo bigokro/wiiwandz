@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using WiiWandz.CloudBit;
+using WiiWandz.Ifttt;
 using WiiWandz.Strokes;
 using WiiWandz.Positions;
+using WiiWandz.CloudBit;
 
 namespace WiiWandz.Spells
 {
@@ -15,6 +16,9 @@ namespace WiiWandz.Spells
         public int voltage;
         public int duration;
 
+        public String iftttSecretKey;
+        public String iftttEvent;
+
         public double confidence;
 
         protected double minConfidence;
@@ -23,7 +27,8 @@ namespace WiiWandz.Spells
         protected List<StrokeDirection> acceptableDirectionsFromStartToEndPoint;
 
 		protected CloudBitSignal cloudBit;
-		protected List<List<StrokeDirection>> strokesForSpell;
+        protected IftttSignal ifttt;
+        protected List<List<StrokeDirection>> strokesForSpell;
 
 		public DateTime lastTrigger;
 
@@ -34,24 +39,31 @@ namespace WiiWandz.Spells
             this.minConfidence = 0.9999;
         }
 
-        public CloudBitSpell(String device, String authorization, int voltage, int duration)
+        public CloudBitSpell(String device, String authorization, int voltage, int duration, String iftttKey, String iftttEvent)
 		{
-            setConfigurations(device, authorization, voltage, duration);
+            setConfigurations(device, authorization, voltage, duration, iftttKey, iftttEvent);
 			this.strokesForSpell = new List<List<StrokeDirection>>();
 		}
 
-        public void setConfigurations(String device, String authorization, int voltage, int duration)
+        public void setConfigurations(String device, String authorization, int voltage, int duration, String iftttSecretKey, String iftttEvent)
         {
             this.device = device;
             this.authorization = authorization;
             this.voltage = voltage;
             this.duration = duration;
+            this.iftttSecretKey = iftttSecretKey;
+            this.iftttEvent = iftttEvent;
             this.cloudBit = new CloudBitSignal(this.device, this.authorization, voltage, duration * 1000);
+            this.ifttt = new IftttSignal(this.iftttSecretKey, iftttEvent);
         }
 
 		public void castSpell()
 		{
-            if (cloudBit != null)
+            if (iftttSecretKey != null && iftttEvent != null && ifttt != null)
+            {
+                ifttt.sendSignal();
+            } 
+            else if (cloudBit != null)
             {
                 cloudBit.sendSignal();
             }

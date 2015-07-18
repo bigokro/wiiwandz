@@ -209,16 +209,14 @@ namespace WiiWandz
                 irGraphics.DrawEllipse(new Pen(Color.Green), (int)(ws.IRState.RawMidpoint.X / 4), (int)(ws.IRState.RawMidpoint.Y / 4), 2, 2);
             }
 
-
-            if (ws.IRState.IRSensors[0].Found)
+            for (int i = 0; i < 4; i++)
             {
-                // Check for spell action
-                trigger = wandTracker.addPosition(ws.IRState.IRSensors[0].RawPosition, DateTime.Now);
-            }
-            else if (ws.IRState.IRSensors[1].Found)
-            {
-                // Check for spell action
-                trigger = wandTracker.addPosition(ws.IRState.IRSensors[1].RawPosition, DateTime.Now);
+                if (ws.IRState.IRSensors[i].Found)
+                {
+                    // Check for spell action
+                    trigger = wandTracker.addPosition(ws.IRState.IRSensors[i].RawPosition, DateTime.Now);
+                    break;
+                }
             }
 
             if (trigger != null) // && trigger.casting())
@@ -340,12 +338,12 @@ namespace WiiWandz
 
         private void cloudBitID_TextChanged(object sender, EventArgs e)
         {
-            wandTracker.setDeviceInfo(cloudBitID.Text, cloudBitAuthentication.Text);
+            wandTracker.setDeviceInfo(cloudBitID.Text, cloudBitAuthentication.Text, iftttUserKey.Text);
         }
 
         private void cloudBitAuthentication_TextChanged(object sender, EventArgs e)
         {
-            wandTracker.setDeviceInfo(cloudBitID.Text, cloudBitAuthentication.Text);
+            wandTracker.setDeviceInfo(cloudBitID.Text, cloudBitAuthentication.Text, iftttUserKey.Text);
         }
 
         private void spellBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -373,19 +371,23 @@ namespace WiiWandz
             List<String> spells = new List<string>();
             List<int> durations = new List<int>();
             List<int> voltages = new List<int>();
+            List<String> events = new List<String>();
+
 
             if (!String.IsNullOrEmpty(spellBox1.Text))
             {
                 spells.Add(spellBox1.Text.Replace(" ", ""));
                 durations.Add(int.Parse(duration1.Text));
                 voltages.Add(int.Parse(voltage1.Text));
+                events.Add(iftttEvent1.Text);
             }
 
             if (!String.IsNullOrEmpty(spellBox2.Text))
             {
                 spells.Add(spellBox2.Text.Replace(" ", ""));
                 durations.Add(int.Parse(duration2.Text));
-                voltages.Add(int.Parse(voltage3.Text));
+                voltages.Add(int.Parse(voltage2.Text));
+                events.Add(iftttEvent2.Text);
             }
 
             if (!String.IsNullOrEmpty(spellBox3.Text))
@@ -393,9 +395,10 @@ namespace WiiWandz
                 spells.Add(spellBox3.Text.Replace(" ", ""));
                 durations.Add(int.Parse(duration3.Text));
                 voltages.Add(int.Parse(voltage3.Text));
+                events.Add(iftttEvent3.Text);
             }
 
-            wandTracker.setSpells(spells, durations, voltages);
+            wandTracker.setSpells(spells, durations, voltages, events);
         }
 
         private void duration2_TextChanged(object sender, EventArgs e)
@@ -473,6 +476,31 @@ namespace WiiWandz
                 voltage3.Text = "75";
             }
             setSpells();
+        }
+
+        private void WiimoteInfo_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iftttEvent1_TextChanged(object sender, EventArgs e)
+        {
+            setSpells();
+        }
+
+        private void iftttEvent2_TextChanged(object sender, EventArgs e)
+        {
+            setSpells();
+        }
+
+        private void iftttEvent3_TextChanged(object sender, EventArgs e)
+        {
+            setSpells();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            wandTracker.setDeviceInfo(cloudBitID.Text, cloudBitAuthentication.Text, iftttUserKey.Text);
         }
 
 	}

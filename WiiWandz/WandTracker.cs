@@ -16,6 +16,7 @@ namespace WiiWandz
 
 		public String device;
 		public String authorization;
+        public String iftttUserKey;
         public static Boolean cloudBitWarningShown = false;
 
 		public List<Position> positions;
@@ -30,6 +31,7 @@ namespace WiiWandz
         private List<String> spellNames;
         private List<int> spellDurations;
         private List<int> spellVoltages;
+        private List<String> spellIftttEvents;
 
         public WandTracker()
         {
@@ -63,11 +65,12 @@ namespace WiiWandz
                     String name = spellNames[i];
                     int duration = spellDurations[i];
                     int voltage = spellVoltages[i];
+                    String iftttEvent = spellIftttEvents[i];
 
                     var type = Type.GetType("WiiWandz.Spells."+name);
-                    object[] parms = new object[] { device, authorization, voltage, duration };
+                    object[] parms = new object[] { device, authorization, voltage, duration, iftttEvent };
                     Spell spell = (Spell) Activator.CreateInstance(type, parms);
-
+                TODO: need to handle ifttt events
                     spells.Add(spell);
                 }
             }
@@ -75,7 +78,7 @@ namespace WiiWandz
 
         public Spell addPosition(WiimoteLib.Point pointF, DateTime dateTime)
         {
-            if (spellNames.Count == 0 && !cloudBitWarningShown)
+            if ((spellNames == null || spellNames.Count == 0) && !cloudBitWarningShown)
             {
                 cloudBitWarningShown = true;
                 MessageBox.Show(
@@ -140,10 +143,11 @@ namespace WiiWandz
             return spell;
         }
 
-        public void setDeviceInfo(String device, String authorization)
+        public void setDeviceInfo(String device, String authorization, String iftttUserKey)
         {
             this.device = device;
             this.authorization = authorization;
+            this.iftttUserKey = iftttUserKey;
             initializeSpells();
         }
 
@@ -182,11 +186,12 @@ namespace WiiWandz
             return paused;
         }
 
-        public void setSpells(List<String> spellNames, List<int> spellDurations, List<int> spellVoltages)
+        public void setSpells(List<String> spellNames, List<int> spellDurations, List<int> spellVoltages, List<String> iftttEvents)
         {
             this.spellNames = spellNames;
             this.spellDurations = spellDurations;
             this.spellVoltages = spellVoltages;
+            this.spellIftttEvents = iftttEvents;
             //initializeSpells();
         }
     }

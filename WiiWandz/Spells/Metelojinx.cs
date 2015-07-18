@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WiiWandz.Strokes;
-using WiiWandz.CloudBit;
+using WiiWandz.Ifttt;
 using WiiWandz.Positions;
 
 namespace WiiWandz.Spells
