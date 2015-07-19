@@ -20,8 +20,8 @@ namespace WiiWandz.Spells
 
         }
 
-        public Tarantallegra(String device, String authorization, int voltage, int duration)
-            : base(device, authorization, voltage, duration)
+        public Tarantallegra(String device, String authorization, int voltage, int duration, String iftttKey, String iftttEvent)
+            : base(device, authorization, voltage, duration, iftttKey, iftttEvent)
 		{
             List<StrokeDirection> directions = new List<StrokeDirection>();
             directions.Add(StrokeDirection.DownToTheLeft);

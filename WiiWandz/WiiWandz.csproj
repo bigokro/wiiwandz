@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ifttt\IftttSignal.cs" />
     <Compile Include="NN\Brain.cs" />
     <Compile Include="Positions\PositionStatistics.cs" />
     <Compile Include="Positions\Position.cs" />

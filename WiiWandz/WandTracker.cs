@@ -70,7 +70,6 @@ namespace WiiWandz
                     var type = Type.GetType("WiiWandz.Spells."+name);
                     object[] parms = new object[] { device, authorization, voltage, duration, iftttEvent };
                     Spell spell = (Spell) Activator.CreateInstance(type, parms);
-                TODO: need to handle ifttt events
                     spells.Add(spell);
                 }
             }
@@ -82,7 +81,7 @@ namespace WiiWandz
             {
                 cloudBitWarningShown = true;
                 MessageBox.Show(
-                    "You need to choose the spells and set the cloudBit configurations before casting spells", 
+                    "You need to choose the spells and set the cloudBit or IFTTT configurations before casting spells", 
                     "Configuration required", 
                     MessageBoxButtons.OK, 
                     MessageBoxIcon.Error);
@@ -106,7 +105,7 @@ namespace WiiWandz
                                 if (spellNames[i].Equals(chosen.GetType().Name))
                                 {
                                     spell = chosen;
-                                    ((CloudBitSpell)spell).setConfigurations(device, authorization, spellVoltages[i], spellDurations[i]);
+                                    ((CloudBitSpell)spell).setConfigurations(device, authorization, spellVoltages[i], spellDurations[i], iftttUserKey, spellIftttEvents[i]);
                                     spell.castSpell();
                                     startSpell = DateTime.Now;
                                 }
