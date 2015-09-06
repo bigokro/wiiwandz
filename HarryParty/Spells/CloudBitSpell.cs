@@ -57,7 +57,7 @@ namespace WiiWandz.Spells
             this.ifttt = new IftttSignal(this.iftttSecretKey, iftttEvent);
         }
 
-		public void castSpell()
+		public virtual void castSpell()
 		{
             if (iftttSecretKey != null && iftttEvent != null && ifttt != null)
             {
