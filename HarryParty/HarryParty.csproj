@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{48223EAB-B2E0-4A64-9074-4444662EB693}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WiiWandz</RootNamespace>
+    <AssemblyName>WiiWandz</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\dev\projects\HarryPotter\publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <WebPage>publish.htm</WebPage>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>05A4A8D614A5B72A88DC261EFF7FA52EB76A3265</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>WiiWandz_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>WiiWandz.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WiimoteLib">
+      <HintPath>lib\WiimoteLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AraniaExumai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AraniaExumai.Designer.cs">
+      <DependentUpon>AraniaExumai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeScreen.Designer.cs">
+      <DependentUpon>HomeScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ifttt\IftttSignal.cs" />
+    <Compile Include="NN\Brain.cs" />
+    <Compile Include="Positions\PositionStatistics.cs" />
+    <Compile Include="Positions\Position.cs" />
+    <Compile Include="Spells\Alohomora.cs" />
+    <Compile Include="Spells\ArrestoMomentum.cs" />
+    <Compile Include="Spells\Ascendio.cs" />
+    <Compile Include="Spells\Reparo.cs" />
+    <Compile Include="Spells\SpecialisRevelio.cs" />
+    <Compile Include="Spells\Silencio.cs" />
+    <Compile Include="Spells\Metelojinx.cs" />
+    <Compile Include="Spells\Tarantallegra.cs" />
+    <Compile Include="Spells\Mimblewimble.cs" />
+    <Compile Include="Spells\Descendo.cs" />
+    <Compile Include="Spells\Herbivicus.cs" />
+    <Compile Include="Spells\Revelio.cs" />
+    <Compile Include="Spells\WingardiumLeviosa.cs" />
+    <Compile Include="Spells\CloudBitSpell.cs" />
+    <Compile Include="Strokes\Stroke.cs" />
+    <Compile Include="Test\StrokeDecomposerTest.cs" />
+    <Compile Include="WandTracker.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="SingleWiiWandzForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SingleWiiWandzForm.Designer.cs">
+      <DependentUpon>SingleWiiWandzForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultipleWiiWandzForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultipleWiiWandzForm.Designer.cs">
+      <DependentUpon>MultipleWiiWandzForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrainingDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrainingDataForm.Designer.cs">
+      <DependentUpon>TrainingDataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AraniaExumai.resx">
+      <DependentUpon>AraniaExumai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeScreen.resx">
+      <DependentUpon>HomeScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleWiiWandzForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SingleWiiWandzForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultipleWiiWandzForm.resx">
+      <DependentUpon>MultipleWiiWandzForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WiimoteInfo.resx">
+      <DependentUpon>WiimoteInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="WiimoteInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WiimoteInfo.Designer.cs">
+      <DependentUpon>WiimoteInfo.cs</DependentUpon>
+    </Compile>
+    <None Include="WiiWandz_TemporaryKey.pfx" />
+    <Compile Include="Spells\Spell.cs" />
+    <Compile Include="Spells\Aguamenti.cs" />
+    <Compile Include="Spells\Incendio.cs" />
+    <Compile Include="Spells\Locomotor.cs" />
+    <Compile Include="Strokes\StrokeDirection.cs" />
+    <Compile Include="Strokes\StrokeDecomposer.cs" />
+    <Compile Include="CloudBit\CloudBitSignal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Folder Include="Properties\New Folder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\hogwarts_logo_wood.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\btn_expecto_patronum.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\btn_arania_exumai.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\btn_sorting_hat.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\btn_lumos.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\btn_hedwig.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+</Project>

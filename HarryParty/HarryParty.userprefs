@@ -1,0 +1,25 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Strokes/Stroke.cs">
+    <Files>
+      <File FileName="WandTracker.cs" Line="22" Column="22" />
+      <File FileName="Strokes/Stroke.cs" Line="2" Column="2" />
+      <File FileName="Strokes/StrokeDecomposer.cs" Line="27" Column="27" />
+      <File FileName="Spells/Aguamenti.cs" Line="42" Column="42" />
+      <File FileName="Spells/Incendio.cs" Line="17" Column="17" />
+      <File FileName="Spells/Locomotor.cs" Line="18" Column="18" />
+      <File FileName="Spells/SpellTrigger.cs" Line="29" Column="29" />
+      <File FileName="MultipleWiiWandzForm.cs" Line="1" Column="1" />
+      <File FileName="Position.cs" Line="1" Column="1" />
+      <File FileName="Program.cs" Line="1" Column="1" />
+      <File FileName="Settings.cs" Line="1" Column="1" />
+      <File FileName="SingleWiiWandzForm.cs" Line="1" Column="1" />
+      <File FileName="CloudBit/CloudBitSignal.cs" Line="28" Column="28" />
+      <File FileName="WiimoteInfo.cs" Line="25" Column="25" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
