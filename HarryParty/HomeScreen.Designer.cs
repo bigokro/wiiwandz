@@ -44,6 +44,7 @@
             this.btnExpectoPatronum.Size = new System.Drawing.Size(75, 75);
             this.btnExpectoPatronum.TabIndex = 0;
             this.btnExpectoPatronum.UseVisualStyleBackColor = true;
+            this.btnExpectoPatronum.Click += new System.EventHandler(this.btnExpectoPatronum_Click);
             // 
             // btnAraniaExumai
             // 
@@ -85,6 +86,7 @@
             this.btnSortingHat.Size = new System.Drawing.Size(75, 75);
             this.btnSortingHat.TabIndex = 4;
             this.btnSortingHat.UseVisualStyleBackColor = true;
+            this.btnSortingHat.Click += new System.EventHandler(this.btnSortingHat_Click);
             // 
             // HomeScreen
             // 

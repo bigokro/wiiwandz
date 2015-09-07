@@ -21,5 +21,17 @@ namespace WiiWandz
             AraniaExumai form = new AraniaExumai();
             form.Show();
         }
+
+        private void btnExpectoPatronum_Click(object sender, EventArgs e)
+        {
+            ExpectoPatronum form = new ExpectoPatronum();
+            form.Show();
+        }
+
+        private void btnSortingHat_Click(object sender, EventArgs e)
+        {
+            SortingHat form = new SortingHat();
+            form.Show();
+        }
     }
 }

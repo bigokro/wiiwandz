@@ -128,7 +128,7 @@ namespace WiiWandz
             }
             catch (WiimoteNotFoundException ex)
             {
-                MessageBox.Show(ex.Message, "Wiimote not found error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show(ex.Message, "Wiimote not found error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (WiimoteException ex)
             {
@@ -223,6 +223,9 @@ namespace WiiWandz
                     "hue_spell_off",
                     5);
                 spell.castSpell();
+
+                Incendio cloudBit = new Incendio("00e04c034e9a", "c83578c843ac46220849a1bd919662b340e537dd14f0b234a5a99634becc5339", 50, 1000, null, null);
+                cloudBit.castSpell();
 
                 if (trigger.getConfidence() > maxConfidence)
                 {
