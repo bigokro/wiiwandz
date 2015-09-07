@@ -11,12 +11,41 @@ namespace WiiWandz
 {
     public partial class SortingHat : Form
     {
+        private List<System.Media.SoundPlayer> players;
+        private List<System.Media.SoundPlayer> houses;
+
         public SortingHat()
         {
             InitializeComponent();
 
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(HandleKeys);
             this.btnSortingHat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(HandleKeys);
+
+            players = new List<System.Media.SoundPlayer>();
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_ah_certo.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_ah_muito_bem.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_coragem.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_dificil.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_ja_sei.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_melhor_que_seja.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_mente.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_mmm.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_mmm_certo.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_muito_bem.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_muito_dificil.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_nao.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_onde_colocar.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_sei_muito_bem.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_ser_grande.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_talento.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_vejamos.wav"));
+            players.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_vontade.wav"));
+
+            houses = new List<System.Media.SoundPlayer>();
+            houses.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_chosen_gryffindor.wav"));
+            houses.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_chosen_gryffindor.wav"));
+            houses.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_chosen_hufflepuff.wav"));
+            houses.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_chosen_slytherin.wav"));
         }
 
         private void btnSortingHat_Click(object sender, EventArgs e)
@@ -54,35 +83,51 @@ namespace WiiWandz
             e.Handled = true;
 
         }
+  
+        private void playChoosing()
+        {
+            Random rnd = new Random();
+            int toPlay = rnd.Next(1, players.Count) - 1;
+            players.ElementAt(toPlay).Play();
+        }
+        
 
         private void chooseRandom()
         {
-            MessageBox.Show("ex.Message", "Wiimote not found error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            playChoosing();
+            Random rnd = new Random();
+            int toPlay = rnd.Next(0, 3);
+            houses.ElementAt(toPlay).Play();
         }
 
         private void chooseGryffindorExtended()
         {
-            throw new NotImplementedException();
+            playChoosing();
+            //houses.ElementAt(0).Play();
         }
 
         private void chooseSlytherin()
         {
-            throw new NotImplementedException();
+            playChoosing();
+            //houses.ElementAt(3).Play();
         }
 
         private void chooseHufflepuff()
         {
-            throw new NotImplementedException();
+            playChoosing();
+            //houses.ElementAt(2).Play();
         }
 
         private void chooseRavenclaw()
         {
-            throw new NotImplementedException();
+            playChoosing();
+            //houses.ElementAt(1).Play();
         }
 
         private void chooseGryffindor()
         {
-            throw new NotImplementedException();
+            playChoosing();
+            //houses.ElementAt(0).Play();
         }
     }
 }
