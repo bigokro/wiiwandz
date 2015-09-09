@@ -119,5 +119,45 @@ namespace WiiWandz.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sorting_hat_bg_gryffindor {
+            get {
+                object obj = ResourceManager.GetObject("sorting_hat_bg_gryffindor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sorting_hat_bg_hufflepuff {
+            get {
+                object obj = ResourceManager.GetObject("sorting_hat_bg_hufflepuff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sorting_hat_bg_ravenclaw {
+            get {
+                object obj = ResourceManager.GetObject("sorting_hat_bg_ravenclaw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sorting_hat_bg_slytherin {
+            get {
+                object obj = ResourceManager.GetObject("sorting_hat_bg_slytherin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

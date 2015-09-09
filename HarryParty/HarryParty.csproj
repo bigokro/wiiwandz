@@ -276,4 +276,19 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg_gryffindor.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\sorting_hat_bg_gryffindor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\sorting_hat_bg_hufflepuff.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\sorting_hat_bg_ravenclaw.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\sorting_hat_bg_slytherin.jpg" />
+  </ItemGroup>
 </Project>
