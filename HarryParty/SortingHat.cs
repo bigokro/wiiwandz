@@ -24,6 +24,7 @@ namespace WiiWandz
         {
             InitializeComponent();
 
+            this.KeyPreview = true;
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(HandleKeys);
             this.btnSortingHat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(HandleKeys);
 

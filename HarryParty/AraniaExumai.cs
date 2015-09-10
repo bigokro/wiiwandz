@@ -37,7 +37,7 @@ namespace WiiWandz
         private double minConfidence;
 
         int count = 0;
-        Boolean spellCast;
+        Boolean spellCast, shownEnd;
         Dictionary<Guid, WiimoteInfo> mWiimoteMap = new Dictionary<Guid, WiimoteInfo>();
         WiimoteCollection mWC;
 
@@ -51,6 +51,11 @@ namespace WiiWandz
             this.maxConfidence = 0.0;
             this.minConfidence = 1.0;
             this.spellCast = false;
+            this.shownEnd = false;
+
+            this.KeyPreview = true;
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(HandleKeys);
+
         }
 
         private void axWindowsMediaPlayer1_Enter(object sender, EventArgs e)
@@ -72,6 +77,18 @@ namespace WiiWandz
 
         }
 
+        private void HandleKeys(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case ' ':
+                    spellCast = true;
+                    break;
+            }
+            e.Handled = true;
+
+        }
+
         void wplayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent NewState)
         {
             string val = "";
@@ -86,7 +103,7 @@ namespace WiiWandz
                 case 8:
                     val = "Media Ended";
                     //playList.removeItem(preMovie);
-                    if (!spellCast && count < 5)
+                    if (!spellCast)
                     {
                         playList.appendItem(loopMovie);
                         pbStrokes.Visible = true;
@@ -95,11 +112,11 @@ namespace WiiWandz
                             initWiiMotes();
                         }
                     }
-                    else if (spellCast || count < 6)
+                    else if (spellCast && !shownEnd)
                     {
                         playList.appendItem(postMovie);
                         pbStrokes.Visible = false;
-                        count = 10;
+                        shownEnd = true;
                     }
                     else
                     {

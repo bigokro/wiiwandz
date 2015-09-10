@@ -37,7 +37,7 @@ namespace WiiWandz
         private double minConfidence;
 
         int count = 0;
-        Boolean spellCast;
+        Boolean spellCast, shownEnd;
         Dictionary<Guid, WiimoteInfo> mWiimoteMap = new Dictionary<Guid, WiimoteInfo>();
         WiimoteCollection mWC;
 
@@ -51,8 +51,33 @@ namespace WiiWandz
             this.maxConfidence = 0.0;
             this.minConfidence = 1.0;
             this.spellCast = false;
+            this.shownEnd = false;
+
+            this.KeyPreview = true;
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(HandleKeys);
+
+            GlobalMouseHandler gmh = new GlobalMouseHandler();
+            gmh.TheMouseMoved += new MouseMovedEvent(gmh_TheMouseMoved);
+            Application.AddMessageFilter(gmh);
+
         }
 
+        void gmh_TheMouseMoved()
+        {
+            System.Drawing.Point cur_pos = System.Windows.Forms.Cursor.Position;
+
+            // Check for spell action
+            trigger = wandTracker.addMousePosition(cur_pos, DateTime.Now);
+
+            if (trigger != null) // && trigger.casting())
+            {
+                castSpell();
+            }
+
+            drawWandMovement();
+        }
+
+ 
         private void axWindowsMediaPlayer1_Enter(object sender, EventArgs e)
         {
             axWindowsMediaPlayer1.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(wplayer_PlayStateChange);
@@ -72,6 +97,18 @@ namespace WiiWandz
 
         }
 
+        private void HandleKeys(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case ' ':
+                    spellCast = true;
+                    break;
+            }
+            e.Handled = true;
+
+        }
+
         void wplayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent NewState)
         {
             string val = "";
@@ -86,20 +123,20 @@ namespace WiiWandz
                 case 8:
                     val = "Media Ended";
                     //playList.removeItem(preMovie);
-                    if (!spellCast && count < 5)
+                    if (!spellCast)
                     {
                         playList.appendItem(loopMovie);
                         pbStrokes.Visible = true;
-                        if (mWC == null || mWC.Count == 0)
+                        if ((mWC == null || mWC.Count == 0) && wandTracker.positions.Count == 0)
                         {
                             initWiiMotes();
                         }
                     }
-                    else if (spellCast || count < 6)
+                    else if (spellCast && !shownEnd)
                     {
                         playList.appendItem(postMovie);
                         pbStrokes.Visible = false;
-                        count = 10;
+                        shownEnd = true;
                     }
                     else
                     {
@@ -200,8 +237,6 @@ namespace WiiWandz
         {
             WiimoteState ws = args.WiimoteState;
 
-            strokesGraphics.Clear(Color.Black);
-
             for (int i = 0; i < 4; i++)
             {
                 if (ws.IRState.IRSensors[i].Found)
@@ -214,25 +249,38 @@ namespace WiiWandz
 
             if (trigger != null) // && trigger.casting())
             {
-                // TODO: HERE IS WHERE EVERYTHING SHOULD HAPPEN!!!!!!!!!!!!
-                spellCast = true;
-
-                IftttStartStopSpell spell = new IftttStartStopSpell(
-                    "bslEohHzR8x_HsJ3vWzxub",
-                    "hue_expecto_patronum_on",
-                    "hue_spell_off",
-                    30);
-                spell.castSpell();
-
-                if (trigger.getConfidence() > maxConfidence)
-                {
-                    maxConfidence = trigger.getConfidence();
-                }
-                if (trigger.getConfidence() < minConfidence)
-                {
-                    minConfidence = trigger.getConfidence();
-                }
+                castSpell();
             }
+
+            drawWandMovement();
+        }
+
+        private void castSpell()
+        {
+            // TODO: HERE IS WHERE EVERYTHING SHOULD HAPPEN!!!!!!!!!!!!
+            spellCast = true;
+
+            IftttStartStopSpell spell = new IftttStartStopSpell(
+                "bslEohHzR8x_HsJ3vWzxub",
+                "hue_expecto_patronum_on",
+                "hue_spell_off",
+                30);
+            spell.castSpell();
+
+            if (trigger.getConfidence() > maxConfidence)
+            {
+                maxConfidence = trigger.getConfidence();
+            }
+            if (trigger.getConfidence() < minConfidence)
+            {
+                minConfidence = trigger.getConfidence();
+            }
+
+        }
+
+        private void drawWandMovement()
+        {
+            strokesGraphics.Clear(Color.Black);
 
             Position previous = null;
             foreach (Position p in wandTracker.positions)
@@ -293,7 +341,6 @@ namespace WiiWandz
 
             pbStrokes.Image = strokesBitmap;
         }
-
         private void UpdateIR(IRSensor irSensor, Label lblNorm, Label lblRaw, CheckBox chkFound, Color color)
         {
             //chkFound.Checked = irSensor.Found;
@@ -315,5 +362,30 @@ namespace WiiWandz
 
     }
 
+    public delegate void MouseMovedEvent();
+
+    public class GlobalMouseHandler : IMessageFilter
+    {
+        private const int WM_MOUSEMOVE = 0x0200;
+
+        public event MouseMovedEvent TheMouseMoved;
+
+        #region IMessageFilter Members
+
+        public bool PreFilterMessage(ref Message m)
+        {
+            if (m.Msg == WM_MOUSEMOVE)
+            {
+                if (TheMouseMoved != null)
+                {
+                    TheMouseMoved();
+                }
+            }
+            // Always allow message to continue to the next filter control
+            return false;
+        }
+
+        #endregion
+    }
 }
 

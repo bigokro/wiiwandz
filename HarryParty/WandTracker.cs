@@ -75,23 +75,21 @@ namespace WiiWandz
             }
         }
 
+        public Spell addMousePosition(System.Drawing.Point pointF, DateTime dateTime)
+        {
+            return handleAdd(new Position(pointF, dateTime));
+        }
+
         public Spell addPosition(WiimoteLib.Point pointF, DateTime dateTime)
         {
-            if ((spellNames == null || spellNames.Count == 0) && !cloudBitWarningShown)
-            {
-                cloudBitWarningShown = true;
-                MessageBox.Show(
-                    "You need to choose the spells and set the cloudBit or IFTTT configurations before casting spells", 
-                    "Configuration required", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Error);
-                return null;
-            }
+            return handleAdd(new Position(pointF, dateTime));
+        }
 
-
+        public Spell handleAdd(Position pos)
+        {
             if (spell == null)
             {
-                addPosition(new Position(pointF, dateTime));
+                addPosition(pos);
 
                 if (positions.Count > 10)
                 {
