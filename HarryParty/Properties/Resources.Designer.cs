@@ -163,6 +163,16 @@ namespace WiiWandz.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap wand_arania_exumai {
+            get {
+                object obj = ResourceManager.GetObject("wand_arania_exumai", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap wand_expecto_patronum {
             get {
                 object obj = ResourceManager.GetObject("wand_expecto_patronum", resourceCulture);

@@ -33,13 +33,11 @@ namespace WiiWandz
         private WandTracker wandTracker;
         private Spell trigger;
 
-        private double maxConfidence;
-        private double minConfidence;
-
         int count = 0;
         Boolean spellCast, shownEnd;
         Dictionary<Guid, WiimoteInfo> mWiimoteMap = new Dictionary<Guid, WiimoteInfo>();
         WiimoteCollection mWC;
+        GlobalMouseHandler gmh;
 
         public AraniaExumai()
         {
@@ -47,24 +45,46 @@ namespace WiiWandz
 
             strokesGraphics = Graphics.FromImage(strokesBitmap);
             wandTracker = new WandTracker();
+            List<String> spellNames = new List<string>();
+            //spellNames.Add("Aguamenti");
+            spellNames.Add("Reparo");
+            spellNames.Add("Metelojinx");
+            spellNames.Add("Tarantallegra");
+            spellNames.Add("Locomotor");
+            spellNames.Add("Incendio");
+            spellNames.Add("WingardiumLeviosa");
+            wandTracker.setSpells(spellNames, null, null, null);
 
-            this.maxConfidence = 0.0;
-            this.minConfidence = 1.0;
             this.spellCast = false;
             this.shownEnd = false;
 
             this.KeyPreview = true;
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(HandleKeys);
 
+
         }
+
+        void gmh_TheMouseMoved()
+        {
+            System.Drawing.Point cur_pos = System.Windows.Forms.Cursor.Position;
+
+            // Check for spell action
+            trigger = wandTracker.addMousePosition(cur_pos, DateTime.Now);
+
+            if (trigger != null) // && trigger.casting())
+            {
+                castSpell();
+            }
+
+            drawWandMovement();
+        }
+
 
         private void axWindowsMediaPlayer1_Enter(object sender, EventArgs e)
         {
             axWindowsMediaPlayer1.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(wplayer_PlayStateChange);
-            //axWindowsMediaPlayer1.URL = @"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\videos\arania_exumai_pre.mp4";
-            //axWindowsMediaPlayer1.settings.autoStart = false;
-            //axWindowsMediaPlayer1.Ctlcontrols.play();
-            playList = axWindowsMediaPlayer1.playlistCollection.newPlaylist("AraniaExumaiVideos");
+
+            playList = axWindowsMediaPlayer1.playlistCollection.newPlaylist("ExpectoPatronumVideos");
             preMovie = axWindowsMediaPlayer1.newMedia(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\videos\arania_exumai_pre.mp4");
             playList.appendItem(preMovie);
             loopMovie = axWindowsMediaPlayer1.newMedia(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\videos\arania_exumai_loop.mp4");
@@ -72,9 +92,6 @@ namespace WiiWandz
             postMovie = axWindowsMediaPlayer1.newMedia(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\videos\arania_exumai_post.mp4");
 
             axWindowsMediaPlayer1.currentPlaylist = playList;
-            //WMPLib.IWMPMedia3 preFile = (WMPLib.IWMPMedia3)axWindowsMediaPlayer1.mediaCollection.getAll().get_Item(0);
-            //axWindowsMediaPlayer1.currentMedia = preFile;
-
         }
 
         private void HandleKeys(object sender, System.Windows.Forms.KeyPressEventArgs e)
@@ -82,7 +99,7 @@ namespace WiiWandz
             switch (e.KeyChar)
             {
                 case ' ':
-                    spellCast = true;
+                    castSpell();
                     break;
             }
             e.Handled = true;
@@ -105,15 +122,20 @@ namespace WiiWandz
                     //playList.removeItem(preMovie);
                     if (!spellCast)
                     {
-                        playList.appendItem(loopMovie);
+                        //playList.appendItem(loopMovie);
                         pbStrokes.Visible = true;
-                        if (mWC == null || mWC.Count == 0)
+                        if ((mWC == null || mWC.Count == 0) && wandTracker.positions.Count == 0)
                         {
                             initWiiMotes();
                         }
+
+                        axWindowsMediaPlayer1.Visible = false;
+
                     }
                     else if (spellCast && !shownEnd)
                     {
+                        // TODO: moved this to the place where the spell is cast
+                        axWindowsMediaPlayer1.Visible = true;
                         playList.appendItem(postMovie);
                         pbStrokes.Visible = false;
                         shownEnd = true;
@@ -167,6 +189,11 @@ namespace WiiWandz
 
                 wm.SetLEDs(index++);
             }
+
+            // Init Mouse tracker, too
+            gmh = new GlobalMouseHandler();
+            gmh.TheMouseMoved += new MouseMovedEvent(gmh_TheMouseMoved);
+            Application.AddMessageFilter(gmh);
         }
 
         void wm_WiimoteChanged(object sender, WiimoteChangedEventArgs e)
@@ -217,8 +244,6 @@ namespace WiiWandz
         {
             WiimoteState ws = args.WiimoteState;
 
-            strokesGraphics.Clear(Color.Black);
-
             for (int i = 0; i < 4; i++)
             {
                 if (ws.IRState.IRSensors[i].Found)
@@ -231,28 +256,34 @@ namespace WiiWandz
 
             if (trigger != null) // && trigger.casting())
             {
-                // TODO: HERE IS WHERE EVERYTHING SHOULD HAPPEN!!!!!!!!!!!!
-                spellCast = true;
-
-                IftttStartStopSpell spell = new IftttStartStopSpell(
-                    "bslEohHzR8x_HsJ3vWzxub",
-                    "hue_arania_exumai_on",
-                    "hue_spell_off",
-                    5);
-                spell.castSpell();
-
-                Incendio cloudBit = new Incendio("00e04c034e9a", "c83578c843ac46220849a1bd919662b340e537dd14f0b234a5a99634becc5339", 50, 1000, null, null);
-                cloudBit.castSpell();
-
-                if (trigger.getConfidence() > maxConfidence)
-                {
-                    maxConfidence = trigger.getConfidence();
-                }
-                if (trigger.getConfidence() < minConfidence)
-                {
-                    minConfidence = trigger.getConfidence();
-                }
+                castSpell();
             }
+
+            drawWandMovement();
+        }
+
+        private void castSpell()
+        {
+            spellCast = true;
+            Application.RemoveMessageFilter(gmh);
+
+            IftttStartStopSpell spell = new IftttStartStopSpell(
+                "bslEohHzR8x_HsJ3vWzxub",
+                "hue_expecto_patronum_on",
+                "hue_spell_off",
+                30);
+            spell.castSpell();
+
+            axWindowsMediaPlayer1.Visible = true;
+            //playList.appendItem(postMovie);
+            pbStrokes.Visible = false;
+            shownEnd = true;
+            axWindowsMediaPlayer1.currentMedia = postMovie;
+        }
+
+        private void drawWandMovement()
+        {
+            strokesGraphics.Clear(Color.Black);
 
             Position previous = null;
             foreach (Position p in wandTracker.positions)
@@ -264,10 +295,13 @@ namespace WiiWandz
                 }
                 System.Drawing.Point pointA = new System.Drawing.Point();
                 System.Drawing.Point pointB = new System.Drawing.Point();
+                // TODO: different measures for different inputs... do this in the position class
+
                 pointA.X = (PositionStatistics.MAX_X - previous.point.X) / 4;
                 pointA.Y = (PositionStatistics.MAX_Y - previous.point.Y) / 4;
                 pointB.X = (PositionStatistics.MAX_X - p.point.X) / 4;
                 pointB.Y = (PositionStatistics.MAX_Y - p.point.Y) / 4;
+
                 strokesGraphics.DrawLine(new Pen(Color.Yellow), pointA, pointB);
 
                 previous = p;
@@ -313,7 +347,6 @@ namespace WiiWandz
 
             pbStrokes.Image = strokesBitmap;
         }
-
         private void UpdateIR(IRSensor irSensor, Label lblNorm, Label lblRaw, CheckBox chkFound, Color color)
         {
             //chkFound.Checked = irSensor.Found;

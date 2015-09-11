@@ -238,6 +238,7 @@
   -->
   <ItemGroup>
     <Folder Include="Properties\New Folder\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="media\images\hogwarts_logo_wood.jpg" />
@@ -277,9 +278,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bg_gryffindor.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="media\images\sorting_hat_bg_gryffindor.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -293,5 +291,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="media\images\wand_expecto_patronum.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\wand_arania_exumai.png" />
   </ItemGroup>
 </Project>

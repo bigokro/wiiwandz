@@ -124,9 +124,6 @@
   <data name="sorting_hat_bg_hufflepuff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\media\images\sorting_hat_bg_hufflepuff.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sorting_hat_bg_ravenclaw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\media\images\sorting_hat_bg_ravenclaw.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="btn_lumos" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\media\images\btn_lumos.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -139,16 +136,22 @@
   <data name="btn_arania_exumai" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\media\images\btn_arania_exumai.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="btn_expecto_patronum" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\media\images\btn_expecto_patronum.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="btn_hedwig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\media\images\btn_hedwig.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_expecto_patronum" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\media\images\btn_expecto_patronum.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sorting_hat_bg_ravenclaw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\media\images\sorting_hat_bg_ravenclaw.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wand_expecto_patronum" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\media\images\wand_expecto_patronum.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hogwarts_logo_wood" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\media\images\hogwarts_logo_wood.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="wand_expecto_patronum" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\media\images\wand_expecto_patronum.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="wand_arania_exumai" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\media\images\wand_arania_exumai.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

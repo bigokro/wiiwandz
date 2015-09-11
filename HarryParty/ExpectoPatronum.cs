@@ -307,13 +307,6 @@ namespace WiiWandz
                 pointB.X = (PositionStatistics.MAX_X - p.point.X) / 4;
                 pointB.Y = (PositionStatistics.MAX_Y - p.point.Y) / 4;
                 
-                /*
-                pointA.X = previous.point.X / 4;
-                pointA.Y = previous.point.Y / 4;
-                pointB.X = p.point.X / 4;
-                pointB.Y = p.point.Y / 4;
-                */
-
                 strokesGraphics.DrawLine(new Pen(Color.Yellow), pointA, pointB);
 
                 previous = p;
