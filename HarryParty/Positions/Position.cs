@@ -20,7 +20,8 @@ namespace WiiWandz.Positions
 
         public Position(System.Drawing.Point point, DateTime time)
         {
-            this.point = point;
+            //this.point = point;
+            this.point = new System.Drawing.Point((1023 - point.X), (760 - point.Y));
             this.time = time;
         }
 

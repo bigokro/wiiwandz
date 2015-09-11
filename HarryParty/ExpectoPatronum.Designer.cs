@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AraniaExumai));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExpectoPatronum));
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.pbStrokes = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
@@ -51,20 +51,21 @@
             this.pbStrokes.BackColor = System.Drawing.Color.Black;
             this.pbStrokes.Location = new System.Drawing.Point(16, 22);
             this.pbStrokes.Name = "pbStrokes";
-            this.pbStrokes.Size = new System.Drawing.Size(256, 192);
+            this.pbStrokes.Size = new System.Drawing.Size(300, 250);
             this.pbStrokes.TabIndex = 43;
             this.pbStrokes.TabStop = false;
             this.pbStrokes.Visible = false;
             // 
-            // AraniaExumai
+            // ExpectoPatronum
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::WiiWandz.Properties.Resources.wand_expecto_patronum;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.pbStrokes);
             this.Controls.Add(this.axWindowsMediaPlayer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AraniaExumai";
+            this.Name = "ExpectoPatronum";
             this.Text = "Arania Exumai";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();

@@ -56,6 +56,7 @@ namespace WiiWandz
 
         public void initializeSpells()
         {
+            /*
             if (device != null && authorization != null && spellNames != null)
             {
                 spells = new List<Spell>();
@@ -72,6 +73,18 @@ namespace WiiWandz
                     Spell spell = (Spell) Activator.CreateInstance(type, parms);
                     spells.Add(spell);
                 }
+            }
+            */
+            spells = new List<Spell>();
+
+            for (int i = 0; i < spellNames.Count; i++)
+            {
+                String name = spellNames[i];
+
+                var type = Type.GetType("WiiWandz.Spells." + name);
+                object[] parms = new object[] { 1.0 };
+                Spell spell = (Spell)Activator.CreateInstance(type, parms);
+                spells.Add(spell);
             }
         }
 
@@ -96,15 +109,17 @@ namespace WiiWandz
                     if (wandIsPaused(positions))
                     {
                         Spell chosen = brain.chooseSpell(positions);
-                        if (chosen != null && authorization != null && device != null && spellNames != null)
+                        if (chosen != null)
                         {
                             for (int i = 0; i < spellNames.Count; i++)
                             {
                                 if (spellNames[i].Equals(chosen.GetType().Name))
                                 {
                                     spell = chosen;
+                                    /*
                                     ((CloudBitSpell)spell).setConfigurations(device, authorization, spellVoltages[i], spellDurations[i], iftttUserKey, spellIftttEvents[i]);
                                     spell.castSpell();
+                                    */
                                     startSpell = DateTime.Now;
                                 }
                             }
@@ -179,7 +194,7 @@ namespace WiiWandz
                 paused = true;
                 //Console.WriteLine("Paused. Diagonal: " + lastFiveStats.Diagonal());
             }
-
+            //paused = true;
             return paused;
         }
 

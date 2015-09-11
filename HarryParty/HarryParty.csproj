@@ -291,4 +291,7 @@
   <ItemGroup>
     <None Include="media\images\sorting_hat_bg_slytherin.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\wand_expecto_patronum.png" />
+  </ItemGroup>
 </Project>

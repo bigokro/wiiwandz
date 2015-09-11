@@ -33,13 +33,11 @@ namespace WiiWandz
         private WandTracker wandTracker;
         private Spell trigger;
 
-        private double maxConfidence;
-        private double minConfidence;
-
         int count = 0;
         Boolean spellCast, shownEnd;
         Dictionary<Guid, WiimoteInfo> mWiimoteMap = new Dictionary<Guid, WiimoteInfo>();
         WiimoteCollection mWC;
+        GlobalMouseHandler gmh;
 
         public ExpectoPatronum()
         {
@@ -47,18 +45,22 @@ namespace WiiWandz
 
             strokesGraphics = Graphics.FromImage(strokesBitmap);
             wandTracker = new WandTracker();
+            List<String> spellNames = new List<string>();
+            //spellNames.Add("Aguamenti");
+            spellNames.Add("Reparo");
+            spellNames.Add("Metelojinx");
+            spellNames.Add("Tarantallegra");
+            spellNames.Add("Locomotor");
+            spellNames.Add("Incendio");
+            spellNames.Add("WingardiumLeviosa");
+            wandTracker.setSpells(spellNames, null, null, null);
 
-            this.maxConfidence = 0.0;
-            this.minConfidence = 1.0;
             this.spellCast = false;
             this.shownEnd = false;
 
             this.KeyPreview = true;
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(HandleKeys);
 
-            GlobalMouseHandler gmh = new GlobalMouseHandler();
-            gmh.TheMouseMoved += new MouseMovedEvent(gmh_TheMouseMoved);
-            Application.AddMessageFilter(gmh);
 
         }
 
@@ -102,7 +104,7 @@ namespace WiiWandz
             switch (e.KeyChar)
             {
                 case ' ':
-                    spellCast = true;
+                    castSpell();
                     break;
             }
             e.Handled = true;
@@ -125,15 +127,20 @@ namespace WiiWandz
                     //playList.removeItem(preMovie);
                     if (!spellCast)
                     {
-                        playList.appendItem(loopMovie);
+                        //playList.appendItem(loopMovie);
                         pbStrokes.Visible = true;
                         if ((mWC == null || mWC.Count == 0) && wandTracker.positions.Count == 0)
                         {
                             initWiiMotes();
                         }
+
+                        axWindowsMediaPlayer1.Visible = false;
+
                     }
                     else if (spellCast && !shownEnd)
                     {
+                        // TODO: moved this to the place where the spell is cast
+                        axWindowsMediaPlayer1.Visible = true;
                         playList.appendItem(postMovie);
                         pbStrokes.Visible = false;
                         shownEnd = true;
@@ -187,6 +194,11 @@ namespace WiiWandz
 
                 wm.SetLEDs(index++);
             }
+
+            // Init Mouse tracker, too
+            gmh = new GlobalMouseHandler();
+            gmh.TheMouseMoved += new MouseMovedEvent(gmh_TheMouseMoved);
+            Application.AddMessageFilter(gmh);
         }
 
         void wm_WiimoteChanged(object sender, WiimoteChangedEventArgs e)
@@ -257,8 +269,8 @@ namespace WiiWandz
 
         private void castSpell()
         {
-            // TODO: HERE IS WHERE EVERYTHING SHOULD HAPPEN!!!!!!!!!!!!
             spellCast = true;
+            Application.RemoveMessageFilter(gmh);
 
             IftttStartStopSpell spell = new IftttStartStopSpell(
                 "bslEohHzR8x_HsJ3vWzxub",
@@ -267,15 +279,11 @@ namespace WiiWandz
                 30);
             spell.castSpell();
 
-            if (trigger.getConfidence() > maxConfidence)
-            {
-                maxConfidence = trigger.getConfidence();
-            }
-            if (trigger.getConfidence() < minConfidence)
-            {
-                minConfidence = trigger.getConfidence();
-            }
-
+            axWindowsMediaPlayer1.Visible = true;
+            //playList.appendItem(postMovie);
+            pbStrokes.Visible = false;
+            shownEnd = true;
+            axWindowsMediaPlayer1.currentMedia = postMovie;
         }
 
         private void drawWandMovement()
@@ -292,10 +300,20 @@ namespace WiiWandz
                 }
                 System.Drawing.Point pointA = new System.Drawing.Point();
                 System.Drawing.Point pointB = new System.Drawing.Point();
+                // TODO: different measures for different inputs... do this in the position class
+                 
                 pointA.X = (PositionStatistics.MAX_X - previous.point.X) / 4;
                 pointA.Y = (PositionStatistics.MAX_Y - previous.point.Y) / 4;
                 pointB.X = (PositionStatistics.MAX_X - p.point.X) / 4;
                 pointB.Y = (PositionStatistics.MAX_Y - p.point.Y) / 4;
+                
+                /*
+                pointA.X = previous.point.X / 4;
+                pointA.Y = previous.point.Y / 4;
+                pointB.X = p.point.X / 4;
+                pointB.Y = p.point.Y / 4;
+                */
+
                 strokesGraphics.DrawLine(new Pen(Color.Yellow), pointA, pointB);
 
                 previous = p;
