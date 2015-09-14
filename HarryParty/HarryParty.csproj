@@ -93,6 +93,12 @@
     <Compile Include="AraniaExumai.Designer.cs">
       <DependentUpon>AraniaExumai.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hedwig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hedwig.Designer.cs">
+      <DependentUpon>Hedwig.cs</DependentUpon>
+    </Compile>
     <Compile Include="SortingHat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,7 @@
     <Compile Include="Spells\CloudBitSpell.cs" />
     <Compile Include="Strokes\Stroke.cs" />
     <Compile Include="Test\StrokeDecomposerTest.cs" />
+    <Compile Include="WandHandler.cs" />
     <Compile Include="WandTracker.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SingleWiiWandzForm.cs">
@@ -153,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AraniaExumai.resx">
       <DependentUpon>AraniaExumai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hedwig.resx">
+      <DependentUpon>Hedwig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SortingHat.resx">
       <DependentUpon>SortingHat.cs</DependentUpon>
@@ -294,5 +304,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="media\images\wand_arania_exumai.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\btn_werewolf.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\bg_hedwig.jpg" />
   </ItemGroup>
 </Project>

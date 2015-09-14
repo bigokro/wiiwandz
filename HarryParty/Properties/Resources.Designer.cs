@@ -63,6 +63,16 @@ namespace WiiWandz.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bg_hedwig {
+            get {
+                object obj = ResourceManager.GetObject("bg_hedwig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btn_arania_exumai {
             get {
                 object obj = ResourceManager.GetObject("btn_arania_exumai", resourceCulture);
@@ -106,6 +116,16 @@ namespace WiiWandz.Properties {
         internal static System.Drawing.Bitmap btn_sorting_hat {
             get {
                 object obj = ResourceManager.GetObject("btn_sorting_hat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_werewolf {
+            get {
+                object obj = ResourceManager.GetObject("btn_werewolf", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

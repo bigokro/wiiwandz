@@ -33,13 +33,14 @@
             this.btnLumos = new System.Windows.Forms.Button();
             this.btnHedwig = new System.Windows.Forms.Button();
             this.btnSortingHat = new System.Windows.Forms.Button();
+            this.btnWerewolf = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnExpectoPatronum
             // 
             this.btnExpectoPatronum.BackgroundImage = global::WiiWandz.Properties.Resources.btn_expecto_patronum;
             this.btnExpectoPatronum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnExpectoPatronum.Location = new System.Drawing.Point(24, 243);
+            this.btnExpectoPatronum.Location = new System.Drawing.Point(24, 317);
             this.btnExpectoPatronum.Name = "btnExpectoPatronum";
             this.btnExpectoPatronum.Size = new System.Drawing.Size(75, 75);
             this.btnExpectoPatronum.TabIndex = 0;
@@ -50,7 +51,7 @@
             // 
             this.btnAraniaExumai.BackgroundImage = global::WiiWandz.Properties.Resources.btn_arania_exumai;
             this.btnAraniaExumai.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAraniaExumai.Location = new System.Drawing.Point(24, 356);
+            this.btnAraniaExumai.Location = new System.Drawing.Point(24, 415);
             this.btnAraniaExumai.Name = "btnAraniaExumai";
             this.btnAraniaExumai.Size = new System.Drawing.Size(75, 75);
             this.btnAraniaExumai.TabIndex = 1;
@@ -71,11 +72,12 @@
             // 
             this.btnHedwig.BackgroundImage = global::WiiWandz.Properties.Resources.btn_hedwig;
             this.btnHedwig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHedwig.Location = new System.Drawing.Point(24, 133);
+            this.btnHedwig.Location = new System.Drawing.Point(24, 123);
             this.btnHedwig.Name = "btnHedwig";
             this.btnHedwig.Size = new System.Drawing.Size(75, 75);
             this.btnHedwig.TabIndex = 3;
             this.btnHedwig.UseVisualStyleBackColor = true;
+            this.btnHedwig.Click += new System.EventHandler(this.btnHedwig_Click);
             // 
             // btnSortingHat
             // 
@@ -88,6 +90,16 @@
             this.btnSortingHat.UseVisualStyleBackColor = true;
             this.btnSortingHat.Click += new System.EventHandler(this.btnSortingHat_Click);
             // 
+            // btnWerewolf
+            // 
+            this.btnWerewolf.BackgroundImage = global::WiiWandz.Properties.Resources.btn_werewolf;
+            this.btnWerewolf.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnWerewolf.Location = new System.Drawing.Point(24, 223);
+            this.btnWerewolf.Name = "btnWerewolf";
+            this.btnWerewolf.Size = new System.Drawing.Size(75, 75);
+            this.btnWerewolf.TabIndex = 5;
+            this.btnWerewolf.UseVisualStyleBackColor = true;
+            // 
             // HomeScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -96,6 +108,7 @@
             this.BackgroundImage = global::WiiWandz.Properties.Resources.hogwarts_logo_wood;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.btnWerewolf);
             this.Controls.Add(this.btnSortingHat);
             this.Controls.Add(this.btnHedwig);
             this.Controls.Add(this.btnLumos);
@@ -116,5 +129,6 @@
         private System.Windows.Forms.Button btnLumos;
         private System.Windows.Forms.Button btnHedwig;
         private System.Windows.Forms.Button btnSortingHat;
+        private System.Windows.Forms.Button btnWerewolf;
     }
 }

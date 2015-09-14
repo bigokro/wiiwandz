@@ -33,5 +33,11 @@ namespace WiiWandz
             SortingHat form = new SortingHat();
             form.Show();
         }
+
+        private void btnHedwig_Click(object sender, EventArgs e)
+        {
+            Hedwig form = new Hedwig();
+            form.Show();
+        }
     }
 }
