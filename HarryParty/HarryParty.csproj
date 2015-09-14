@@ -93,6 +93,18 @@
     <Compile Include="AraniaExumai.Designer.cs">
       <DependentUpon>AraniaExumai.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lumos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lumos.Designer.cs">
+      <DependentUpon>Lumos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Werewolf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Werewolf.Designer.cs">
+      <DependentUpon>Werewolf.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hedwig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +172,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AraniaExumai.resx">
       <DependentUpon>AraniaExumai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lumos.resx">
+      <DependentUpon>Lumos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Werewolf.resx">
+      <DependentUpon>Werewolf.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hedwig.resx">
       <DependentUpon>Hedwig.cs</DependentUpon>
@@ -310,5 +328,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="media\images\bg_hedwig.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\bg_werewolf.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\bg_lumos.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="media\images\bg_lumos_2.jpg" />
   </ItemGroup>
 </Project>

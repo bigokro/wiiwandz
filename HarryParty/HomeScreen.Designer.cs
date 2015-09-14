@@ -67,6 +67,7 @@
             this.btnLumos.Size = new System.Drawing.Size(75, 75);
             this.btnLumos.TabIndex = 2;
             this.btnLumos.UseVisualStyleBackColor = true;
+            this.btnLumos.Click += new System.EventHandler(this.btnLumos_Click);
             // 
             // btnHedwig
             // 
@@ -99,6 +100,7 @@
             this.btnWerewolf.Size = new System.Drawing.Size(75, 75);
             this.btnWerewolf.TabIndex = 5;
             this.btnWerewolf.UseVisualStyleBackColor = true;
+            this.btnWerewolf.Click += new System.EventHandler(this.btnWerewolf_Click);
             // 
             // HomeScreen
             // 

@@ -26,8 +26,11 @@ namespace WiiWandz.Spells
         {
             ifttt.sendSignal();
 
-            ifttt.eventName = stopEvent;
-            new Timer(timer, ifttt, seconds * 1000, Timeout.Infinite);
+            if (stopEvent != null)
+            {
+                ifttt.eventName = stopEvent;
+                new Timer(timer, ifttt, seconds * 1000, Timeout.Infinite);
+            }
         }
 
         private static void ExecuteDelayedAction(object o)

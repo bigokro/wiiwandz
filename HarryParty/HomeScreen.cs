@@ -39,5 +39,17 @@ namespace WiiWandz
             Hedwig form = new Hedwig();
             form.Show();
         }
+
+        private void btnWerewolf_Click(object sender, EventArgs e)
+        {
+            Werewolf form = new Werewolf();
+            form.Show();
+        }
+
+        private void btnLumos_Click(object sender, EventArgs e)
+        {
+            Lumos form = new Lumos();
+            form.Show();
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace WiiWandz
 {
-    partial class Hedwig
+    partial class Lumos
     {
         /// <summary>
         /// Required designer variable.
@@ -35,23 +35,23 @@
             // pbStrokes
             // 
             this.pbStrokes.BackColor = System.Drawing.Color.Black;
-            this.pbStrokes.Location = new System.Drawing.Point(14, 35);
+            this.pbStrokes.Location = new System.Drawing.Point(12, 21);
             this.pbStrokes.Name = "pbStrokes";
             this.pbStrokes.Size = new System.Drawing.Size(256, 192);
             this.pbStrokes.TabIndex = 44;
             this.pbStrokes.TabStop = false;
             // 
-            // Hedwig
+            // Lumos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.BackgroundImage = global::WiiWandz.Properties.Resources.bg_hedwig;
+            this.BackgroundImage = global::WiiWandz.Properties.Resources.bg_lumos_2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.pbStrokes);
-            this.Name = "Hedwig";
-            this.Text = "Hedwig";
+            this.Name = "Lumos";
+            this.Text = "Lumos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.pbStrokes)).EndInit();
             this.ResumeLayout(false);

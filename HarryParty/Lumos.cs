@@ -13,7 +13,7 @@ using WiiWandz.Spells;
 
 namespace WiiWandz
 {
-    public partial class Hedwig : Form
+    public partial class Lumos : Form
     {
         private delegate void UpdateWiimoteStateDelegate(WiimoteChangedEventArgs args);
         private delegate void UpdateExtensionChangedDelegate(WiimoteExtensionChangedEventArgs args);
@@ -21,7 +21,7 @@ namespace WiiWandz
         WandHandler wandHandler;
         SoundPlayer sound;
 
-        public Hedwig()
+        public Lumos()
         {
             InitializeComponent();
 
@@ -39,7 +39,7 @@ namespace WiiWandz
             this.KeyPreview = true;
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(HandleKeys);
 
-            sound = new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\hedwig_hooting.wav");
+            sound = new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\lumos_maxima.wav");
 
         }
 
@@ -50,6 +50,9 @@ namespace WiiWandz
                 case ' ':
                     castSpell();
                     break;
+                case (char)13:
+                    endLumos();
+                    break;
             }
             e.Handled = true;
 
@@ -57,23 +60,29 @@ namespace WiiWandz
 
         void castSpell()
         {
-            wandHandler.StopTracking();
-
             // TODO: probably need to run this in a separate thread
             IftttStartStopSpell spell = new IftttStartStopSpell(
                 "bslEohHzR8x_HsJ3vWzxub",
-                "hue_hedwig_on",
-                "hue_spell_off",
-                5);
+                "hue_random_color",
+                "hue_bright",
+                1);
             spell.castSpell();
 
-            Incendio cloudBit = new Incendio("00e04c034e9a", "c83578c843ac46220849a1bd919662b340e537dd14f0b234a5a99634becc5339", 25, 1000, null, null);
-            cloudBit.castSpell();
-
             sound.PlaySync();
-            Close();
         }
 
+        void endLumos()
+        {
+            wandHandler.StopTracking();
 
+            IftttStartStopSpell spell = new IftttStartStopSpell(
+                "bslEohHzR8x_HsJ3vWzxub",
+                "hue_dim",
+                "hue_spell_off",
+                1);
+            spell.castSpell();
+
+            Close();
+        }
     }
 }
