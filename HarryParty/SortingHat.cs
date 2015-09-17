@@ -13,7 +13,10 @@ namespace WiiWandz
     public partial class SortingHat : Form
     {
         private List<System.Media.SoundPlayer> starting;
-        private List<System.Media.SoundPlayer> choosing;
+        private List<System.Media.SoundPlayer> choosingGryffindor;
+        private List<System.Media.SoundPlayer> choosingRavenclaw;
+        private List<System.Media.SoundPlayer> choosingSlytherin;
+        private List<System.Media.SoundPlayer> choosingHufflepuff;
         private List<System.Media.SoundPlayer> pronouncement;
         private List<System.Media.SoundPlayer> gryffindor;
         private List<System.Media.SoundPlayer> slytherin;
@@ -36,14 +39,32 @@ namespace WiiWandz
             starting.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_starting_kit_vamos_pensar.wav"));
             starting.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_starting_kit_vejamos.wav"));
 
-            choosing = new List<System.Media.SoundPlayer>();
-            choosing.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_chule.wav"));
-            choosing.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_coragem.wav"));
-            choosing.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_esperta.wav"));
-            choosing.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_fedendo.wav"));
-            choosing.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_pode_ser_grande.wav"));
-            choosing.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_outra_para_esta_crianca.wav"));
-            choosing.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_talento.wav"));
+            choosingGryffindor = new List<System.Media.SoundPlayer>();
+            choosingGryffindor.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_chule.wav"));
+            choosingGryffindor.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_coragem.wav"));
+            choosingGryffindor.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_fedendo.wav"));
+            choosingGryffindor.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_outra_para_esta_crianca.wav"));
+            choosingGryffindor.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_talento.wav"));
+
+            choosingRavenclaw = new List<System.Media.SoundPlayer>();
+            choosingRavenclaw.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_chule.wav"));
+            choosingRavenclaw.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_esperta.wav"));
+            choosingRavenclaw.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_fedendo.wav"));
+            choosingRavenclaw.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_outra_para_esta_crianca.wav"));
+            choosingRavenclaw.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_talento.wav"));
+
+            choosingHufflepuff = new List<System.Media.SoundPlayer>();
+            choosingHufflepuff.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_chule.wav"));
+            choosingHufflepuff.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_fedendo.wav"));
+            choosingHufflepuff.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_outra_para_esta_crianca.wav"));
+            choosingHufflepuff.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_talento.wav"));
+
+            choosingSlytherin = new List<System.Media.SoundPlayer>();
+            choosingSlytherin.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_chule.wav"));
+            choosingSlytherin.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_fedendo.wav"));
+            choosingSlytherin.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_pode_ser_grande.wav"));
+            choosingSlytherin.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_outra_para_esta_crianca.wav"));
+            choosingSlytherin.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_choosing_kit_talento.wav"));
 
             pronouncement = new List<System.Media.SoundPlayer>();
             pronouncement.Add(new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\sorting_hat_pronouncement_kit_decidi.wav"));
@@ -86,7 +107,7 @@ namespace WiiWandz
             switch (e.KeyChar)
             {
                 case '0':
-                    t = new Thread(chooseRandom);
+                    t = new Thread(chooseRandomHouse);
                     break;
                 case '1':
                     t = new Thread(chooseGryffindor);
@@ -113,21 +134,21 @@ namespace WiiWandz
 
         }
   
-        private void playChoosing()
+        private void playRandom(List<System.Media.SoundPlayer> sounds)
         {
             Random rnd = new Random();
             int toPlay = rnd.Next(1, starting.Count) - 1;
             starting.ElementAt(toPlay).PlaySync();
 
-            toPlay = rnd.Next(1, choosing.Count) - 1;
-            choosing.ElementAt(toPlay).PlaySync();
+            toPlay = rnd.Next(1, sounds.Count) - 1;
+            sounds.ElementAt(toPlay).PlaySync();
 
             toPlay = rnd.Next(1, pronouncement.Count) - 1;
             pronouncement.ElementAt(toPlay).PlaySync();
         }
 
 
-        private void chooseRandom()
+        private void chooseRandomHouse()
         {
             Random rnd = new Random();
             int toPlay = rnd.Next(0, 3);
@@ -152,7 +173,7 @@ namespace WiiWandz
 
         private void chooseGryffindorExtended()
         {
-            playChoosing();
+            playRandom(choosingGryffindor);
 
             this.BackgroundImage = Properties.Resources.sorting_hat_bg_gryffindor;
 
@@ -165,7 +186,7 @@ namespace WiiWandz
 
         private void chooseSlytherin()
         {
-            playChoosing();
+            playRandom(choosingSlytherin);
 
             this.BackgroundImage = Properties.Resources.sorting_hat_bg_slytherin;
 
@@ -178,7 +199,7 @@ namespace WiiWandz
 
         private void chooseHufflepuff()
         {
-            playChoosing();
+            playRandom(choosingHufflepuff);
 
             this.BackgroundImage = Properties.Resources.sorting_hat_bg_hufflepuff;
 
@@ -191,7 +212,7 @@ namespace WiiWandz
 
         private void chooseRavenclaw()
         {
-            playChoosing();
+            playRandom(choosingRavenclaw);
 
             this.BackgroundImage = Properties.Resources.sorting_hat_bg_ravenclaw;
 
@@ -204,7 +225,7 @@ namespace WiiWandz
 
         private void chooseGryffindor()
         {
-            playChoosing();
+            playRandom(choosingGryffindor);
 
             this.BackgroundImage = Properties.Resources.sorting_hat_bg_gryffindor;
 
@@ -217,9 +238,7 @@ namespace WiiWandz
 
         private void reset()
         {
-
             this.BackgroundImage = Properties.Resources.hogwarts_logo_wood;
-
         }
     }
 }
