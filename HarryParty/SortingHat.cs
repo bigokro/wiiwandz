@@ -137,13 +137,13 @@ namespace WiiWandz
         private void playRandom(List<System.Media.SoundPlayer> sounds)
         {
             Random rnd = new Random();
-            int toPlay = rnd.Next(1, starting.Count) - 1;
+            int toPlay = rnd.Next(0, starting.Count);
             starting.ElementAt(toPlay).PlaySync();
 
-            toPlay = rnd.Next(1, sounds.Count) - 1;
+            toPlay = rnd.Next(0, sounds.Count);
             sounds.ElementAt(toPlay).PlaySync();
 
-            toPlay = rnd.Next(1, pronouncement.Count) - 1;
+            toPlay = rnd.Next(0, pronouncement.Count);
             pronouncement.ElementAt(toPlay).PlaySync();
         }
 
@@ -151,7 +151,7 @@ namespace WiiWandz
         private void chooseRandomHouse()
         {
             Random rnd = new Random();
-            int toPlay = rnd.Next(0, 3);
+            int toPlay = rnd.Next(0, 4);
 
             switch (toPlay)
             {
@@ -178,7 +178,7 @@ namespace WiiWandz
             this.BackgroundImage = Properties.Resources.sorting_hat_bg_gryffindor;
 
             Random rnd = new Random();
-            int toPlay = rnd.Next(1, gryffindor.Count) - 1;
+            int toPlay = rnd.Next(0, gryffindor.Count);
             gryffindor.ElementAt(toPlay).PlaySync();
 
             reset();
@@ -191,7 +191,7 @@ namespace WiiWandz
             this.BackgroundImage = Properties.Resources.sorting_hat_bg_slytherin;
 
             Random rnd = new Random();
-            int toPlay = rnd.Next(1, slytherin.Count) - 1;
+            int toPlay = rnd.Next(0, slytherin.Count);
             slytherin.ElementAt(toPlay).PlaySync();
 
             reset();
@@ -204,7 +204,7 @@ namespace WiiWandz
             this.BackgroundImage = Properties.Resources.sorting_hat_bg_hufflepuff;
 
             Random rnd = new Random();
-            int toPlay = rnd.Next(1, hufflepuff.Count) - 1;
+            int toPlay = rnd.Next(0, hufflepuff.Count);
             hufflepuff.ElementAt(toPlay).PlaySync();
 
             reset();
@@ -217,7 +217,7 @@ namespace WiiWandz
             this.BackgroundImage = Properties.Resources.sorting_hat_bg_ravenclaw;
 
             Random rnd = new Random();
-            int toPlay = rnd.Next(1, ravenclaw.Count) - 1;
+            int toPlay = rnd.Next(0, ravenclaw.Count);
             ravenclaw.ElementAt(toPlay).PlaySync();
 
             reset();
@@ -230,7 +230,7 @@ namespace WiiWandz
             this.BackgroundImage = Properties.Resources.sorting_hat_bg_gryffindor;
 
             Random rnd = new Random();
-            int toPlay = rnd.Next(1, gryffindor.Count) - 1;
+            int toPlay = rnd.Next(0, gryffindor.Count);
             gryffindor.ElementAt(toPlay).PlaySync();
 
             reset();
