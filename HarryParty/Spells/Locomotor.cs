@@ -1,32 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using WiiWandz.Strokes;
-using WiiWandz.Ifttt;
 
 namespace WiiWandz.Spells
 {
-	class Locomotor : CloudBitSpell
+    class Locomotor : CloudBitSpell
 	{
         public Locomotor(double confidence)
             : base(confidence)
         {
-            this.minConfidence = 0.999;
-            this.minPercentOfTotalBetweenStartAndEndPoints = 20;
-            this.maxPercentOfTotalBetweenStartAndEndPoints = 50;
-            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheRight);
-            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
+            minConfidence = 0.999;
+            minPercentOfTotalBetweenStartAndEndPoints = 20;
+            maxPercentOfTotalBetweenStartAndEndPoints = 50;
+            acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheRight);
+            acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
         }
 
-        public Locomotor(String device, String authorization, int voltage, int duration, String iftttKey, String iftttEvent)
+        public Locomotor(string device, string authorization, int voltage, int duration, string iftttKey, string iftttEvent)
             : base(device, authorization, voltage, duration, iftttKey, iftttEvent)
 		{
-            List<StrokeDirection> directions = new List<StrokeDirection>();
+            var directions = new List<StrokeDirection>();
             directions.Add(StrokeDirection.Up);
             directions.Add(StrokeDirection.DownToTheLeft);
             directions.Add(StrokeDirection.Right);
-            this.strokesForSpell.Add(directions);
+            strokesForSpell.Add(directions);
         }
     }
 }

@@ -7,12 +7,12 @@ namespace WiiWandz.CloudBit
 {
 	public class CloudBitSignal
 	{
-		public String device;
-        public String authorization;
+		public string device;
+        public string authorization;
 		public int percent;
 		public int duration;
 
-        public CloudBitSignal(String device, String authorization, int percent, int duration)
+        public CloudBitSignal(string device, string authorization, int percent, int duration)
 		{
 			this.device = device;
             this.authorization = authorization;
@@ -25,7 +25,7 @@ namespace WiiWandz.CloudBit
 			sendSignal (device, authorization, percent, duration);
 		}
 
-		public void sendSignal(String device, String authorization, int percent, int duration)
+		public void sendSignal(string device, string authorization, int percent, int duration)
 		{
 			using (var client = new WebClient())
 			{
@@ -41,7 +41,7 @@ namespace WiiWandz.CloudBit
                     var response = client.UploadValues("https://api-http.littlebitscloud.cc/devices/" + device + "/output", values);
                     var responseString = Encoding.Default.GetString(response);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     // ignore for now
                 }

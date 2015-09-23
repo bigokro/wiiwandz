@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using WiimoteLib;
+using System.Drawing;
 using System.IO;
 using WiiWandz.Positions;
-using System.Drawing;
 using System.Drawing.Imaging;
 using System.Text;
 
@@ -14,7 +13,6 @@ namespace WiiWandz
 	{
 		// map a wiimote to a specific state user control dealie
 		Dictionary<Guid,WiimoteInfo> mWiimoteMap = new Dictionary<Guid,WiimoteInfo>();
-		WiimoteCollection mWC;
 
         protected string fileName;
         protected string currentLine;
@@ -35,7 +33,7 @@ namespace WiiWandz
 
         private void btnChooseFile_Click(object sender, EventArgs e)
         {
-            DialogResult result = openFileDialog.ShowDialog();
+            var result = openFileDialog.ShowDialog();
             if (result == DialogResult.OK) // Test result.
             {
                 fileName = openFileDialog.FileName;
@@ -47,8 +45,8 @@ namespace WiiWandz
 
         private void readLine(int lineNum)
         {
-            FileStream fs = File.OpenRead(fileName);
-            StreamReader sr = new StreamReader(fs);
+            var fs = File.OpenRead(fileName);
+            var sr = new StreamReader(fs);
 
             // TODO: either implement seek, or store ahead in memory
             currentLine = null;
@@ -88,8 +86,8 @@ namespace WiiWandz
             // Read from the target file and write to a new file.
             int line_number = 1;
             string line = null;
-            using (StreamReader reader = new StreamReader(fileName))
-            using (StreamWriter writer = new StreamWriter(tempFile))
+            using (var reader = new StreamReader(fileName))
+            using (var writer = new StreamWriter(tempFile))
             {
                 while ((line = reader.ReadLine()) != null)
                 {
@@ -111,8 +109,8 @@ namespace WiiWandz
             // Overwrite original file
             line_number = 1;
             line = null;
-            using (StreamReader reader = new StreamReader(tempFile))
-            using (StreamWriter writer = new StreamWriter(fileName))
+            using (var reader = new StreamReader(tempFile))
+            using (var writer = new StreamWriter(fileName))
             {
                 while ((line = reader.ReadLine()) != null)
                 {
@@ -275,7 +273,7 @@ namespace WiiWandz
                     }
                 }
             }
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             for (int i = 0; i <= idx; i++)
             {
                 sb.Append(points[i]);

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net;
-using System.Collections.Specialized;
+﻿using System.Collections.Generic;
 using WiiWandz.Strokes;
-using WiiWandz.Ifttt;
 
 namespace WiiWandz.Spells
 {
@@ -14,28 +8,27 @@ namespace WiiWandz.Spells
         public Incendio(double confidence)
             : base(confidence)
         {
-            this.minConfidence = 0.99;
-            this.minPercentOfTotalBetweenStartAndEndPoints = 0;
-            this.maxPercentOfTotalBetweenStartAndEndPoints = 10;
-            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheRight);
-            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
-            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheRight);
-            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Down);
-            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheLeft);
-            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Left);
-            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheLeft);
-            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Up);
+            minConfidence = 0.99;
+            minPercentOfTotalBetweenStartAndEndPoints = 0;
+            maxPercentOfTotalBetweenStartAndEndPoints = 10;
+            acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheRight);
+            acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Right);
+            acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheRight);
+            acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Down);
+            acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheLeft);
+            acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Left);
+            acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.UpToTheLeft);
+            acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.Up);
         }
 
-        public Incendio(String device, String authorization, int voltage, int duration, String iftttKey, String iftttEvent)
+        public Incendio(string device, string authorization, int voltage, int duration, string iftttKey, string iftttEvent)
             : base(device, authorization, voltage, duration, iftttKey, iftttEvent)
         {
-            List<StrokeDirection> directions = new List<StrokeDirection>();
+            var directions = new List<StrokeDirection>();
             directions.Add(StrokeDirection.UpToTheRight);
             directions.Add(StrokeDirection.DownToTheRight);
             directions.Add(StrokeDirection.Left);
-            this.strokesForSpell.Add(directions);
-
+            strokesForSpell.Add(directions);
         }
     }
 }

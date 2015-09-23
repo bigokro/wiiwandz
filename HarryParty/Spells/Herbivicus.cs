@@ -1,41 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using WiiWandz.Strokes;
-using WiiWandz.Ifttt;
 
 namespace WiiWandz.Spells
 {
-	class Herbivicus : CloudBitSpell
+    class Herbivicus : CloudBitSpell
 	{
         public Herbivicus(double confidence) : base(confidence) 
         {
-            this.minConfidence = 0.9999;
-            this.minPercentOfTotalBetweenStartAndEndPoints = 85;
-            this.maxPercentOfTotalBetweenStartAndEndPoints = 100;
-            this.acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheRight);
+            minConfidence = 0.9999;
+            minPercentOfTotalBetweenStartAndEndPoints = 85;
+            maxPercentOfTotalBetweenStartAndEndPoints = 100;
+            acceptableDirectionsFromStartToEndPoint.Add(StrokeDirection.DownToTheRight);
         }
 
-        public Herbivicus(String device, String authorization, int voltage, int duration, String iftttKey, String iftttEvent)
+        public Herbivicus(string device, string authorization, int voltage, int duration, string iftttKey, string iftttEvent)
             : base(device, authorization, voltage, duration, iftttKey, iftttEvent)
 		{
-            List<StrokeDirection> directions = new List<StrokeDirection>();
+            var directions = new List<StrokeDirection>();
             directions.Add(StrokeDirection.Down);
             directions.Add(StrokeDirection.Up);
             directions.Add(StrokeDirection.UpToTheRight);
             directions.Add(StrokeDirection.Right);
             directions.Add(StrokeDirection.DownToTheLeft);
             directions.Add(StrokeDirection.Down);
-            this.strokesForSpell.Add(directions);
+            strokesForSpell.Add(directions);
 
             directions = new List<StrokeDirection>();
             directions.Add(StrokeDirection.Down);
             directions.Add(StrokeDirection.UpToTheRight);
             directions.Add(StrokeDirection.DownToTheLeft);
             directions.Add(StrokeDirection.Down);
-            this.strokesForSpell.Add(directions);
-
+            strokesForSpell.Add(directions);
 		}
 	}
 }

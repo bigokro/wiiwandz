@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using WiiWandz.Strokes;
+﻿using System.Collections.Generic;
 using WiiWandz.Positions;
 
 namespace WiiWandz.Spells
 {
     public interface Spell
     {
-		Boolean triggered(List<Position> positions);
+		bool triggered(List<Position> positions);
         void castSpell();
-        Boolean casting();
+        bool casting();
         double getConfidence();
     }
 }

@@ -39,14 +39,14 @@ namespace WiiWandz
 				MessageBox.Show(ex.Message, "Unknown error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 
-			foreach(Wiimote wm in mWC)
+			foreach(var wm in mWC)
 			{
 				// create a new tab
-				TabPage tp = new TabPage("Wiimote " + index);
+				var tp = new TabPage("Wiimote " + index);
 				tabWiimotes.TabPages.Add(tp);
 
 				// create a new user control
-				WiimoteInfo wi = new WiimoteInfo(wm);
+				var wi = new WiimoteInfo(wm);
 				tp.Controls.Add(wi);
 
 				// setup the map from this wiimote's ID to that control
@@ -66,14 +66,14 @@ namespace WiiWandz
 
 		void wm_WiimoteChanged(object sender, WiimoteChangedEventArgs e)
 		{
-			WiimoteInfo wi = mWiimoteMap[((Wiimote)sender).ID];
+			var wi = mWiimoteMap[((Wiimote)sender).ID];
 			wi.UpdateState(e);
 		}
 
 		void wm_WiimoteExtensionChanged(object sender, WiimoteExtensionChangedEventArgs e)
 		{
 			// find the control for this Wiimote
-			WiimoteInfo wi = mWiimoteMap[((Wiimote)sender).ID];
+			var wi = mWiimoteMap[((Wiimote)sender).ID];
 			wi.UpdateExtension(e);
 
 			if(e.Inserted)
@@ -84,7 +84,7 @@ namespace WiiWandz
 
 		private void MultipleWiimoteForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			foreach(Wiimote wm in mWC)
+			foreach(var wm in mWC)
 				wm.Disconnect();
 		}
 	}

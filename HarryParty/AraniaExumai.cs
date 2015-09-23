@@ -1,57 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using WMPLib;
 using AxWMPLib;
 using WiimoteLib;
-using System.Drawing.Imaging;
 using WiiWandz.Spells;
-using WiiWandz.Strokes;
-using WiiWandz.Positions;
 
 namespace WiiWandz
 {
     public partial class AraniaExumai : Form
     {
-
-        WMPLib.IWMPMedia preMovie;
-        WMPLib.IWMPMedia loopMovie;
-        WMPLib.IWMPMedia postMovie;
+        IWMPMedia preMovie;
+        IWMPMedia loopMovie;
+        IWMPMedia postMovie;
         IWMPPlaylist playList;
+
+        private const string PRE_MOVIE  = @"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\videos\arania_exumai_pre.mp4";
+        private const string LOOP_MOVIE = @"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\videos\arania_exumai_loop.mp4";
+        private const string POST_MOVIE = @"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\videos\arania_exumai_post.mp4";
+
+        private string DEVICE        = "00e04c034e9a";
+        private string AUTHORIZATION = "c83578c843ac46220849a1bd919662b340e537dd14f0b234a5a99634becc5339";
+        private int VOLTAGE          = 50;
+        private int DURATION         = 100;
 
         private delegate void UpdateWiimoteStateDelegate(WiimoteChangedEventArgs args);
         private delegate void UpdateExtensionChangedDelegate(WiimoteExtensionChangedEventArgs args);
 
         int count = 0;
-        Boolean spellCast, shownEnd;
+        bool spellCast, shownEnd;
         WandHandler wandHandler;
 
         public AraniaExumai()
         {
             InitializeComponent();
 
-            List<String> spellNames = new List<string>();
-            //spellNames.Add("Aguamenti");
-            spellNames.Add("Reparo");
-            spellNames.Add("Metelojinx");
-            spellNames.Add("Tarantallegra");
-            spellNames.Add("Locomotor");
-            spellNames.Add("Incendio");
-            spellNames.Add("WingardiumLeviosa");
+            var spellNames = new List<string>()
+            {
+                "Reparo",
+                "Metelojinx",
+                "Tarantallegra",
+                "Locomotor",
+                "Incendio",
+                "WingardiumLeviosa"
+            };
+
             wandHandler = new WandHandler(pbStrokes, spellNames, delegate { castSpell(); });
 
-            this.spellCast = false;
-            this.shownEnd = false;
+            spellCast = false;
+            shownEnd = false;
 
-            this.KeyPreview = true;
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(HandleKeys);
-
-
+            KeyPreview = true;
+            KeyPress += new KeyPressEventHandler(HandleKeys);
         }
 
         private void axWindowsMediaPlayer1_Enter(object sender, EventArgs e)
@@ -59,16 +59,16 @@ namespace WiiWandz
             axWindowsMediaPlayer1.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(wplayer_PlayStateChange);
 
             playList = axWindowsMediaPlayer1.playlistCollection.newPlaylist("ExpectoPatronumVideos");
-            preMovie = axWindowsMediaPlayer1.newMedia(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\videos\arania_exumai_pre.mp4");
+            preMovie = axWindowsMediaPlayer1.newMedia(PRE_MOVIE);
             playList.appendItem(preMovie);
-            loopMovie = axWindowsMediaPlayer1.newMedia(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\videos\arania_exumai_loop.mp4");
+            loopMovie = axWindowsMediaPlayer1.newMedia(LOOP_MOVIE);
             //playList.appendItem(loopMovie);
-            postMovie = axWindowsMediaPlayer1.newMedia(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\videos\arania_exumai_post.mp4");
+            postMovie = axWindowsMediaPlayer1.newMedia(POST_MOVIE);
 
             axWindowsMediaPlayer1.currentPlaylist = playList;
         }
 
-        private void HandleKeys(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        private void HandleKeys(object sender, KeyPressEventArgs e)
         {
             switch (e.KeyChar)
             {
@@ -80,9 +80,9 @@ namespace WiiWandz
 
         }
 
-        void wplayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent NewState)
+        void wplayer_PlayStateChange(object sender, _WMPOCXEvents_PlayStateChangeEvent NewState)
         {
-            string val = "";
+            string val = string.Empty;
             switch (NewState.newState)
             {
                 case 1:
@@ -132,14 +132,16 @@ namespace WiiWandz
 
             wandHandler.StopTracking();
 
-            IftttStartStopSpell spell = new IftttStartStopSpell(
+            var spell = new IftttStartStopSpell(
                 "bslEohHzR8x_HsJ3vWzxub",
                 "hue_arania_exumai_on",
                 "hue_spell_off",
-                5);
+                5
+            );
+
             spell.castSpell();
 
-            Incendio cloudBit = new Incendio("00e04c034e9a", "c83578c843ac46220849a1bd919662b340e537dd14f0b234a5a99634becc5339", 50, 1000, null, null);
+            var cloudBit = new Incendio(DEVICE, AUTHORIZATION, VOLTAGE, DURATION, null, null);
             cloudBit.castSpell();
 
             axWindowsMediaPlayer1.Visible = true;
@@ -148,9 +150,6 @@ namespace WiiWandz
             shownEnd = true;
             axWindowsMediaPlayer1.currentMedia = postMovie;
         }
-
-
     }
-
 }
 

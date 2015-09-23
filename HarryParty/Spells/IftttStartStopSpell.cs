@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using WiiWandz.Strokes;
-using WiiWandz.Ifttt;
+﻿using WiiWandz.Ifttt;
 using System.Threading;
 
 namespace WiiWandz.Spells
 {
-	class IftttStartStopSpell : CloudBitSpell
+    class IftttStartStopSpell : CloudBitSpell
 	{
-        private readonly static TimerCallback timer = new TimerCallback(IftttStartStopSpell.ExecuteDelayedAction);
+        private readonly static TimerCallback timer = new TimerCallback(ExecuteDelayedAction);
 
-        String stopEvent;
+        string stopEvent;
         int seconds;
 
-        public IftttStartStopSpell(String iftttKey, String iftttEvent, String stopEvent, int seconds)
+        public IftttStartStopSpell(string iftttKey, string iftttEvent, string stopEvent, int seconds)
             : base(null, null, 0, 0, iftttKey, iftttEvent)
 		{
             this.seconds = seconds;

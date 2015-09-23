@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using WiiWandz.Spells;
 using WiiWandz.Strokes;
-using WiiWandz.Test;
-using System.Windows.Forms;
 using WiiWandz.NN;
 using WiiWandz.Positions;
 
@@ -13,11 +10,10 @@ namespace WiiWandz
 {
     class WandTracker
     {
-
-		public String device;
-		public String authorization;
-        public String iftttUserKey;
-        public static Boolean cloudBitWarningShown = false;
+		public string device;
+		public string authorization;
+        public string iftttUserKey;
+        public static bool cloudBitWarningShown = false;
 
 		public List<Position> positions;
         public List<Stroke> strokes;
@@ -28,16 +24,16 @@ namespace WiiWandz
 		public Spell spell;
         public DateTime startSpell;
 
-        private List<String> spellNames;
+        private List<string> spellNames;
         private List<int> spellDurations;
         private List<int> spellVoltages;
-        private List<String> spellIftttEvents;
+        private List<string> spellIftttEvents;
 
         public WandTracker()
         {
-            this.positions = new List<Position>();
-			this.decomposer = new StrokeDecomposer (1023, 1023, 4);
-            this.brain = new Brain();
+            positions = new List<Position>();
+			decomposer = new StrokeDecomposer (1023, 1023, 4);
+            brain = new Brain();
 
             spells = new List<Spell>();
 
@@ -79,7 +75,7 @@ namespace WiiWandz
 
             for (int i = 0; i < spellNames.Count; i++)
             {
-                String name = spellNames[i];
+                string name = spellNames[i];
 
                 var type = Type.GetType("WiiWandz.Spells." + name);
                 object[] parms = new object[] { 1.0 };
@@ -155,7 +151,7 @@ namespace WiiWandz
             return spell;
         }
 
-        public void setDeviceInfo(String device, String authorization, String iftttUserKey)
+        public void setDeviceInfo(string device, string authorization, string iftttUserKey)
         {
             this.device = device;
             this.authorization = authorization;
@@ -168,7 +164,7 @@ namespace WiiWandz
 			positions.Add(position);
 
 			// Remove all but last 2 seconds
-			DateTime timeOfLatest = position.time;
+			var timeOfLatest = position.time;
 
 			int idx = positions.Count - 1;
 			while (idx >= 0 
@@ -186,8 +182,8 @@ namespace WiiWandz
         {
             bool paused = false;
             //PositionStatistics stats = new PositionStatistics(positions);
-            List<Position> lastFive = positions.GetRange(positions.Count - 5, 5);
-            PositionStatistics lastFiveStats = new PositionStatistics(lastFive);
+            var lastFive = positions.GetRange(positions.Count - 5, 5);
+            var lastFiveStats = new PositionStatistics(lastFive);
 
             if (lastFiveStats.Diagonal() < 10)
             {
@@ -198,12 +194,12 @@ namespace WiiWandz
             return paused;
         }
 
-        public void setSpells(List<String> spellNames, List<int> spellDurations, List<int> spellVoltages, List<String> iftttEvents)
+        public void setSpells(List<string> spellNames, List<int> spellDurations, List<int> spellVoltages, List<string> iftttEvents)
         {
             this.spellNames = spellNames;
             this.spellDurations = spellDurations;
             this.spellVoltages = spellVoltages;
-            this.spellIftttEvents = iftttEvents;
+            spellIftttEvents = iftttEvents;
             //initializeSpells();
         }
     }
