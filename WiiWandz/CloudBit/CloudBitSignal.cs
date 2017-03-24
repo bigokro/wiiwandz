@@ -27,23 +27,32 @@ namespace WiiWandz.CloudBit
 
 		public void sendSignal(String device, String authorization, int percent, int duration)
 		{
-			using (var client = new WebClient())
+            ServicePointManager
+               .ServerCertificateValidationCallback +=
+               (sender, cert, chain, sslPolicyErrors) => true;
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+                                         | SecurityProtocolType.Tls11
+                                         | SecurityProtocolType.Tls12
+                                         | SecurityProtocolType.Ssl3;
+
+            using (var client = new WebClient())
 			{
-				client.Headers.Set("Authorization", "Bearer " + authorization);
-				client.Headers.Set("Accept", "application/vnd.littlebits.v2+json");
+                client.Headers.Set("Authorization", authorization);
+                client.Headers.Set("Accept", "application/json");
+                client.Headers[HttpRequestHeader.ContentType] = "application/json";
 
-				var values = new NameValueCollection();
-				values["percent"] = percent.ToString();
-				values["duration_ms"] = duration.ToString();
+                string json = "{\"percent\":" + percent + ",\"duration_ms\":" + duration + "}";
 
+                string responseString;
                 try
                 {
-                    var response = client.UploadValues("https://api-http.littlebitscloud.cc/devices/" + device + "/output", values);
-                    var responseString = Encoding.Default.GetString(response);
+                    string url = "https://api-http.littlebitscloud.cc/v2/devices/" + device + "/output";
+                    responseString = client.UploadString(url, "POST", json);
                 }
                 catch (Exception e)
                 {
-                    // ignore for now
+                    throw new Exception(e.Message);
                 }
 			}
 		}
