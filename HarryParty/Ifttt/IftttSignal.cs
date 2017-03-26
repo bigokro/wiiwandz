@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Net;
-using System.Collections.Specialized;
-using System.Text;
 
 namespace WiiWandz.Ifttt
 {
-	public class IftttSignal
+    public class IftttSignal
 	{
-		public String secretKey;
-        public String eventName;
+		public string secretKey;
+        public string eventName;
 
-		public IftttSignal (String secretKey, String eventName)
+		public IftttSignal (string secretKey, string eventName)
 		{
 			this.secretKey = secretKey;
             this.eventName = eventName;
@@ -21,16 +19,15 @@ namespace WiiWandz.Ifttt
 			sendSignal (secretKey, eventName);
 		}
 
-		public void sendSignal(String secretKey, String eventName)
+		public void sendSignal(string secretKey, string eventName)
 		{
 			using (var client = new WebClient())
 			{
-
                 try
                 {
                     var responseString = client.DownloadString("https://maker.ifttt.com/trigger/" + eventName + "/with/key/" + secretKey);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     // ignore for now
                 }

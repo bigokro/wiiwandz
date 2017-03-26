@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using WiiWandz.Spells;
 using WiiWandz.Positions;
 
@@ -77,11 +75,11 @@ namespace WiiWandz.NN
 
             for (int i = 1; i < data.Count; i++)
             {
-                Position position = data[i-1];
+                var position = data[i-1];
                 int x = scaleCoordinate(position.point.X, stats.xMin, xScale);
                 int y = scaleCoordinate(position.point.Y, stats.yMin, yScale);
 
-                Position nextPosition = data[i];
+                var nextPosition = data[i];
                 int nextX = scaleCoordinate(nextPosition.point.X, stats.xMin, xScale);
                 int nextY = scaleCoordinate(nextPosition.point.Y, stats.yMin, yScale);
 
@@ -112,7 +110,7 @@ namespace WiiWandz.NN
                 }
             }
 
-            Spell spell = calculateSpell(data, newData);
+            var spell = calculateSpell(data, newData);
 
             return spell;
         }
@@ -135,7 +133,7 @@ namespace WiiWandz.NN
             a1[0, 0] = 1.0;
             for (int i = 0; i < data.Length; i++)
             {
-                a1[0, i] = (double)data[i];
+                a1[0, i] = data[i];
             }
 
             double[,] z1 = multiply(a1, Theta1);
@@ -143,7 +141,6 @@ namespace WiiWandz.NN
             double[,] a2 = addOnes(h1);
             double[,] z2 = multiply(a2, Theta2);
             double[,] h2 = sigmoid(z2);
-
 
             Spell spell = null;
             int best = 0;
@@ -154,7 +151,7 @@ namespace WiiWandz.NN
                 double confidence = h2[0, i];
                 if (confidence > maxConfidence)
                 {
-                    Spell candidateSpell = createSpellForResult(i, confidence);
+                    var candidateSpell = createSpellForResult(i, confidence);
                     if (candidateSpell.triggered(positions))
                     {
                         best = i;
@@ -277,7 +274,6 @@ namespace WiiWandz.NN
             }
             return result;
         }
-
     }
 
 }

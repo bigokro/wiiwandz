@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Media;
-using System.Text;
 using System.Windows.Forms;
 using WiimoteLib;
 using WiiWandz.Spells;
@@ -18,6 +11,8 @@ namespace WiiWandz
         private delegate void UpdateWiimoteStateDelegate(WiimoteChangedEventArgs args);
         private delegate void UpdateExtensionChangedDelegate(WiimoteExtensionChangedEventArgs args);
 
+        private const string SOUND = @"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\lumos_maxima.wav";
+
         WandHandler wandHandler;
         SoundPlayer sound;
 
@@ -25,25 +20,27 @@ namespace WiiWandz
         {
             InitializeComponent();
 
-            List<String> spellNames = new List<string>();
-            //spellNames.Add("Aguamenti");
-            spellNames.Add("Reparo");
-            spellNames.Add("Metelojinx");
-            spellNames.Add("Tarantallegra");
-            spellNames.Add("Locomotor");
-            spellNames.Add("Incendio");
-            spellNames.Add("WingardiumLeviosa");
+            var spellNames = new List<string>()
+            {
+                "Reparo",
+                "Metelojinx",
+                "Tarantallegra",
+                "Locomotor",
+                "Incendio",
+                "WingardiumLeviosa"
+            };
+            
             wandHandler = new WandHandler(pbStrokes, spellNames, delegate { castSpell(); });
             wandHandler.StartTracking();
 
-            this.KeyPreview = true;
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(HandleKeys);
+            KeyPreview = true;
+            KeyPress += new KeyPressEventHandler(HandleKeys);
 
-            sound = new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\lumos_maxima.wav");
+            sound = new SoundPlayer(SOUND);
 
         }
 
-        private void HandleKeys(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        private void HandleKeys(object sender, KeyPressEventArgs e)
         {
             switch (e.KeyChar)
             {
@@ -61,11 +58,13 @@ namespace WiiWandz
         void castSpell()
         {
             // TODO: probably need to run this in a separate thread
-            IftttStartStopSpell spell = new IftttStartStopSpell(
+            var spell = new IftttStartStopSpell(
                 "bslEohHzR8x_HsJ3vWzxub",
                 "hue_random_color",
                 "hue_bright",
-                1);
+                1
+            );
+
             spell.castSpell();
 
             sound.PlaySync();
@@ -75,11 +74,13 @@ namespace WiiWandz
         {
             wandHandler.StopTracking();
 
-            IftttStartStopSpell spell = new IftttStartStopSpell(
+            var spell = new IftttStartStopSpell(
                 "bslEohHzR8x_HsJ3vWzxub",
                 "hue_dim",
                 "hue_spell_off",
-                1);
+                1
+            );
+
             spell.castSpell();
 
             Close();

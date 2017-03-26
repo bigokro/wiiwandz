@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using WiiWandz.Strokes;
 
 namespace WiiWandz.Test
 {
     class StrokeDecomposerTest
     {
-        public StrokeDecomposerTest()
-        {
-        }
+        public StrokeDecomposerTest() {}
 
-        public Boolean testDetermineStroke()
+        public bool testDetermineStroke()
         {
-            Boolean pass = true;
+            bool pass = true;
 
-            List<StrokeDirection> strokes = new List<StrokeDirection>();
+            var strokes = new List<StrokeDirection>();
             strokes.Add(StrokeDirection.Bumbled);
 
-            List<StrokeDirection> toMatch = new List<StrokeDirection>();
+            var toMatch = new List<StrokeDirection>();
             toMatch.Add(StrokeDirection.Right);
             pass = pass && !StrokeDecomposer.strokesMatch(strokes, toMatch);
 

@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Media;
-using System.Text;
 using System.Windows.Forms;
 using WiimoteLib;
 using WiiWandz.Spells;
@@ -18,6 +11,13 @@ namespace WiiWandz
         private delegate void UpdateWiimoteStateDelegate(WiimoteChangedEventArgs args);
         private delegate void UpdateExtensionChangedDelegate(WiimoteExtensionChangedEventArgs args);
 
+        private const string SOUND = @"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\werewolf_howling_2.wav";
+
+        private string DEVICE = "00e04c034e9a";
+        private string AUTHORIZATION = "c83578c843ac46220849a1bd919662b340e537dd14f0b234a5a99634becc5339";
+        private int VOLTAGE = 75;
+        private int DURATION = 10000;
+
         WandHandler wandHandler;
         SoundPlayer sound;
 
@@ -25,25 +25,26 @@ namespace WiiWandz
         {
             InitializeComponent();
 
-            List<String> spellNames = new List<string>();
+            var spellNames = new List<string>()
+            {
+                "Reparo",
+                "Metelojinx",
+                "Tarantallegra",
+                "Locomotor",
+                "Incendio",
+                "WingardiumLeviosa"
+            };
             //spellNames.Add("Aguamenti");
-            spellNames.Add("Reparo");
-            spellNames.Add("Metelojinx");
-            spellNames.Add("Tarantallegra");
-            spellNames.Add("Locomotor");
-            spellNames.Add("Incendio");
-            spellNames.Add("WingardiumLeviosa");
             wandHandler = new WandHandler(pbStrokes, spellNames, delegate { castSpell(); });
             wandHandler.StartTracking();
 
-            this.KeyPreview = true;
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(HandleKeys);
+            KeyPreview = true;
+            KeyPress += new KeyPressEventHandler(HandleKeys);
 
-            sound = new System.Media.SoundPlayer(@"C:\Users\CLARISSA RAMOS\Documents\GitHub\wiiwandz\HarryParty\media\sounds\werewolf_howling_2.wav");
-
+            sound = new SoundPlayer(SOUND);
         }
 
-        private void HandleKeys(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        private void HandleKeys(object sender, KeyPressEventArgs e)
         {
             switch (e.KeyChar)
             {
@@ -52,7 +53,6 @@ namespace WiiWandz
                     break;
             }
             e.Handled = true;
-
         }
 
         void castSpell()
@@ -60,21 +60,21 @@ namespace WiiWandz
             wandHandler.StopTracking();
 
             // TODO: probably need to run this in a separate thread
-            IftttStartStopSpell spell = new IftttStartStopSpell(
+            var spell = new IftttStartStopSpell(
                 "bslEohHzR8x_HsJ3vWzxub",
                 "hue_werewolf_on",
                 "hue_spell_off",
-                5);
+                5
+            );
+
             spell.castSpell();
 
-            Incendio cloudBit = new Incendio("00e04c034e9a", "c83578c843ac46220849a1bd919662b340e537dd14f0b234a5a99634becc5339", 75, 10000, null, null);
+            var cloudBit = new Incendio(DEVICE, AUTHORIZATION, VOLTAGE, DURATION, null, null);
             cloudBit.castSpell();
 
             sound.PlaySync();
             sound.PlaySync();
             Close();
         }
-
-
     }
 }

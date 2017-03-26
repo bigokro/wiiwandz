@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace WiiWandz.Positions
 {
@@ -26,7 +24,7 @@ namespace WiiWandz.Positions
             yMin = MAX_Y;
             yMax = 0;
 
-            foreach (Position position in positions)
+            foreach (var position in positions)
             {
                 if (position.point.X < xMin)
                 {
@@ -86,16 +84,8 @@ namespace WiiWandz.Positions
 
         public static double Slope(Position start, Position end)
         {
-            double slope = 0.0;
-            if (end.point.X - start.point.X == 0)
-            {
-                slope = double.PositiveInfinity;
-            }
-            else
-            {
-                slope = ((double)end.point.Y - start.point.Y) / (end.point.X - start.point.X);
-            }
-            return slope;
+            var calculate = end.point.X - start.point.X;
+            return calculate == 0 ? double.PositiveInfinity : ((double)end.point.Y - start.point.Y) / (end.point.X - start.point.X);
         }
 
         public static double Distance(Position start, Position end)
@@ -103,8 +93,7 @@ namespace WiiWandz.Positions
             return Math.Sqrt(
                 Math.Pow(end.point.X - start.point.X, 2) +
                 Math.Pow(end.point.Y - start.point.Y, 2)
-                );
+            );
         }
-
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using WiiWandz.Ifttt;
 using WiiWandz.Strokes;
 using WiiWandz.Positions;
@@ -11,13 +9,13 @@ namespace WiiWandz.Spells
 {
     abstract class CloudBitSpell : Spell
     {
-		public String device;
-		public String authorization;
+		public string device;
+		public string authorization;
         public int voltage;
         public int duration;
 
-        public String iftttSecretKey;
-        public String iftttEvent;
+        public string iftttSecretKey;
+        public string iftttEvent;
 
         public double confidence;
 
@@ -35,17 +33,17 @@ namespace WiiWandz.Spells
         public CloudBitSpell(double confidence) 
         {
             this.confidence = confidence;
-            this.acceptableDirectionsFromStartToEndPoint = new List<StrokeDirection>();
-            this.minConfidence = 0.9999;
+            acceptableDirectionsFromStartToEndPoint = new List<StrokeDirection>();
+            minConfidence = 0.9999;
         }
 
-        public CloudBitSpell(String device, String authorization, int voltage, int duration, String iftttKey, String iftttEvent)
+        public CloudBitSpell(string device, string authorization, int voltage, int duration, string iftttKey, string iftttEvent)
 		{
             setConfigurations(device, authorization, voltage, duration, iftttKey, iftttEvent);
-			this.strokesForSpell = new List<List<StrokeDirection>>();
+			strokesForSpell = new List<List<StrokeDirection>>();
 		}
 
-        public void setConfigurations(String device, String authorization, int voltage, int duration, String iftttSecretKey, String iftttEvent)
+        public void setConfigurations(string device, string authorization, int voltage, int duration, string iftttSecretKey, string iftttEvent)
         {
             this.device = device;
             this.authorization = authorization;
@@ -53,8 +51,8 @@ namespace WiiWandz.Spells
             this.duration = duration;
             this.iftttSecretKey = iftttSecretKey;
             this.iftttEvent = iftttEvent;
-            this.cloudBit = new CloudBitSignal(this.device, this.authorization, voltage, duration * 1000);
-            this.ifttt = new IftttSignal(this.iftttSecretKey, iftttEvent);
+            cloudBit = new CloudBitSignal(this.device, this.authorization, voltage, duration * 1000);
+            ifttt = new IftttSignal(this.iftttSecretKey, iftttEvent);
         }
 
 		public virtual void castSpell()
@@ -69,10 +67,10 @@ namespace WiiWandz.Spells
             }
 		}
 
-		public Boolean casting()
+		public bool casting()
 		{
 			return lastTrigger != null 
-				&& (DateTime.Now.Subtract(lastTrigger).TotalMilliseconds < (this.duration * 1000));
+				&& (DateTime.Now.Subtract(lastTrigger).TotalMilliseconds < (duration * 1000));
 		}
 
 		public bool triggered(List<Position> positions)
@@ -106,9 +104,9 @@ namespace WiiWandz.Spells
 
         protected virtual bool verifyTrigger(List<Position> positions)
         {
-            PositionStatistics stats = new PositionStatistics(positions);
+            var stats = new PositionStatistics(positions);
 
-            StrokeDirection direction = StrokeDecomposer.determineDirection(stats.Start(), stats.End());
+            var direction = StrokeDecomposer.determineDirection(stats.Start(), stats.End());
             double distance = stats.Diagonal();
             double relativeStartAndEndDistance = stats.FractionOfTotal(stats.Start(), stats.End());
 
@@ -144,7 +142,7 @@ namespace WiiWandz.Spells
 
         public double getConfidence()
         {
-            return this.confidence;
+            return confidence;
         }
 
     }

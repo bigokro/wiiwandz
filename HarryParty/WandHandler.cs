@@ -24,10 +24,10 @@ namespace WiiWandz
         PictureBox pbStrokes;
         Action spellAction;
 
-        public WandHandler(PictureBox pbStrokes, List<String> spellNames, Action spellFunction)
+        public WandHandler(PictureBox pbStrokes, List<string> spellNames, Action spellFunction)
         {
             this.pbStrokes = pbStrokes;
-            this.spellAction = spellFunction;
+            spellAction = spellFunction;
             strokesGraphics = Graphics.FromImage(strokesBitmap);
             wandTracker = new WandTracker();
             wandTracker.setSpells(spellNames, null, null, null);
@@ -35,7 +35,7 @@ namespace WiiWandz
 
         void gmh_TheMouseMoved()
         {
-            System.Drawing.Point cur_pos = System.Windows.Forms.Cursor.Position;
+            System.Drawing.Point cur_pos = Cursor.Position;
 
             // Check for spell action
             trigger = wandTracker.addMousePosition(cur_pos, DateTime.Now);
@@ -58,7 +58,7 @@ namespace WiiWandz
             {
                 mWC.FindAllWiimotes();
             }
-            catch (WiimoteNotFoundException ex)
+            catch (WiimoteNotFoundException)
             {
                 //MessageBox.Show(ex.Message, "Wiimote not found error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -140,7 +140,7 @@ namespace WiiWandz
 
         private void UpdateWiimoteChanged(WiimoteChangedEventArgs args)
         {
-            WiimoteState ws = args.WiimoteState;
+            var ws = args.WiimoteState;
 
             for (int i = 0; i < 4; i++)
             {
@@ -166,7 +166,7 @@ namespace WiiWandz
             strokesGraphics.Clear(Color.Black);
 
             Position previous = null;
-            foreach (Position p in wandTracker.positions)
+            foreach (var p in wandTracker.positions)
             {
                 if (previous == null)
                 {
